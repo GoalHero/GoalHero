@@ -29,14 +29,14 @@ const UserPage = ({ navigation }) => {
             <Image
               style={styles.icon}
               source={{
-                uri: "http://img.icons8.com/color/70/000000/cottage.png",
+                uri: "https://img.icons8.com/color/70/000000/filled-like.png",
               }}
             />
           </View>
           <View style={styles.infoContent}>
-            <Text style={styles.info}>Home</Text>
+            <Text style={styles.info}>Health: 100%</Text>
           </View>
-        </View>
+        </View> 
         <View style={styles.item}>
           <View style={styles.iconContent}>
             <Image
@@ -48,11 +48,23 @@ const UserPage = ({ navigation }) => {
             />
           </View>
           <View style={styles.infoContent}>
-            <Text style={styles.info}>Log out</Text>
+            <Text style={styles.info}>Level: 1</Text>
+          </View>
+        </View>
+        <View style={styles.item}>
+          <View style={styles.iconContent}>
+            <Image
+              style={styles.icon}
+              source={{
+                uri:
+                  "https://img.icons8.com/color/70/000000/groups.png", }}
+            />
+          </View>
+          <View style={styles.infoContent}>
+            <Text style={styles.info}>Heroes Unlocked</Text>
           </View>
         </View>
       </View>
-      <Text></Text>
     </View>
   );
 };
