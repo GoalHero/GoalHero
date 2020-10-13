@@ -11,12 +11,14 @@ import User from "./Components/User";
 // import Play from "./GameEngine/Play";
 import Goals from "./Components/Goals";
 import Play from "./GameEngine/Play";
+import Heroes from "./Components/Heroes";
 
 const HomeStack = createStackNavigator();
 const LoginStack = createStackNavigator();
 const UserStack = createStackNavigator();
 const PlayStack = createStackNavigator();
 const GoalsStack = createStackNavigator();
+const HeroesStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 const HomeStackScreen = ({ navigation }) => (
@@ -169,6 +171,36 @@ const GoalsStackScreen = ({ navigation }) => (
   </GoalsStack.Navigator>
 );
 
+const HeroesStackScreen = ({ navigation }) => (
+  <HeroesStack.Navigator
+    screenOptions={{
+      headerStyle: {
+        backgroundColor: "#009387",
+      },
+      headerTintColor: "#fff",
+      headerTitleStyle: {
+        fontWeight: "bold",
+      },
+    }}
+  >
+    <HeroesStack.Screen
+      name="Heroes"
+      component={Heroes}
+      options={{
+        headerLeft: () => (
+          <Icon.Button
+            name="ios-menu"
+            size={25}
+            backgroundColor="#009387"
+            // backgroundColor="#114C9F"
+            onPress={() => navigation.openDrawer()}
+          ></Icon.Button>
+        ),
+      }}
+    />
+  </HeroesStack.Navigator>
+);
+
 export default function App() {
   return (
     <NavigationContainer>
@@ -177,6 +209,7 @@ export default function App() {
         <Drawer.Screen name="Your Goals" component={GoalsStackScreen} />
         <Drawer.Screen name="Play" component={PlayStackScreen} />
         <Drawer.Screen name="Hero Profile" component={UserStackScreen} />
+        <Drawer.Screen name="Heroes" component={HeroesStackScreen} />
         <Drawer.Screen name="Login/Logout" component={LoginStackScreen} />
       </Drawer.Navigator>
     </NavigationContainer>
