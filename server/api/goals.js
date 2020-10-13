@@ -19,27 +19,13 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-// Gets all goals of a single user
-router.get('/:userId', async (req, res, next) => {
-  try {
-    const goals = await Goal.findAll({
-      where: {
-        UserId: req.params.userId
-      }
-    })
-    res.json(goals)
-  } catch (err) {
-    next(err)
-  }
-})
-
 // Create a new goal
 router.post('/:userId', async (req, res, next) => {
   try {
     const goal = await Goal.create({
       name: req.body.name,
       UserId: req.params.userId
-    },
+    })
     res.json(goal)
   } catch (err) {
     next(err)
@@ -79,6 +65,5 @@ router.put('/:goalId', async (req, res, next) => {
   }
 })
 
-//
 
 module.exports = router

@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { User, Character } = require('../db/models')
+const { User, Character, Goal } = require('../db/models')
 const adminOnly = require('./utils/adminOnly')
 
 // Gets all users with their id, email
@@ -55,7 +55,8 @@ router.get('/:userId', async (req, res, next) => {
       },
       attributes: ['email'],
       include: [
-        Character
+        Character,
+        Goal
       ]
     })
     if (user) {
