@@ -20,7 +20,7 @@ const monsterSize = Math.trunc(Math.max(width, height) * 0.2);
 const initialChar = Matter.Bodies.rectangle(-width/2, height / 2, charSize, charSize);
 initialChar.collisionFilter = {"group":-1,"mask":1,"category":1}
 const initialMonster = Matter.Bodies.rectangle(
-  width/2 ,
+  width /2 ,
   height / 2,
   monsterSize,
   monsterSize
