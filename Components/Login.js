@@ -53,7 +53,6 @@ const Log = ({ navigation }) => {
       />
 
       <View style={styles.buttonStyle}>
-      {/* navigation.navigate("UserPage") */}
         <Button
           title="Login"
           onPress={handleSubmit(onSubmit)}
@@ -65,7 +64,6 @@ const Log = ({ navigation }) => {
           onPress={() => navigation.navigate("SignPage")}
         />
       </View>
-
       <StatusBar style="auto" />
     </View>
   );
@@ -92,7 +90,7 @@ return(
           title="Signup"
           onPress={() => navigation.navigate("LogPage")}
         />
-       
+
       </View>
 
       <StatusBar style="auto" />
