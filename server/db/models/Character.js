@@ -2,6 +2,9 @@ const Sequelize = require('sequelize')
 const db = require('../db')
 
 const Character = db.define('Character', {
+  username: {
+    type: Sequelize.STRING,
+  },
   level: {
     type: Sequelize.INTEGER,
     defaultValue: 1

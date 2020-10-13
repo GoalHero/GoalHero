@@ -1,17 +1,16 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const { User, Character, Goal } = require('../db/models')
 const adminOnly = require('./utils/adminOnly')
 
-// Gets all users with their id, email, and username
+// Gets all users with their id, email
 router.get('/', async (req, res, next) => {
   try {
-    //Securtity part
+    // Security
     // if (!req.user.isAdmin) {
     //   const error = new Error("Only admin can see all users")
     //   error.status = 401
     //   throw error
     // }
-    // above is security part
 
     const users = await User.findAll({
       attributes: ['id', 'email']
@@ -23,7 +22,7 @@ router.get('/', async (req, res, next) => {
 })
 
 // User signup, posts to /api/users
-//No security needed, any one can create a new user
+// No security needed, any one can create a new user
 router.post('/', async (req, res, next) => {
   try {
     const {email, password} = req.body
@@ -45,19 +44,20 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-// Gets user info from email, including cart (remember to add attributes)
+// Gets user and char info from id
 router.get('/:userId', async (req, res, next) => {
   try {
     const user = await User.findOne({
       where: {
-        //securtity: only see himself's user info
-        //id: req.params.userId,
-        id: req.user.id
+        // Security: Only see their own user info
+        id: req.params.userId,
+        // id: req.user.id
       },
-      attributes: ['firstName', 'lastName', 'email'],
-      include: {
-        model: Cart
-      }
+      attributes: ['email'],
+      include: [
+        Character,
+        Goal
+      ]
     })
     if (user) {
       res.json(user)
@@ -69,43 +69,10 @@ router.get('/:userId', async (req, res, next) => {
   }
 })
 
-// User checkout info, changes to api/users/userId
-router.put('/:userId', async (req, res, next) => {
-  try {
-    const {address, phoneNumber, firstName, lastName} = req.body
-    const [numberofUpdated, updatedUser] = await User.update(
-      {
-        address,
-        phoneNumber,
-        firstName,
-        lastName
-      },
-      {
-        where: {
-          //security: only change himself's user info
-          //  id: req.params.userId,
-          id: req.user.id
-        },
-        returning: true,
-        plain: true
-      }
-    )
-    res.json(updatedUser)
-  } catch (err) {
-    next(err)
-  }
-})
-
-// User deletion (still needs security for admin only)
-//Security: only admin can delete
+// User deletion
+// Security: only admin can delete
 router.delete('/:userId', adminOnly, async (req, res, next) => {
   try {
-    // if (!req.user.isAdmin) {
-    //   const error = new Error("Only admin can delete user")
-    //   error.status = 401
-    //   throw error
-    // }
-
     await User.destroy({
       where: {
         id: req.params.userId
