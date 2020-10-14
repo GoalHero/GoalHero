@@ -10,6 +10,14 @@ const User = db.define('User', {
     validate: {
       isEmail: true
     }
+  }, 
+  name: {
+    type: Sequelize.STRING, 
+    allowNull: false
+  }, 
+  level: {
+    type: Sequelize.INTEGER, 
+    defaultValue: 1
   },
   password: {
     type: Sequelize.STRING,
@@ -27,12 +35,12 @@ const User = db.define('User', {
       return () => this.getDataValue('salt')
     }
   },
-  googleId: {
-    type: Sequelize.STRING
-  },
-  imageUrl: {
-    type: Sequelize.TEXT
-  },
+  // googleId: {
+  //   type: Sequelize.STRING
+  // },
+  // imageUrl: {
+  //   type: Sequelize.TEXT
+  // },
   isAdmin: {
     type: Sequelize.BOOLEAN,
     defaultValue: false

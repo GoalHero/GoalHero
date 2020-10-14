@@ -7,10 +7,12 @@ const Hero = db.define('Hero', {
    defaultValue: "Knight"
   },
   health: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER, 
+    defaultValue: 100
   },
   damage: {
-    type: Sequelize.INTEGER
+    type: Sequelize.INTEGER, 
+    defaultValue: 10
   },
   range: {
     type: Sequelize.INTEGER,
