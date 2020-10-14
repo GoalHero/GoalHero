@@ -1,6 +1,6 @@
 const User = require('./User')
 const Goal = require('./Goal')
-const Character = require('./Character')
+// const Character = require('./Character')
 const Monster = require('./Monster')
 const Hero = require('./Hero')
 const db = require('../db')
@@ -14,7 +14,6 @@ Hero.belongsToMany(User, {through: 'UserHeroes'})
 module.exports = {
   User,
   Goal,
-  Character,
   Monster,
   Hero
 }

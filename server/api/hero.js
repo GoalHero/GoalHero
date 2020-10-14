@@ -1,28 +1,29 @@
 const router = require('express').Router()
-const { User, Hero, Goal } = require('../db/models')
+const {Hero} = require('../db/models')
 const adminOnly = require('./utils/adminOnly')
 
-// Gets all users with their id, email
+// Gets all heroes with their id, email, and username
 router.get('/', async (req, res, next) => {
   try {
-    // Security
+    //Securtity part
     // if (!req.user.isAdmin) {
     //   const error = new Error("Only admin can see all users")
     //   error.status = 401
     //   throw error
     // }
+    // above is security part
 
-    const users = await User.findAll({
-      attributes: ['id', 'email']
+    const heroes = await Hero.findAll({
+      attributes: ["name", "health", "damage", "range", "imageUrl"]
     })
-    res.json(users)
+    res.json(heroes)
   } catch (err) {
     next(err)
   }
 })
 
 // User signup, posts to /api/users
-// No security needed, any one can create a new user
+//No security needed, any one can create a new user
 router.post('/', async (req, res, next) => {
   try {
     const {email, password} = req.body
@@ -44,31 +45,19 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-<<<<<<< HEAD
 // Gets user info from email, including 
-=======
-// Gets user and char info from id
->>>>>>> master
-router.get('/:userId', async (req, res, next) => {
+router.get('/:heroId', async (req, res, next) => {
   try {
-    const user = await User.findOne({
+    const hero = await Hero.findOne({
       where: {
-        // Security: Only see their own user info
-        id: req.params.userId,
-        // id: req.user.id
+        //securtity: only see himself's user info
+        //id: req.params.userId,
+        id: req.hero.id
       },
-<<<<<<< HEAD
-      attributes: ['name', 'email'],
-=======
-      attributes: ['email'],
-      include: [
-        Hero,
-        Goal
-      ]
->>>>>>> master
+      attributes: ["name", "health", "damage", "range", "imageUrl"],
     })
-    if (user) {
-      res.json(user)
+    if (hero) {
+      res.json(hero)
     } else {
       res.sendStatus(400)
     }
@@ -77,7 +66,6 @@ router.get('/:userId', async (req, res, next) => {
   }
 })
 
-<<<<<<< HEAD
 // User checkout info, changes to api/users/userId
 // router.put('/:userId', async (req, res, next) => {
 //   try {
@@ -107,15 +95,17 @@ router.get('/:userId', async (req, res, next) => {
 
 // User deletion (still needs security for admin only)
 //Security: only admin can delete
-=======
-// User deletion
-// Security: only admin can delete
->>>>>>> master
-router.delete('/:userId', adminOnly, async (req, res, next) => {
+router.delete('/:heroId', adminOnly, async (req, res, next) => {
   try {
-    await User.destroy({
+    // if (!req.user.isAdmin) {
+    //   const error = new Error("Only admin can delete user")
+    //   error.status = 401
+    //   throw error
+    // }
+
+    await Hero.destroy({
       where: {
-        id: req.params.userId
+        id: req.params.heroId
       }
     })
     res.sendStatus(200)
