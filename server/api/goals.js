@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { Goal } = require('../db/models')
+const { Goal, User } = require('../db/models')
 const adminOnly = require('./utils/adminOnly')
 
 // Gets all goals
@@ -11,7 +11,7 @@ router.get('/', async (req, res, next) => {
     //   error.status = 401
     //   throw error
     // }
-
+    console.log('hit route')
     const goals = await Goal.findAll({})
     res.json(goals)
   } catch (err) {
@@ -20,12 +20,18 @@ router.get('/', async (req, res, next) => {
 })
 
 // Create a new goal
-router.post('/:userId', async (req, res, next) => {
+router.post('/users/:userId', async (req, res, next) => {
+  console.log('userId', req.params.userId);
   try {
     const goal = await Goal.create({
       name: req.body.name,
-      UserId: req.params.userId
     })
+    const user = await User.findOne({
+      where: {
+        id: req.params.userId
+      }
+    })
+    goal.setUser(user)
     res.json(goal)
   } catch (err) {
     next(err)

@@ -15,10 +15,10 @@ const HomeScreen = ({ navigation }) => {
           Lets achieve some goals and fight those monsters.{" "}
         </Text>
       </Text>
-      {/* <Image
-        source={require("./GameEngine/assets/characterSprites/defaultKnights/Idle/Idle_000.png")}
-        style={styles.logo}
-      ></Image> */}
+      <Image
+    style={{ width: 400, height: 400 }}
+    source={require("../assets/images/knight.png")}
+  />
     </View>
   );
 };
@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     color: "purple",
   },
   header: {
+    justifyContent: "center",
     fontSize: 30,
     padding: 30,
     color: "black",

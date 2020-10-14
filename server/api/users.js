@@ -1,6 +1,6 @@
-const router = require("express").Router();
-const { User, Character, Goal } = require("../db/models");
-const adminOnly = require("./utils/adminOnly");
+const router = require('express').Router()
+const { User, Hero, Goal } = require('../db/models')
+const adminOnly = require('./utils/adminOnly')
 
 // Gets all users with their id, email
 router.get("/", async (req, res, next) => {
@@ -30,7 +30,7 @@ router.post("/", async (req, res, next) => {
       where: {
         email,
       },
-    });
+    })
     if (currentUser) {
       res.sendStatus(400);
     } else {
@@ -45,8 +45,10 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+
 // Gets user and char info from id
-router.get("/:userId", async (req, res, next) => {
+router.get('/:userId', async (req, res, next) => {
+
   try {
     const user = await User.findOne({
       where: {
@@ -54,9 +56,14 @@ router.get("/:userId", async (req, res, next) => {
         id: req.params.userId,
         // id: req.user.id
       },
-      attributes: ["email"],
-      include: [Character, Goal],
-    });
+
+      attributes: ['email'],
+      include: [
+        Hero,
+        Goal
+      ]
+    })
+
     if (user) {
       res.json(user);
     } else {
@@ -67,9 +74,12 @@ router.get("/:userId", async (req, res, next) => {
   }
 });
 
+
+
 // User deletion
 // Security: only admin can delete
-router.delete("/:userId", adminOnly, async (req, res, next) => {
+router.delete('/:userId', adminOnly, async (req, res, next) => {
+
   try {
     await User.destroy({
       where: {
