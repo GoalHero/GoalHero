@@ -29,11 +29,6 @@ const HomeScreen = ({ navigation }) => {
           Defeating a monster will unlock cool new characters {"\n\n"}
           Lets achieve some goals and fight those monsters.{" "}
         </Text>
-
-        {/* <Image
-        source={require("./GameEngine/assets/characterSprites/defaultKnights/Idle/Idle_000.png")}
-        style={styles.logo}
-      ></Image> */}
       </View>
     </ImageBackground>
   );
@@ -46,7 +41,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "space-evenly",
-    color: "purple",
   },
   header: {
     fontSize: 30,
@@ -56,17 +50,13 @@ const styles = StyleSheet.create({
   body: {
     fontSize: 15,
     color: "black",
-    backgroundColor: "#6A7B89",
-    padding: 4,
-    borderRadius: 20,
-    opacity: 0.7,
     textAlign: "center",
-  },
-  logo: {
-    width: 280,
-    height: 280,
-    marginLeft: "20%",
-    marginTop: "10%",
+    fontFamily: "EuphemiaUCAS-Bold",
+    borderRadius: 25,
+    padding: 4,
+    borderRadius: 100,
+    opacity: 0.7,
+    backgroundColor: "#6A7B89",
   },
   background: {
     flex: 1,
