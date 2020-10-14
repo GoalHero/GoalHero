@@ -10,7 +10,6 @@ module.exports = router
 =======
 router.use('/users', require('./users'))
 router.use('/goals', require('./goals'))
-router.use('/characters', require('./characters'))
 router.use('/heroes', require('./heroes'))
 >>>>>>> master
 
