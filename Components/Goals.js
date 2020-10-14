@@ -16,8 +16,8 @@ const Goals = () => {
   //     goals
   //   })
   // }
-  const handleRemove = async(id) => {
-    await axios.delete(`http://localhost:8080/api/goals/${id}`)
+  const handleRemove = async(e) => {
+    await axios.delete(`http://localhost:8080/api/goals/${e.target.value}`)
     let {data: user} = await axios.get(`http://localhost:8080/api/users/${userId}`)
   }
   const handleAdd = async (values) => {
@@ -25,8 +25,8 @@ const Goals = () => {
     await axios.post(`http://localhost:8080/api/goals/users/${userId}`, {name: values.goalName})
     let {data: user} = await axios.get(`http://localhost:8080/api/users/${userId}`)
   }
-  const handleCompletion = async(id) => {
-    await axios.put(`http://localhost:8080/api/goals/${id}`)
+  const handleCompletion = async(e) => {
+    await axios.put(`http://localhost:8080/api/goals/${e.target.value}`)
     let {data: user} = await axios.get(`http://localhost:8080/api/users/${userId}`)
   }
   const { handleSubmit, register, setValue } = useForm();
@@ -43,8 +43,8 @@ const Goals = () => {
           return (
             <View key={goal.id} style={styles.goalRow}>
               <Text style={styles.orangeBox}>{goal.name}</Text>
-              <Button title="Complete" onPress={handleSubmit(handleCompletion)}></Button>
-              <Button title="Remove" onPress={handleSubmit(handleRemove)}></Button>
+              <Button title="Complete" value={goal.id} onPress={handleSubmit(handleCompletion)}></Button>
+              <Button title="Remove" value={goal.id} onPress={handleSubmit(handleRemove)}></Button>
             </View>
           )
         })}
