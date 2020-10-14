@@ -83,7 +83,7 @@ class UserPage extends Component {
             </View>
           </View>
         </View>
-      </View>
+   
     );
   }
 }
