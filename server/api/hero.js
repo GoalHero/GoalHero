@@ -13,10 +13,10 @@ router.get('/', async (req, res, next) => {
     // }
     // above is security part
 
-    const users = await User.findAll({
-      attributes: ['id', 'email']
+    const heroes = await Hero.findAll({
+      attributes: ["name", "health", "damage", "range", "imageUrl"]
     })
-    res.json(users)
+    res.json(heroes)
   } catch (err) {
     next(err)
   }
@@ -46,18 +46,18 @@ router.post('/', async (req, res, next) => {
 })
 
 // Gets user info from email, including 
-router.get('/:userId', async (req, res, next) => {
+router.get('/:heroId', async (req, res, next) => {
   try {
-    const user = await User.findOne({
+    const hero = await Hero.findOne({
       where: {
         //securtity: only see himself's user info
         //id: req.params.userId,
-        id: req.user.id
+        id: req.hero.id
       },
-      attributes: ['name', 'email'],
+      attributes: ["name", "health", "damage", "range", "imageUrl"],
     })
-    if (user) {
-      res.json(user)
+    if (hero) {
+      res.json(hero)
     } else {
       res.sendStatus(400)
     }
@@ -95,7 +95,7 @@ router.get('/:userId', async (req, res, next) => {
 
 // User deletion (still needs security for admin only)
 //Security: only admin can delete
-router.delete('/:userId', adminOnly, async (req, res, next) => {
+router.delete('/:heroId', adminOnly, async (req, res, next) => {
   try {
     // if (!req.user.isAdmin) {
     //   const error = new Error("Only admin can delete user")
@@ -103,9 +103,9 @@ router.delete('/:userId', adminOnly, async (req, res, next) => {
     //   throw error
     // }
 
-    await User.destroy({
+    await Hero.destroy({
       where: {
-        id: req.params.userId
+        id: req.params.heroId
       }
     })
     res.sendStatus(200)

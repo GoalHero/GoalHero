@@ -4,23 +4,23 @@ const GET_HERO = "GET_HERO";
 
 const defaultHero = {};
 
-const getUser = (hero) => ({ type: GET_USER, user });
+const getHero = (hero) => ({ type: GET_HERO, hero });
 
-export const fetchUser = (userId) => async (dispatch) => {
+export const fetchHero = (heroId) => async (dispatch) => {
   try {
-    const { data } = await axios.get(`/api/users/${userId}`);
-    dispatch(getUser(data));
+    const { data } = await axios.get(`/api/users/${heroId}`);
+    dispatch(getHero(data));
   } catch (error) {
-    console.log("failed to get api/users/:id");
+    console.log("failed to get api/hero/:id");
   }
 };
 
 
 
 
-export default function (state = defaultUser, action) {
+export default function (state = defaultHero, action) {
   switch (action.type) {
-    case GET_USER:
-      return action.user;
+    case GET_HERO:
+      return action.hero;
   }
 }
