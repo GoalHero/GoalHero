@@ -141,7 +141,7 @@ export default class Login extends React.Component {
           />
 
           <Stack.Screen name="SignPage" component={Sign} />
-          <Stack.Screen name="UserPage" component={BigPlay} />
+          <Stack.Screen name="UserPage" component={App} />
         </Stack.Navigator>
       </NavigationContainer>
     );

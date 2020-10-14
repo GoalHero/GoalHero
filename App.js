@@ -203,7 +203,7 @@ const HeroesStackScreen = ({ navigation }) => (
 
 export default function App() {
   return (
-    <NavigationContainer>
+    <NavigationContainer independent={true}>
       <Drawer.Navigator initialRouteName="Home">
         <Drawer.Screen name="Home" component={HomeStackScreen} />
         <Drawer.Screen name="Your Goals" component={GoalsStackScreen} />
