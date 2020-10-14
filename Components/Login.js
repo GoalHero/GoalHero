@@ -141,7 +141,7 @@ export default class Login extends React.Component {
           />
 
           <Stack.Screen name="SignPage" component={Sign} />
-          <Stack.Screen name="UserPage" component={App} />
+          <Stack.Screen name="UserPage" component={App}  key={User.id} />
         </Stack.Navigator>
       </NavigationContainer>
     );
