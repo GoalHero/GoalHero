@@ -7,7 +7,7 @@ const defaultUser = {};
 const getUser = (user) => ({ type: GET_USER, user });
 
 
-//update level based on goals completed 
+//update level based on goals completed
 
 export const fetchUser = (userId) => async (dispatch) => {
   try {
@@ -23,5 +23,7 @@ export default function (state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
       return action.user;
+    default:
+      return state;
   }
 }

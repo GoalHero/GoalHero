@@ -22,5 +22,7 @@ export default function (state = defaultHero, action) {
   switch (action.type) {
     case GET_HERO:
       return action.hero;
+    default:
+      return state;
   }
 }

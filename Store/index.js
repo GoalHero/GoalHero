@@ -4,10 +4,12 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import hero from './hero'
+import goals from './goals'
 
 const reducer = combineReducers({
     user,
-    hero
+    hero,
+    goals
 })
 
 const middleware = composeWithDevTools(
