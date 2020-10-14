@@ -8,11 +8,8 @@ const db = require('../db')
 User.hasMany(Goal)
 Goal.belongsTo(User)
 
-User.hasOne(Character)
-Character.belongsTo(User)
-
-Hero.belongsToMany(Character, {through: 'CharacterHeroes'})
-Character.belongsToMany(Hero, {through: 'CharacterHeroes'})
+User.belongsToMany(Hero, {through: 'UserHeroes'})
+Hero.belongsToMany(User, {through: 'UserHeroes'})
 
 module.exports = {
   User,
