@@ -7,14 +7,18 @@ import { createStackNavigator } from "@react-navigation/stack";
 import User from './User'
 import { useForm } from "react-hook-form";
 import axios from 'axios'
+import Play from '../GameEngine/Play'
+import App from '../App'
+import BigPlay from './BigPlay'
+
 
 
 const  gg = async()=>{
 
 //await axios.delete('http://localhost:3333/2')
 
-const data = await axios.get('https://grace-cheese-prime.herokuapp.com/api/cheeses')
-console.log(data.data.length)
+const data = await axios.get('http://localhost:8080/api/users')
+//console.log(data.data)
 }
 
 
@@ -35,7 +39,7 @@ const Log = ({ navigation }) => {
 
   
   const { handleSubmit, register, setValue } = useForm();
-  const onSubmit = values => alert(values.email);
+  const onSubmit = values => {alert(values.email);navigation.navigate("UserPage")}
 
   useEffect(()=>{
     register("email");
@@ -69,15 +73,39 @@ const Log = ({ navigation }) => {
   );
 };
 const Sign = ({ navigation }) => {
+
+  const { handleSubmit, register, setValue } = useForm();
+//navigation.navigate("LogPage")
+  const onSubmit = async(values) => {
+   try {
+     const email = values.email
+     const name = values.name
+     const password = values.password
+     await axios.post('http://localhost:8080/api/users',{email,password})
+     alert ("Congratulations")
+     navigation.navigate("LogPage")
+     
+   } catch (error) {
+     alert(error)
+   }
+  }
+
+  useEffect(()=>{
+    register("name");
+    register("email");
+    register("password");
+  },[register])
+
   return (
     <View style={styles.container}>
       <Text style={styles.welcome}>Sign Up!</Text>
-      <TextInput placeholder="Name:" style={styles.textInputStyle} />
-      <TextInput placeholder="Email:" style={styles.textInputStyle} />
+      <TextInput placeholder="Name:" style={styles.textInputStyle}  onChangeText={text=>setValue("name",text)} />
+      <TextInput placeholder="Email:" style={styles.textInputStyle}  onChangeText={text=>setValue("email",text)}/>
       <TextInput
         placeholder="Password:"
         password={true}
         style={styles.textInputStyle}
+        onChangeText={text=>setValue("password",text)}
       />
       <View>{/* {heros.map(hero,index)=>{
 return(
@@ -88,7 +116,8 @@ return(
       <View style={styles.buttonStyle}>
       <Button
           title="Signup"
-          onPress={() => navigation.navigate("LogPage")}
+          onPress={handleSubmit(onSubmit)}
+         
         />
 
       </View>
@@ -112,7 +141,7 @@ export default class Login extends React.Component {
           />
 
           <Stack.Screen name="SignPage" component={Sign} />
-          <Stack.Screen name="UserPage" component={User} />
+          <Stack.Screen name="UserPage" component={BigPlay} />
         </Stack.Navigator>
       </NavigationContainer>
     );
