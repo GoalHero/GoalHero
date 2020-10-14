@@ -15,11 +15,11 @@ class UserPage extends Component {
     }
   }
   async componentDidMount() {
-    let {data: user} = await axios.get(`http://localhost:8080/api/users/${userId}`)
-    console.log("this is the user", user)
-    this.setState({
-      user
-    })
+    // let {data: user} = await axios.get(`http://localhost:8080/api/users/${userId}`)
+    // console.log("this is the user", user)
+    // this.setState({
+    //   user
+    // })
   }
   render() {
     return (
@@ -37,7 +37,7 @@ class UserPage extends Component {
             <Text style={styles.userInfo}>Username: finn</Text>
           </View>
         </View>
-        <View style={styles.body}>
+        {/* <View style={styles.body}>
           <View style={styles.item}>
             <View style={styles.iconContent}>
               <Image
@@ -50,7 +50,7 @@ class UserPage extends Component {
             <View style={styles.infoContent}>
               <Text style={styles.info}>Health: 100%</Text>
             </View>
-          </View>
+          </View> */}
           <View style={styles.item}>
             <View style={styles.iconContent}>
               <Image

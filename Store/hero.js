@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const GET_USER = "GET_USER";
+const GET_HERO = "GET_HERO";
 
-const defaultUser = {};
+const defaultHero = {};
 
-const getUser = (user) => ({ type: GET_USER, user });
+const getUser = (hero) => ({ type: GET_USER, user });
 
 export const fetchUser = (userId) => async (dispatch) => {
   try {
@@ -14,6 +14,8 @@ export const fetchUser = (userId) => async (dispatch) => {
     console.log("failed to get api/users/:id");
   }
 };
+
+
 
 
 export default function (state = defaultUser, action) {
