@@ -12,6 +12,9 @@ import User from "./Components/User";
 import Goals from "./Components/Goals";
 import Play from "./GameEngine/Play";
 import Heroes from "./Components/Heroes";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import store from "./Store";
 
 const HomeStack = createStackNavigator();
 const LoginStack = createStackNavigator();
@@ -203,15 +206,17 @@ const HeroesStackScreen = ({ navigation }) => (
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={HomeStackScreen} />
-        <Drawer.Screen name="Your Goals" component={GoalsStackScreen} />
-        <Drawer.Screen name="Play" component={PlayStackScreen} />
-        <Drawer.Screen name="Hero Profile" component={UserStackScreen} />
-        <Drawer.Screen name="Heroes" component={HeroesStackScreen} />
-        <Drawer.Screen name="Login/Logout" component={LoginStackScreen} />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Drawer.Navigator initialRouteName="Home">
+          <Drawer.Screen name="Home" component={HomeStackScreen} />
+          <Drawer.Screen name="Your Goals" component={GoalsStackScreen} />
+          <Drawer.Screen name="Play" component={PlayStackScreen} />
+          <Drawer.Screen name="Hero Profile" component={UserStackScreen} />
+          <Drawer.Screen name="Heroes" component={HeroesStackScreen} />
+          <Drawer.Screen name="Login/Logout" component={LoginStackScreen} />
+        </Drawer.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
