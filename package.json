@@ -22,6 +22,7 @@
     "express-session": "^1.17.1",
     "matter-js": "^0.14.2",
     "morgan": "^1.10.0",
+    "native-base": "^2.13.14",
     "passport": "^0.4.1",
     "passport-google-oauth": "^2.0.0",
     "pg": "^8.4.1",
@@ -40,7 +41,8 @@
     "react-native-web": "~0.13.12",
     "sequelize": "^6.3.5",
     "serve": "^11.3.2",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.3.0",
+    "expo-font": "~8.3.0"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"

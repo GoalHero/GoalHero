@@ -1,11 +1,26 @@
 import React from "react";
-import { View, Text, Button, StyleSheet, StatusBar, Image } from "react-native";
+import {
+  View,
+  Text,
+  Button,
+  StyleSheet,
+  StatusBar,
+  Image,
+  ImageBackground,
+} from "react-native";
 
 const HomeScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
-      <Text>
-        <Text style={styles.header}>Welcome to Goal Hero! </Text> {"\n\n"}
+    <ImageBackground
+      style={styles.background}
+      source={require("../assets/images/game_background_1.png")}
+    >
+      <View style={styles.container}>
+        <Image
+          style={{ width: 360, height: 140 }}
+          source={require("../assets/images/logotest.png")}
+        />
+
         <Text style={styles.body}>
           Are you ready to achieve some goals and fight those pesky monsters?!?!{" "}
           {"\n\n"}
@@ -14,12 +29,13 @@ const HomeScreen = ({ navigation }) => {
           Defeating a monster will unlock cool new characters {"\n\n"}
           Lets achieve some goals and fight those monsters.{" "}
         </Text>
-      </Text>
-      {/* <Image
+
+        {/* <Image
         source={require("./GameEngine/assets/characterSprites/defaultKnights/Idle/Idle_000.png")}
         style={styles.logo}
       ></Image> */}
-    </View>
+      </View>
+    </ImageBackground>
   );
 };
 
@@ -29,7 +45,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     color: "purple",
   },
   header: {
@@ -39,12 +55,21 @@ const styles = StyleSheet.create({
   },
   body: {
     fontSize: 15,
-    color: "purple",
+    color: "black",
+    backgroundColor: "#6A7B89",
+    padding: 4,
+    borderRadius: 20,
+    opacity: 0.7,
+    textAlign: "center",
   },
   logo: {
     width: 280,
     height: 280,
     marginLeft: "20%",
     marginTop: "10%",
+  },
+  background: {
+    flex: 1,
+    resizeMode: "cover",
   },
 });
