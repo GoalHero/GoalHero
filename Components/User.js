@@ -9,10 +9,10 @@ const Stack = createStackNavigator();
 
 class UserPage extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
-      user: []
-    }
+      user: [],
+    };
   }
   async componentDidMount() {
     // let {data: user} = await axios.get(`http://localhost:8080/api/users/${userId}`)
@@ -51,39 +51,36 @@ class UserPage extends Component {
               <Text style={styles.info}>Health: 100%</Text>
             </View>
           </View> */}
-          <View style={styles.item}>
-            <View style={styles.iconContent}>
-              <Image
-                style={styles.icon}
-                source={{
-                  uri:
-                    "https://img.icons8.com/color/70/000000/administrator-male.png",
-                }}
-              />
-            </View>
-            <View style={styles.infoContent}>
-              <Text style={styles.info}>Level: 1</Text>
-            </View>
+        <View style={styles.item}>
+          <View style={styles.iconContent}>
+            <Image
+              style={styles.icon}
+              source={{
+                uri:
+                  "https://img.icons8.com/color/70/000000/administrator-male.png",
+              }}
+            />
           </View>
-          <View style={styles.item}>
-            <View style={styles.iconContent}>
-              <Image
-                style={styles.icon}
-                source={{
-                  uri: "https://img.icons8.com/color/70/000000/groups.png",
-                }}
-              />
-            </View>
-            <View style={styles.infoContent}>
-              <Text style={styles.info}>Heroes Unlocked</Text>
-              <Button
-              title="Log Out"
-               onPress={() => null}
-          />
-            </View>
+          <View style={styles.infoContent}>
+            <Text style={styles.info}>Level: 1</Text>
+          </View>
+        </View>
+        <View style={styles.item}>
+          <View style={styles.iconContent}>
+            <Image
+              style={styles.icon}
+              source={{
+                uri: "https://img.icons8.com/color/70/000000/groups.png",
+              }}
+            />
+          </View>
+          <View style={styles.infoContent}>
+            <Text style={styles.info}>Heroes Unlocked</Text>
+            <Button title="Log Out" onPress={() => null} />
           </View>
         </View>
       </View>
+      // </View>
     );
   }
 }
