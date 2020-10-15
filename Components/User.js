@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./HomeScreen";
 import { connect } from 'react-redux'
-import { fetchUser } from "../Store/user"
+import { me } from "../Store/user"
 import { fetchHero }  from "../Store/hero"
 import user from "../Store/user";
 import hero from "../Store/hero";
@@ -19,9 +19,8 @@ class User extends Component {
     };
   }
    componentDidMount() {
-    console.log("these are the props", this.props)
-    this.props.fetchUser(1)
-    this.props.fetchHero(1)
+    this.props.fetchUser()
+    this.props.fetchHero()
   }
 
   async signOutUser() {
@@ -30,9 +29,7 @@ class User extends Component {
 
   render() {
     const user = this.props.user
-    console.log("this is the user", user)
     const hero = this.props.hero
-    console.log('heros', user.Heros)
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -40,7 +37,7 @@ class User extends Component {
             <Image
               style={styles.avatar}
               source={{
-                uri: "https://image.shutterstock.com/image-vector/man-icon-flat-vector-260nw-1371568223.jpg",
+                uri: "https://cdn4.vectorstock.com/i/1000x1000/35/68/person-icon-male-user-profile-avatar-vector-18833568.jpg",
               }}
             />
             <Text style={styles.name}>name: {user.name}</Text>
@@ -85,7 +82,7 @@ class User extends Component {
             />
           </View>
           <View style={styles.infoContent}>
-            <Text style={styles.info}>Heroes {hero.name}</Text>
+            <Text style={styles.info}>Heroes: {hero.name}</Text>
             <Text style={styles.item}></Text>
             <Image style={styles.icon} source={{
               uri: `${hero.imageUrl}`
@@ -108,8 +105,8 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    fetchUser: () => dispatch(fetchUser()), 
-    fetchHero: (heroId) => dispatch(fetchHero(heroId)), 
+    fetchUser: () => dispatch(me()), 
+    fetchHero: () => dispatch(fetchHero()), 
     logOut: () => dispatch(logout())
   }
 }
@@ -129,10 +126,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   avatar: {
-    width: 140,
-    height: 140,
+    width: 160,
+    height: 160,
     borderRadius: 63,
-    borderWidth: 4,
+    borderWidth: 7,
     borderColor: "purple",
     marginBottom: 10,
   },

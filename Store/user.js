@@ -18,21 +18,10 @@ export const me = () => async dispatch => {
   }
 }
 
-export const fetchUser = () => {
+export const updateUser = (newInfo) => {
   return async dispatch => {
     try {
-      const user = await axios.get(`/api/users/me`)
-      dispatch(getUser(user))
-    } catch (err) {
-      console.error(err)
-    }
-  }
-}
-
-export const updateUser = (id, newInfo) => {
-  return async dispatch => {
-    try {
-      const {data} = await axios.put(`/api/users/${id}`, newInfo)
+      const {data} = await axios.put('http://localhost:8080/api/users/me', newInfo)
       dispatch(getUser(data))
     } catch (err) {
       console.error(err)
