@@ -23,73 +23,62 @@ class UserPage extends Component {
   }
   render() {
     return (
-      // <View style={styles.container}>
-      //   <View style={styles.header}>
-      //     <View style={styles.headerContent}>
-      //       <Image
-      //         style={styles.avatar}
-      //         source={{
-      //           uri: "",
-      //         }}
-      //       />
-      //       <Text style={styles.name}>Finn</Text>
-      //       <Text style={styles.userInfo}>finn@email.com</Text>
-      //       <Text style={styles.userInfo}>Username: finn</Text>
-      //     </View>
-      //   </View>
-      //   {/* <View style={styles.body}>
-      //     <View style={styles.item}>
-      //       <View style={styles.iconContent}>
-      //         <Image
-      //           style={styles.icon}
-      //           source={{
-      //             uri: "https://img.icons8.com/color/70/000000/filled-like.png",
-      //           }}
-      //         />
-      //       </View>
-      //       <View style={styles.infoContent}>
-      //         <Text style={styles.info}>Health: 100%</Text>
-      //       </View>
-      //     </View> */}
-      //   <View style={styles.item}>
-      //     <View style={styles.iconContent}>
-      //       <Image
-      //         style={styles.icon}
-      //         source={{
-      //           uri:
-      //             "https://img.icons8.com/color/70/000000/administrator-male.png",
-      //         }}
-      //       />
-      //     </View>
-      //     <View style={styles.infoContent}>
-      //       <Text style={styles.info}>Level: 1</Text>
-      //     </View>
-      //   </View>
-      //   <View style={styles.item}>
-      //     <View style={styles.iconContent}>
-      //       <Image
-      //         style={styles.icon}
-      //         source={{
-      //           uri: "https://img.icons8.com/color/70/000000/groups.png",
-      //         }}
-      //       />
-      //     </View>
-      //     <View style={styles.infoContent}>
-      //       <Text style={styles.info}>Heroes Unlocked</Text>
-      //       <Button title="Log Out" onPress={() => null} />
-      //     </View>
-      //   </View>
-      // </View>
-
-      <View>
-        <Text>
-          Name = (insert user name) {"\n\n"}
-          Level = (current user level) {"\n\n"}
-          Total Health = (user health plus hero health) {"\n\n"}
-          Total Damage = (user damage plus hero damage) {"\n\n"}
-          Current Hero (show the hero picture and name) {"\n\n"}
-          [Add a functional log out button]
-        </Text>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <View style={styles.headerContent}>
+            <Image
+              style={styles.avatar}
+              source={{
+                uri: "",
+              }}
+            />
+            <Text style={styles.name}>Finn</Text>
+            <Text style={styles.userInfo}>finn@email.com</Text>
+            <Text style={styles.userInfo}>Username: finn</Text>
+          </View>
+        </View>
+        {/* <View style={styles.body}>
+          <View style={styles.item}>
+            <View style={styles.iconContent}>
+              <Image
+                style={styles.icon}
+                source={{
+                  uri: "https://img.icons8.com/color/70/000000/filled-like.png",
+                }}
+              />
+            </View>
+            <View style={styles.infoContent}>
+              <Text style={styles.info}>Health: 100%</Text>
+            </View>
+          </View> */}
+        <View style={styles.item}>
+          <View style={styles.iconContent}>
+            <Image
+              style={styles.icon}
+              source={{
+                uri:
+                  "https://img.icons8.com/color/70/000000/administrator-male.png",
+              }}
+            />
+          </View>
+          <View style={styles.infoContent}>
+            <Text style={styles.info}>Level: 1</Text>
+          </View>
+        </View>
+        <View style={styles.item}>
+          <View style={styles.iconContent}>
+            <Image
+              style={styles.icon}
+              source={{
+                uri: "https://img.icons8.com/color/70/000000/groups.png",
+              }}
+            />
+          </View>
+          <View style={styles.infoContent}>
+            <Text style={styles.info}>Heroes Unlocked</Text>
+            <Button title="Log Out" onPress={() => null} />
+          </View>
+        </View>
       </View>
     );
   }
