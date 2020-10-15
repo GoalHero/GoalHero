@@ -94,9 +94,11 @@ class User extends Component {
           </View>
         </View>
       </View>
+      </View>
     );
   }
 }
+
 
 const mapState = (state) => {
   return {
