@@ -1,11 +1,24 @@
 import React from "react";
 import { View, Text, Button, StyleSheet, StatusBar, Image } from "react-native";
+import axios from 'axios'
+import {connect} from 'react-redux'
+import {me} from '../Store/user'
 
-const HomeScreen = ({ navigation }) => {
+class HomeScreen extends React.Component  {
+  constructor(){
+    super();
+  }
+
+async componentDidMount(){
+ this.props.getMe();
+}
+
+
+ render(){
   return (
     <View style={styles.container}>
       <Text>
-        <Text style={styles.header}>Welcome to Goal Hero! </Text> {"\n\n"}
+  <Text style={styles.header}>Hi {this.props.user.email}! Welcome to Goal Hero! </Text> {"\n\n"}
         <Text style={styles.body}>
           Are you ready to achieve some goals and fight those pesky monsters?!?!{" "}
           {"\n\n"}
@@ -21,9 +34,32 @@ const HomeScreen = ({ navigation }) => {
   />
     </View>
   );
-};
+}
+}
 
-export default HomeScreen;
+const mapLogin = state => {
+  return {
+   
+    user: state.user
+  }
+}
+
+const mapDispatch = dispatch => {
+   
+  return {
+  
+   getMe:()=>
+      dispatch(me())
+    
+  }
+}
+
+
+
+
+
+export default connect(mapLogin,mapDispatch)(HomeScreen)
+
 
 const styles = StyleSheet.create({
   container: {
@@ -34,7 +70,7 @@ const styles = StyleSheet.create({
   },
   header: {
     justifyContent: "center",
-    fontSize: 30,
+    fontSize: 20,
     padding: 30,
     color: "black",
   },
