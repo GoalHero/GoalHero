@@ -6,23 +6,21 @@ import { characterDamage } from './CharacterDamage';
 let tick = 0;
 let attackingtick = 0;
 let pose = 0;
-let allowJump = true;
-let attacking = false;
 
 let monsterHealth = 100;
 let monsterAlive = true;
 let monsterImmune = false;
-let charAlive = true;
-let charHealth = 100;
-
-let monsterDamage = 100;
-let charDamage = 5;
-
 let monsterHurtTick = 0;
 let monsterHurt = false;
 let monsterDeadTick = 0;
 let monsterImmuneTick = 0;
+let monsterDamage = 100;
 
+let charAlive = true;
+let charHealth = 100;
+let attacking = false;
+let allowJump = true;
+let charDamage = 5;
 let characterHurtTick = 0;
 let characterHurt = false;
 let characterDeadTick = 0;
