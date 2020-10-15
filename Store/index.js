@@ -5,11 +5,13 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import user from "./user";
 import hero from "./hero";
 import test from "./test";
+import goals from './goals'
 
 const reducer = combineReducers({
   user,
   hero,
-  test
+  goals
+
 });
 
 const middleware = composeWithDevTools(

@@ -11,7 +11,6 @@ router.get('/', async (req, res, next) => {
     //   error.status = 401
     //   throw error
     // }
-    console.log('hit route')
     const goals = await Goal.findAll({})
     res.json(goals)
   } catch (err) {
@@ -21,8 +20,24 @@ router.get('/', async (req, res, next) => {
 
 // Create a new goal
 router.post('/users/:userId', async (req, res, next) => {
-  console.log('userId', req.params.userId);
   try {
+    const userGoals = await Goal.findAll({
+      where: {
+        UserId: req.params.userId
+      }
+    })
+
+    const incompleteGoalCount = userGoals.reduce((accumulator, goal) => {
+      if (!goal.completed) {
+        accumulator++;
+      }
+      return accumulator
+    }, 0)
+    console.log(incompleteGoalCount)
+    if (incompleteGoalCount >= 5) {
+      return res.sendStatus(400);
+    }
+
     const goal = await Goal.create({
       name: req.body.name,
     })

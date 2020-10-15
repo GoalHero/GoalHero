@@ -9,16 +9,19 @@ async function seed() {
 
   const users = await Promise.all([
     User.create({
+      name: 'cody',
       email: 'cody@email.com',
       password: '123', 
       name: "andrew"
     }),
     User.create({
+      name: 'murphy',
       email: 'murphy@email.com',
       password: '123',
       name: "david"
     }),
     User.create({
+      name: 'eric',
       email: 'ericdag@sina.com',
       password: '123', 
       name: "andrew"
@@ -97,6 +100,7 @@ const heroes = await Promise.all([
       heroNum: 8,
       name: "Ninja",
       damage: 16,
+
 
       imageUrl: "../assets/images/ninja.png",
     }),

@@ -44,6 +44,8 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+
+
 // Gets user and char info from id
 router.get('/:userId', async (req, res, next) => {
   try {
@@ -54,8 +56,8 @@ router.get('/:userId', async (req, res, next) => {
         // id: req.user.id
       },
 
-      attributes: ['email', "name", "level", "health", "damage"],
 
+      attributes: ['email', "name", "level", "health", "damage"],
       include: [
         Hero,
         Goal
@@ -71,8 +73,7 @@ router.get('/:userId', async (req, res, next) => {
   }
 })
 
-// User deletion
-// Security: only admin can delete
+
 router.delete('/:userId', adminOnly, async (req, res, next) => {
   try {
     await User.destroy({
