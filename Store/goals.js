@@ -45,6 +45,7 @@ export const completeGoal = (id) => async (dispatch) => {
   try {
     console.log('completeId', id)
     await axios.put(`http://localhost:8080/api/goals/${id}`)
+    await axios.put(`http://localhost:8080/api/users/me`)
     let {data: user} = await axios.get(`http://localhost:8080/api/users/me`)
     let goals = user.Goals
     dispatch(getGoals(goals))

@@ -3,7 +3,6 @@ import { View, Text, Button, StyleSheet, StatusBar, TextInput } from "react-nati
 import { useForm, useState } from "react-hook-form";
 import { connect } from "react-redux"
 import { fetchGoals, removeGoal, completeGoal, postGoal } from "../Store/goals"
-import { fetchUser } from "../Store/user"
 
 
 
@@ -12,10 +11,9 @@ const Goals = (props) => {
 
   useEffect(()=>{
     register("goalName");
-    // props.fetchUser();
+
     props.fetchGoals();
   },[register])
-
 
   return (
     <View style={styles.container}>
@@ -59,8 +57,7 @@ const mapDispatch = (dispatch) => {
     fetchGoals: (userId) => dispatch(fetchGoals(userId)),
     removeGoal: (id) => dispatch(removeGoal(id)),
     completeGoal: (id) => dispatch(completeGoal(id)),
-    postGoal: (values) => dispatch(postGoal(values)),
-    fetchUser: (userId) => dispatch(fetchUser(userId))
+    postGoal: (values) => dispatch(postGoal(values))
   }
 }
 

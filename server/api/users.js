@@ -73,6 +73,30 @@ router.get('/me', async (req, res, next) => {
   }
 })
 
+// Updates user info
+router.put('/me', async (req, res, next) => {
+  try {
+    const [numberOfUpdates, updatedUser] = await User.update({
+      level: req.user.level + 1,
+      health: Math.floor(req.user.health * 1.1),
+      damage: Math.floor(req.user.damage * 1.1)
+    }, {
+      where: {
+        id: req.user.id
+      },
+      returning: true,
+      plain: true
+    })
+    if (updatedUser) {
+      res.json(updatedUser)
+    } else {
+      res.sendStatus(400)
+    }
+  } catch (err) {
+    next(err)
+  }
+})
+
 
 router.delete('/:userId', adminOnly, async (req, res, next) => {
   try {
