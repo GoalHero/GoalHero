@@ -20,8 +20,8 @@ class User extends Component {
   }
    componentDidMount() {
     console.log("these are the props", this.props)
-    this.props.fetchUser(1)
-    this.props.fetchHero(1)
+    this.props.fetchUser()
+    this.props.fetchHero()
   }
 
   async signOutUser() {
@@ -40,7 +40,7 @@ class User extends Component {
             <Image
               style={styles.avatar}
               source={{
-                uri: "",
+                uri: "https://image.shutterstock.com/image-vector/man-icon-flat-vector-260nw-1371568223.jpg",
               }}
             />
             <Text style={styles.name}>name: {user.name}</Text>
