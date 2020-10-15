@@ -44,11 +44,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-<<<<<<< HEAD
-// Gets user info from email, including 
-=======
 // Gets user and char info from id
->>>>>>> master
 router.get('/:userId', async (req, res, next) => {
   try {
     const user = await User.findOne({
@@ -57,15 +53,11 @@ router.get('/:userId', async (req, res, next) => {
         id: req.params.userId,
         // id: req.user.id
       },
-<<<<<<< HEAD
-      attributes: ['name', 'email'],
-=======
-      attributes: ['email'],
+      attributes: ['email', "name", "level", "health", "damage"],
       include: [
         Hero,
         Goal
       ]
->>>>>>> master
     })
     if (user) {
       res.json(user)
@@ -77,40 +69,8 @@ router.get('/:userId', async (req, res, next) => {
   }
 })
 
-<<<<<<< HEAD
-// User checkout info, changes to api/users/userId
-// router.put('/:userId', async (req, res, next) => {
-//   try {
-//     const {address, phoneNumber, firstName, lastName} = req.body
-//     const [numberofUpdated, updatedUser] = await User.update(
-//       {
-//         address,
-//         phoneNumber,
-//         firstName,
-//         lastName
-//       },
-//       {
-//         where: {
-//           //security: only change himself's user info
-//           //  id: req.params.userId,
-//           id: req.user.id
-//         },
-//         returning: true,
-//         plain: true
-//       }
-//     )
-//     res.json(updatedUser)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
-
-// User deletion (still needs security for admin only)
-//Security: only admin can delete
-=======
 // User deletion
 // Security: only admin can delete
->>>>>>> master
 router.delete('/:userId', adminOnly, async (req, res, next) => {
   try {
     await User.destroy({

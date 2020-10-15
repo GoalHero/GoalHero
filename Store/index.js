@@ -7,9 +7,9 @@ import hero from "./hero";
 import test from "./test";
 
 const reducer = combineReducers({
-  // user,
-  // hero
-  test,
+  user,
+  hero,
+  test
 });
 
 const middleware = composeWithDevTools(

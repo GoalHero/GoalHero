@@ -4,24 +4,34 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "./HomeScreen";
 import axios from "axios";
+import connect from 'react-redux'
+import fetchUser from "../Store/user"
+import fetchHero from "../Store/hero"
+import user from "../Store/user";
+import hero from "../Store/hero";
+import logout from "../Store/test"
 
-const Stack = createStackNavigator();
 
-class UserPage extends Component {
+export default class User extends Component {
   constructor() {
     super();
     this.state = {
       user: [],
+      hero: []
     };
   }
   async componentDidMount() {
-    // let {data: user} = await axios.get(`http://localhost:8080/api/users/${userId}`)
-    // console.log("this is the user", user)
-    // this.setState({
-    //   user
-    // })
+    this.props.fetchUser(this.props.match.params.id)
+    this.props.fetchHero(this.props.match.params.id)
   }
+
+  async signOutUser() {
+    this.logout(user.id)
+  }
+
   render() {
+    const user = this.props.user
+    const hero = this.props.hero
     return (
       <View style={styles.container}>
         <View style={styles.header}>
@@ -32,12 +42,11 @@ class UserPage extends Component {
                 uri: "",
               }}
             />
-            <Text style={styles.name}>Finn</Text>
-            <Text style={styles.userInfo}>finn@email.com</Text>
-            <Text style={styles.userInfo}>Username: finn</Text>
+            <Text style={styles.name}>name:</Text>
+            <Text style={styles.userInfo}>Level: 1 </Text>
           </View>
         </View>
-        {/* <View style={styles.body}>
+        <View style={styles.body}>
           <View style={styles.item}>
             <View style={styles.iconContent}>
               <Image
@@ -48,9 +57,9 @@ class UserPage extends Component {
               />
             </View>
             <View style={styles.infoContent}>
-              <Text style={styles.info}>Health: 100%</Text>
+              <Text style={styles.info}>Health</Text>
             </View>
-          </View> */}
+          </View>
         <View style={styles.item}>
           <View style={styles.iconContent}>
             <Image
@@ -62,7 +71,7 @@ class UserPage extends Component {
             />
           </View>
           <View style={styles.infoContent}>
-            <Text style={styles.info}>Level: 1</Text>
+            <Text style={styles.info}>damage</Text>
           </View>
         </View>
         <View style={styles.item}>
@@ -75,17 +84,35 @@ class UserPage extends Component {
             />
           </View>
           <View style={styles.infoContent}>
-            <Text style={styles.info}>Heroes Unlocked</Text>
-            <Button title="Log Out" onPress={() => null} />
+            <Text style={styles.info}>Hero</Text>
+            <Text style={styles.item}></Text>
+            <Image style={styles.icon}>
+            </Image>
+            <Button style={styles.button} title="Log Out" onPress={() => this.signOutUser()} />
           </View>
         </View>
       </View>
-      // </View>
+    </View>
     );
   }
 }
 
-export default UserPage;
+const mapState = (state) => {
+  return {
+    user: state.user, 
+    hero: state.hero
+  }
+}
+
+const mapDispatch = async dispatch => {
+  return {
+    fetchUser: (userId) => dispatch(fetchUser(userId)), 
+    fetchHero: (heroId) => dispatch(fetchHero(heroId)), 
+    logOut: () => dispatch(logout())
+  }
+}
+
+// export default connect(mapState, mapDispatch)(User);
 
 const styles = StyleSheet.create({
   container: {
@@ -122,6 +149,10 @@ const styles = StyleSheet.create({
     height: 500,
     alignItems: "center",
   },
+  button: {
+    fontSize: 100, 
+    alignItems: "center"
+  }, 
   item: {
     flexDirection: "row",
   },
