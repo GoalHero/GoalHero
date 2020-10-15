@@ -18,10 +18,10 @@ export const me = () => async dispatch => {
   }
 }
 
-export const fetchUser = id => {
+export const fetchUser = () => {
   return async dispatch => {
     try {
-      const user = await axios.get(`/api/users/${id}`)
+      const user = await axios.get(`/api/users/me`)
       dispatch(getUser(user))
     } catch (err) {
       console.error(err)
