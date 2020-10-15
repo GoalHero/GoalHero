@@ -10,7 +10,7 @@ const getUser = (user) => ({ type: GET_USER, user });
 
 export const fetchUser = (userId) => async (dispatch) => {
   try {
-    const { data } = await axios.get(`/api/users/${userId}`);
+    const { data } = await axios.get(`http://localhost:8080/api/users/${userId}`);
     dispatch(getUser(data));
   } catch (error) {
     console.log("failed to get api/users/:id");
