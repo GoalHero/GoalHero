@@ -53,7 +53,9 @@ router.get('/:userId', async (req, res, next) => {
         id: req.params.userId,
         // id: req.user.id
       },
+
       attributes: ['email', "name", "level", "health", "damage"],
+
       include: [
         Hero,
         Goal
