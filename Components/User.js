@@ -99,7 +99,6 @@ class User extends Component {
   }
 }
 
-
 const mapState = (state) => {
   return {
     user: state.user, 
