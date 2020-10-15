@@ -5,11 +5,13 @@ import { connect } from "react-redux"
 import { fetchGoals, removeGoal, completeGoal, postGoal } from "../Store/goals"
 
 
+
 const Goals = (props) => {
   const { handleSubmit, register, setValue } = useForm();
 
   useEffect(()=>{
     register("goalName");
+
     props.fetchGoals();
   },[register])
 

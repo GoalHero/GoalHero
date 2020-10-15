@@ -46,14 +46,12 @@ router.post('/', async (req, res, next) => {
 })
 
 // Gets user info from email, including 
-router.get('/:userId', async (req, res, next) => {
-  console.log("hero id", req.params.id)
+router.get('/me', async (req, res, next) => {
   try {
     const hero = await Hero.findOne({
       where: {
         //securtity: only see himself's user info
-        id: req.params.userId,
-        // id: req.hero.id
+        id: req.user.id
       },
       attributes: ["name", "health", "damage", "range", "imageUrl"],
     })
