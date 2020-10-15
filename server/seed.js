@@ -29,12 +29,6 @@ async function seed() {
   ])
 
 
-const heroes = await Promise.all([
-   Hero.create({
-     name: "knight", 
-     imageUrl: "https://toppng.com/uploads/preview/shovel-knight-shovel-knight-pixel-sprite-11562995378oifwzdxehc.png"
-   })
-])
   const goals = await Promise.all([
     Goal.create({
       name: "goal1",
