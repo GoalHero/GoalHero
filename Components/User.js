@@ -20,8 +20,8 @@ class User extends Component {
   }
    componentDidMount() {
     console.log("these are the props", this.props)
-    this.props.fetchUser()
-    this.props.fetchHero()
+    this.props.fetchUser(1)
+    this.props.fetchHero(1)
   }
 
   async signOutUser() {
@@ -108,7 +108,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    fetchUser: (userId) => dispatch(fetchUser(userId)), 
+    fetchUser: () => dispatch(fetchUser()), 
     fetchHero: (heroId) => dispatch(fetchHero(heroId)), 
     logOut: () => dispatch(logout())
   }
