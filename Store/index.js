@@ -7,7 +7,7 @@ import hero from "./hero";
 import test from "./test";
 
 const reducer = combineReducers({
-  // user,
+   user,
   // hero
   test,
 });
