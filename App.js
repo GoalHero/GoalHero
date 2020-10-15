@@ -208,7 +208,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Navigator initialRouteName="Login/Logout">
           <Drawer.Screen name="Home" component={HomeStackScreen} />
           <Drawer.Screen name="Your Goals" component={GoalsStackScreen} />
           <Drawer.Screen name="Play" component={PlayStackScreen} />
