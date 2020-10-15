@@ -13,7 +13,7 @@ const User = db.define('User', {
   }, 
   name: {
     type: Sequelize.STRING, 
-    allowNull: false
+    //allowNull: false
   }, 
   level: {
     type: Sequelize.INTEGER, 

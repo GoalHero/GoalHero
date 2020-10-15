@@ -11,6 +11,7 @@ const reducer = combineReducers({
   user,
   hero,
   goals
+
 });
 
 const middleware = composeWithDevTools(
