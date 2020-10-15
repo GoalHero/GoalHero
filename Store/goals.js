@@ -1,14 +1,14 @@
 import axios from "axios";
 
-const userId = 1;
-
 const GET_GOALS = "GET_GOALS";
 
 const goals = [];
 
 const getGoals = (goals) => ({ type: GET_GOALS, goals });
 
-export const fetchGoals = (userId) => async (dispatch) => {
+export const fetchGoals = (userId) => async (dispatch, store) => {
+  console.log(store())
+  const userId = store().user.id
   try {
     const { data : user } = await axios.get(`http://localhost:8080/api/users/${userId}`);
     const goals = user.Goals
@@ -19,7 +19,8 @@ export const fetchGoals = (userId) => async (dispatch) => {
   }
 };
 
-export const postGoal = (values) => async (dispatch) => {
+export const postGoal = (values) => async (dispatch, store) => {
+  const userId = store().user.id
   try {
     console.log('goalName', values.goalName)
     await axios.post(`http://localhost:8080/api/goals/users/${userId}`, {name: values.goalName})
@@ -27,11 +28,12 @@ export const postGoal = (values) => async (dispatch) => {
     const goals = user.Goals
     dispatch(getGoals(goals))
   } catch (error) {
-    console.log(`failed to post goal to api/goals/users${userId}`)
+    console.log(`failed to post goal to api/goals/users/${userId}`)
   }
 }
 
-export const removeGoal = (id) => async (dispatch) => {
+export const removeGoal = (id) => async (dispatch, store) => {
+  const userId = store().user.id
   try {
     console.log('removeId', id)
     await axios.delete(`http://localhost:8080/api/goals/${id}`)
@@ -43,7 +45,8 @@ export const removeGoal = (id) => async (dispatch) => {
   }
 }
 
-export const completeGoal = (id) => async (dispatch) => {
+export const completeGoal = (id) => async (dispatch, store) => {
+  const userId = store().user.id
   try {
     console.log('completeId', id)
     await axios.put(`http://localhost:8080/api/goals/${id}`)
