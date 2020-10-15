@@ -28,10 +28,13 @@ const Stack = createStackNavigator();
 // gg()
 // const Log = ({ navigation }) => {
 
-
-
-
-
+// const gg =async({ navigation})=>{
+//   const res = await axios.get('http://localhost:8080/auth/me')
+//   //  console.log("res.data",res.data)
+//     //console.log("&&&&&",props.user,"^^^^^^^^^^^")
+//     if(res.data) navigation.navigate("HomeScreen")
+// }
+// gg()
 
 
   

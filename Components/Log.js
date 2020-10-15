@@ -20,6 +20,13 @@ import {connect} from 'react-redux'
 import {auth} from '../Store/user'
 
 const Log = (props) => {
+    
+const validate =async()=>{
+    const user = await axios.get('http://localhost:8080/auth/me')
+    if(user.data)
+    props.navigation.navigate("HomeScreen")
+}
+validate()
    // props.navigation.navigate("SignPage")
   //  console.log(props.route)
   const { handleSubmit, register, setValue } = useForm();
