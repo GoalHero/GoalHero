@@ -6,38 +6,34 @@ const goals = [];
 
 const getGoals = (goals) => ({ type: GET_GOALS, goals });
 
-export const fetchGoals = (userId) => async (dispatch, store) => {
-  console.log(store())
-  const userId = store().user.id
+export const fetchGoals = () => async (dispatch) => {
   try {
-    const { data : user } = await axios.get(`http://localhost:8080/api/users/${userId}`);
+    const { data : user } = await axios.get(`http://localhost:8080/api/users/me`);
     const goals = user.Goals
     dispatch(getGoals(goals));
   } catch (error) {
     console.log(error)
-    console.log(`failed to get goals from api/users/${userId}`);
+    console.log(`failed to get goals from api/users/me`);
   }
 };
 
-export const postGoal = (values) => async (dispatch, store) => {
-  const userId = store().user.id
+export const postGoal = (values) => async (dispatch) => {
   try {
     console.log('goalName', values.goalName)
-    await axios.post(`http://localhost:8080/api/goals/users/${userId}`, {name: values.goalName})
-    let {data: user} = await axios.get(`http://localhost:8080/api/users/${userId}`)
+    await axios.post(`http://localhost:8080/api/goals/users/me`, {name: values.goalName})
+    let {data: user} = await axios.get(`http://localhost:8080/api/users/me`)
     const goals = user.Goals
     dispatch(getGoals(goals))
   } catch (error) {
-    console.log(`failed to post goal to api/goals/users/${userId}`)
+    console.log(`failed to post goal to api/goals/users/me`)
   }
 }
 
-export const removeGoal = (id) => async (dispatch, store) => {
-  const userId = store().user.id
+export const removeGoal = (id) => async (dispatch) => {
   try {
     console.log('removeId', id)
     await axios.delete(`http://localhost:8080/api/goals/${id}`)
-    let {data: user} = await axios.get(`http://localhost:8080/api/users/${userId}`)
+    let {data: user} = await axios.get(`http://localhost:8080/api/users/me`)
     let goals = user.Goals
     dispatch(getGoals(goals))
   } catch (error) {
@@ -45,12 +41,11 @@ export const removeGoal = (id) => async (dispatch, store) => {
   }
 }
 
-export const completeGoal = (id) => async (dispatch, store) => {
-  const userId = store().user.id
+export const completeGoal = (id) => async (dispatch) => {
   try {
     console.log('completeId', id)
     await axios.put(`http://localhost:8080/api/goals/${id}`)
-    let {data: user} = await axios.get(`http://localhost:8080/api/users/${userId}`)
+    let {data: user} = await axios.get(`http://localhost:8080/api/users/me`)
     let goals = user.Goals
     dispatch(getGoals(goals))
   } catch (error) {

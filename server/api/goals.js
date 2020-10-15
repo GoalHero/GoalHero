@@ -19,11 +19,11 @@ router.get('/', async (req, res, next) => {
 })
 
 // Create a new goal
-router.post('/users/:userId', async (req, res, next) => {
+router.post('/users/me', async (req, res, next) => {
   try {
     const userGoals = await Goal.findAll({
       where: {
-        UserId: req.params.userId
+        UserId: req.user.id
       }
     })
 
@@ -43,7 +43,7 @@ router.post('/users/:userId', async (req, res, next) => {
     })
     const user = await User.findOne({
       where: {
-        id: req.params.userId
+        id: req.user.id
       }
     })
     goal.setUser(user)

@@ -12,8 +12,8 @@ const Goals = (props) => {
 
   useEffect(()=>{
     register("goalName");
-    props.fetchUser(userId);
-    props.fetchGoals(userId);
+    props.fetchUser();
+    props.fetchGoals();
   },[register])
 
 

@@ -47,13 +47,13 @@ router.post('/', async (req, res, next) => {
 
 
 // Gets user and char info from id
-router.get('/:userId', async (req, res, next) => {
+router.get('/me', async (req, res, next) => {
   try {
     const user = await User.findOne({
       where: {
         // Security: Only see their own user info
-        id: req.params.userId,
-        // id: req.user.id
+        // id: req.params.userId,
+        id: req.user.id
       },
 
 
