@@ -1,7 +1,7 @@
 "use strict";
 
 const db = require("./db");
-const { User, Monster, Goal } = require("./db/models");
+const { User, Monster, Goal, Hero } = require("./db/models");
 
 async function seed() {
   await db.sync({ force: true });
@@ -39,70 +39,70 @@ async function seed() {
       heroNum: 1,
       name: "Knight",
       damage: 2,
-      range: "close",
+
       imageUrl: "../assets/images/knight.png",
     }),
     Hero.create({
       heroNum: 2,
       name: "Barbarian",
       damage: 4,
-      range: "close",
+
       imageUrl: "../assets/images/barbarian.png",
     }),
     Hero.create({
       heroNum: 3,
       name: "Archer",
       damage: 6,
-      range: "far",
+
       imageUrl: "../assets/images/archer.png",
     }),
     Hero.create({
       heroNum: 4,
       name: "Druid",
       damage: 8,
-      range: "close",
+
       imageUrl: "../assets/images/druid.png",
     }),
     Hero.create({
       heroNum: 5,
       name: "Viking",
       damage: 10,
-      range: "close",
+
       imageUrl: "../assets/images/viking.png",
     }),
     Hero.create({
       heroNum: 6,
       name: "Elf",
       damage: 12,
-      range: "close",
+
       imageUrl: "../assets/images/elf.png",
     }),
     Hero.create({
       heroNum: 7,
       name: "Dark Elf",
       damage: 14,
-      range: "close",
+
       imageUrl: "../assets/images/darkelf.png",
     }),
     Hero.create({
       heroNum: 8,
       name: "Ninja",
       damage: 16,
-      range: "close",
+
       imageUrl: "../assets/images/ninja.png",
     }),
     Hero.create({
       heroNum: 9,
       name: "Wizard",
       damage: 18,
-      range: "close",
+
       imageUrl: "../assets/images/wizard.png",
     }),
     Hero.create({
       heroNum: 10,
       name: "Elemental",
       damage: 20,
-      range: "close",
+
       imageUrl: "../assets/images/elemental.png",
     }),
   ]);
