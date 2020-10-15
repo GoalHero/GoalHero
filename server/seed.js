@@ -9,14 +9,17 @@ async function seed() {
 
   const users = await Promise.all([
     User.create({
+      name: 'cody',
       email: 'cody@email.com',
       password: '123'
     }),
     User.create({
+      name: 'murphy',
       email: 'murphy@email.com',
       password: '123',
     }),
     User.create({
+      name: 'eric',
       email: 'ericdag@sina.com',
       password: '123'
     })
@@ -33,8 +36,6 @@ async function seed() {
       name: 'goal3'
     })
   ])
-
-
 
   const [robot, bigbird, elmo] = users
   const [rr, bl, el] = goals

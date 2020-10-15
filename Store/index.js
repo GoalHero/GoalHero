@@ -8,11 +8,9 @@ import test from "./test";
 import goals from './goals'
 
 const reducer = combineReducers({
-  // user,
-  // hero,
-  // goals
-  test,
-
+  user,
+  hero,
+  goals
 });
 
 const middleware = composeWithDevTools(
