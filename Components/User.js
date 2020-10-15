@@ -27,7 +27,7 @@ class User extends Component {
     console.log('111111')
     this.props.logOut()
     alert('affgfrweh')
-    navigation.navigate("SignPage")
+   // navigation.navigate("SignPage")
   }
 
   render() {

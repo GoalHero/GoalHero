@@ -21,10 +21,10 @@ async componentDidMount(){
   <Text style={styles.header}>Hi {this.props.user.email}! Welcome to Goal Hero! </Text> {"\n\n"}
         <Text style={styles.body}>
           Are you ready to achieve some goals and fight those pesky monsters?!?!{" "}
-          {"\n\n"}
+          {"\n"}
           The game is simple. Make goals for yourself. Level up and defeat the
-          monsters. {"\n\n"}
-          Defeating a monster will unlock cool new characters {"\n\n"}
+          monsters. {"\n"}
+          Defeating a monster will unlock cool new characters {"\n"}
           Lets achieve some goals and fight those monsters.{" "}
         </Text>
       </Text>
