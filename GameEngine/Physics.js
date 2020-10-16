@@ -19,7 +19,7 @@ let monsterAlive = true;
 let monsterImmune = false;
 let charAlive = true;
 
-let monsterDamage = 100;
+let monsterDamage = 20;
 let charDamage = 5;
 
 let monsterHurtTick = 0;
