@@ -34,14 +34,27 @@ const Goals = (props) => {
               return (
                 <View key={goal.id} style={styles.goalRow}>
                   <Text style={styles.orangeBox}>{goal.name}</Text>
-                  <Button
+                  <View style={styles.complete}>
+                    <Button
+                      title="Complete"
+                      onPress={() => props.completeGoal(goal.id)}
+                    ></Button>
+                  </View>
+                  <View style={styles.remove}>
+                    <Button
+                      title="Remove"
+                      onPress={() => props.removeGoal(goal.id)}
+                    ></Button>
+                  </View>
+
+                  {/* <Button
                     title="Complete"
                     onPress={() => props.completeGoal(goal.id)}
-                  ></Button>
-                  <Button
+                  ></Button> */}
+                  {/* <Button
                     title="Remove"
                     onPress={() => props.removeGoal(goal.id)}
-                  ></Button>
+                  ></Button> */}
                 </View>
               );
             }
@@ -49,11 +62,12 @@ const Goals = (props) => {
         </View>
 
         <View style={styles.addGoal}>
-          <Text style={styles.increaseVerticalMargin}>Add A New Goal:</Text>
+          {/* <Text style={styles.increaseVerticalMargin}>Add A New Goal:</Text> */}
           <TextInput
-            placeholder="Input Box"
+            placeholder={props.input}
             style={styles.inputBox}
             onChangeText={(text) => setValue("goalName", text)}
+            defaultValue={props.default}
           />
           <View style={styles.topMargin}>
             <Button title="Add" onPress={handleSubmit(props.postGoal)} />
@@ -67,6 +81,8 @@ const Goals = (props) => {
 const mapState = (state) => {
   return {
     goals: state.goals,
+    input: "Add New Goal Here ",
+    default: "",
   };
 };
 
@@ -94,6 +110,7 @@ const styles = StyleSheet.create({
   goalRow: {
     flexDirection: "row",
     alignItems: "center",
+    alignContent: "space-between",
   },
   addGoal: {
     alignItems: "center",
@@ -103,13 +120,16 @@ const styles = StyleSheet.create({
     marginBottom: 50,
   },
   orangeBox: {
-    backgroundColor: "#F09031",
-    width: 120,
-    height: 20,
+    backgroundColor: "#B7BBBE",
+    width: 150,
+    height: 50,
     textAlign: "center",
+    opacity: 0.8,
+    // borderRadius: 10,
   },
   inputBox: {
-    backgroundColor: "#F09031",
+    backgroundColor: "#057BF7",
+    opacity: 0.8,
     width: 160,
     height: 60,
     textAlign: "center",
@@ -121,9 +141,28 @@ const styles = StyleSheet.create({
   },
   topMargin: {
     marginTop: 20,
+    backgroundColor: "#F09031",
+    width: 100,
+    height: 40,
+    borderRadius: 200 / 20,
   },
   background: {
     flex: 1,
     resizeMode: "cover",
+  },
+  complete: {
+    marginTop: 20,
+    backgroundColor: "#4DC175",
+    width: 100,
+    height: 40,
+    borderRadius: 10,
+  },
+  remove: {
+    marginTop: 20,
+    backgroundColor: "#633193",
+    width: 80,
+    height: 40,
+    borderRadius: 10,
+    // margin: 5,
   },
 });
