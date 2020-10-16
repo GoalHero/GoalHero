@@ -103,16 +103,17 @@ const styles = StyleSheet.create({
     marginBottom: 50,
   },
   orangeBox: {
-    backgroundColor: "orange",
+    backgroundColor: "#F09031",
     width: 120,
     height: 20,
     textAlign: "center",
   },
   inputBox: {
-    backgroundColor: "orange",
+    backgroundColor: "#F09031",
     width: 160,
     height: 60,
     textAlign: "center",
+    borderRadius: 10,
   },
   goalHeading: {
     marginBottom: 50,

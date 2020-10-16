@@ -175,14 +175,7 @@ const styles = StyleSheet.create({
     padding: 20,
     alignItems: "center",
   },
-  avatar: {
-    width: 160,
-    height: 160,
-    borderRadius: 63,
-    borderWidth: 7,
-    borderColor: "purple",
-    marginBottom: 10,
-  },
+
   name: {
     fontSize: 16,
     color: "#000000",
