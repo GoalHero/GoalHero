@@ -1,35 +1,24 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import { array, object, string } from 'prop-types';
+import { View, Image, StyleSheet, Dimensions } from 'react-native';
+const { width, height } = Dimensions.get('screen');
 
 export default class AttackButton extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
   render() {
-    const width = this.props.size[0];
-    const height = this.props.size[1];
-    const x = this.props.body.position.x - width / 2;
-    const y = this.props.body.position.y - height / 2;
-
     return (
-      <View
-        style={{
-          position: 'absolute',
-          left: x,
-          top: y,
-          width: width,
-          height: height,
-          backgroundColor: this.props.color || 'pink',
-        }}
-      />
+      <Image style={styles.size} source={require('../assets/images/attackbutton.png')} />
     );
   }
 }
 
-AttackButton.propTypes = {
-  size: array,
-  body: object,
-  color: string,
-};
+console.log(width)
+
+const styles = StyleSheet.create({
+  size: {
+    width: 75,
+    height: 75,
+    left: width - width / 2 - 25,
+    top: height - height / 4,
+  },
+
+});
+

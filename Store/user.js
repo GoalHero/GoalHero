@@ -32,13 +32,14 @@ export const updateUser = (newInfo) => {
   };
 };
 
-export const auth = (email, password, method) => async (dispatch) => {
+export const auth = (email, password, name, method) => async (dispatch) => {
   let res;
   try {
-    console.log('************', email, password, method);
+    console.log('************', email, password, name, method);
     res = await axios.post(`http://localhost:8080/auth/${method}`, {
       email,
       password,
+      name
     });
   } catch (authError) {
     return dispatch(getUser({ error: authError }));

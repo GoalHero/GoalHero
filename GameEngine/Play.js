@@ -75,8 +75,10 @@ export default class Play extends React.Component {
         <Image source={require('../assets/images/game_background_1.png')} style={styles.absolute}/>
         <View style={styles.absolute}>
           <HealthBar />
-          <MonsterHealth />
+          <MonsterHealth/>
+          {/* <AttackButton/> */}
         </View>
+
         <GameEngine
           systems={[Physics]}
           entities={{

@@ -3,17 +3,21 @@ import { StyleSheet, StatusBar, Dimensions } from 'react-native';
 import { monsterWalking } from './MonsterWalking';
 import { characterDamage } from './CharacterDamage';
 
+import store from '../Store'
+import { getMonsterHealth, getCharHealth } from '../Store/game'
+
+let monsterHealth = store.getState().game.monsterHealth
+let charHealth = store.getState().game.charHealth
+
 let tick = 0;
 let attackingtick = 0;
 let pose = 0;
 let allowJump = true;
 let attacking = false;
 
-let monsterHealth = 100;
 let monsterAlive = true;
 let monsterImmune = false;
 let charAlive = true;
-let charHealth = 100;
 
 let monsterDamage = 100;
 let charDamage = 5;
@@ -43,9 +47,9 @@ export const Physics = (entities, { touches, time }) => {
           attacking = true;
           if (characterDamage(entities, monsterImmune) && monsterAlive) {
             monsterHealth -= charDamage;
+            store.dispatch(getMonsterHealth(monsterHealth))
             entities.initialMonster.state = 'hurt';
             monsterHurt = true;
-            console.log('monsterHealth:', monsterHealth);
           }
         } else if (t.event.pageY < height / 3) {
           if (allowJump) {
@@ -145,7 +149,7 @@ export const Physics = (entities, { touches, time }) => {
       characterHurt = true;
       entities.initialChar.state = 'hurt';
       charHealth -= monsterDamage;
-      console.log('Character Health:', charHealth);
+      store.dispatch(getCharHealth(charHealth))
     }
   }
   if (tick % 100 === 0) {

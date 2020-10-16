@@ -32,9 +32,10 @@ const Sign = (props) => {
   const onSubmit = async (values) => {
     try {
       const formName = 'signup';
+      const name = values.name;
       const email = values.email;
       const password = values.password;
-      await props.signup(email, password, formName);
+      await props.signup(email, password, name, formName);
 
       const res = await axios.get('http://localhost:8080/auth/me');
       //  console.log("res.data",res.data)
@@ -138,8 +139,8 @@ const mapSignup = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    signup: (email, password, formName) =>
-      dispatch(auth(email, password, formName)),
+    signup: (email, password, name, formName) =>
+      dispatch(auth(email, password, name, formName)),
   };
 };
 

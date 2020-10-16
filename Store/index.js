@@ -6,11 +6,13 @@ import user from './user';
 import hero from './hero';
 import test from './test';
 import goals from './goals';
+import game from './game';
 
 const reducer = combineReducers({
   user,
   hero,
   goals,
+  game
 });
 
 const middleware = composeWithDevTools(
