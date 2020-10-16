@@ -28,7 +28,7 @@ const HomeStackScreen = ({ navigation }) => (
   <HomeStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: "#009387",
+        backgroundColor: "#650590",
       },
       headerTintColor: "#fff",
       headerTitleStyle: {
@@ -44,7 +44,7 @@ const HomeStackScreen = ({ navigation }) => (
           <Icon.Button
             name="ios-menu"
             size={25}
-            backgroundColor="#009387"
+            backgroundColor="#650590"
             // backgroundColor="#114C9F"
             onPress={() => navigation.openDrawer()}
           ></Icon.Button>
@@ -58,7 +58,7 @@ const LoginStackScreen = ({ navigation }) => (
   <LoginStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: "#009387",
+        backgroundColor: "#650590",
       },
       headerTintColor: "#fff",
       headerTitleStyle: {
@@ -74,7 +74,7 @@ const LoginStackScreen = ({ navigation }) => (
           <Icon.Button
             name="ios-menu"
             size={25}
-            backgroundColor="#009387"
+            backgroundColor="#650590"
             // backgroundColor="#114C9F"
             onPress={() => navigation.openDrawer()}
           ></Icon.Button>
@@ -88,7 +88,7 @@ const UserStackScreen = ({ navigation }) => (
   <UserStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: "#009387",
+        backgroundColor: "#650590",
       },
       headerTintColor: "#fff",
       headerTitleStyle: {
@@ -104,7 +104,7 @@ const UserStackScreen = ({ navigation }) => (
           <Icon.Button
             name="ios-menu"
             size={25}
-            backgroundColor="#009387"
+            backgroundColor="#650590"
             // backgroundColor="#114C9F"
             onPress={() => navigation.openDrawer()}
           ></Icon.Button>
@@ -118,7 +118,7 @@ const PlayStackScreen = ({ navigation }) => (
   <PlayStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: "#009387",
+        backgroundColor: "#650590",
       },
       headerTintColor: "#fff",
       headerTitleStyle: {
@@ -134,7 +134,7 @@ const PlayStackScreen = ({ navigation }) => (
           <Icon.Button
             name="ios-menu"
             size={25}
-            backgroundColor="#009387"
+            backgroundColor="#650590"
             // backgroundColor="#114C9F"
             onPress={() => navigation.openDrawer()}
           ></Icon.Button>
@@ -148,7 +148,7 @@ const GoalsStackScreen = ({ navigation }) => (
   <GoalsStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: "#009387",
+        backgroundColor: "#650590",
       },
       headerTintColor: "#fff",
       headerTitleStyle: {
@@ -164,7 +164,7 @@ const GoalsStackScreen = ({ navigation }) => (
           <Icon.Button
             name="ios-menu"
             size={25}
-            backgroundColor="#009387"
+            backgroundColor="#650590"
             // backgroundColor="#114C9F"
             onPress={() => navigation.openDrawer()}
           ></Icon.Button>
@@ -178,7 +178,7 @@ const HeroesStackScreen = ({ navigation }) => (
   <HeroesStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: "#009387",
+        backgroundColor: "#650590",
       },
       headerTintColor: "#fff",
       headerTitleStyle: {
@@ -194,7 +194,7 @@ const HeroesStackScreen = ({ navigation }) => (
           <Icon.Button
             name="ios-menu"
             size={25}
-            backgroundColor="#009387"
+            backgroundColor="#650590"
             // backgroundColor="#114C9F"
             onPress={() => navigation.openDrawer()}
           ></Icon.Button>
