@@ -11,7 +11,7 @@ const removeUser = () => ({ type: REMOVE_USER });
 
 export const me = () => async (dispatch) => {
   try {
-    const res = await axios.get('http://localhost:8080/auth/me');
+    const res = await axios.get('https://goal-hero-capstone.herokuapp.com/auth/me');
     dispatch(getUser(res.data || defaultUser));
   } catch (err) {
     console.error(err);
@@ -22,7 +22,7 @@ export const updateUser = (newInfo) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.put(
-        'http://localhost:8080/api/users/me',
+        'https://goal-hero-capstone.herokuapp.com/api/users/me',
         newInfo
       );
       dispatch(getUser(data));
@@ -36,7 +36,7 @@ export const auth = (email, password, name, method) => async (dispatch) => {
   let res;
   try {
     console.log('************', email, password, name, method);
-    res = await axios.post(`http://localhost:8080/auth/${method}`, {
+    res = await axios.post(`https://goal-hero-capstone.herokuapp.com/auth/${method}`, {
       email,
       password,
       name
@@ -56,7 +56,7 @@ export const auth = (email, password, name, method) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   try {
     console.log('hereeeeeeeeeeeeeeee');
-    await axios.post('http://localhost:8080/auth/logout');
+    await axios.post('https://goal-hero-capstone.herokuapp.com/auth/logout');
     dispatch(removeUser());
     // history.push('/login')
   } catch (err) {

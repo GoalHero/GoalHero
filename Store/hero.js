@@ -8,7 +8,7 @@ const getHero = (hero) => ({ type: GET_HERO, hero });
 
 export const fetchHero = () => async (dispatch) => {
   try {
-    const { data } = await axios.get('http://localhost:8080/api/hero/me');
+    const { data } = await axios.get('https://goal-hero-capstone.herokuapp.com/api/hero/me');
     dispatch(getHero(data));
   } catch (error) {
     console.log('failed to get api/hero/:id');

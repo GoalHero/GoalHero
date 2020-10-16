@@ -29,7 +29,7 @@ const Log = (props) => {
       const password = values.password;
       await props.login(email, password, formName);
 
-      const res = await axios.get('http://localhost:8080/auth/me');
+      const res = await axios.get('https://goal-hero-capstone.herokuapp.com/auth/me');
       //  console.log("res.data",res.data)
       //console.log("&&&&&",props.user,"^^^^^^^^^^^")
       if (!res.data) throw new Error();
