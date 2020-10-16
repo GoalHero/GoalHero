@@ -16,8 +16,7 @@ import { fetchHero } from "../Store/hero";
 import user from "../Store/user";
 import hero from "../Store/hero";
 
-import {logout} from "../Store/user"
-
+import { logout } from "../Store/user";
 
 class User extends Component {
   constructor() {
@@ -32,11 +31,10 @@ class User extends Component {
     this.props.fetchHero();
   }
 
-
   signOutUser() {
-    this.props.logOut()
-    alert('You have succesfully logged out!')
-   // navigation.navigate("SignPage")
+    this.props.logOut();
+    alert("You have succesfully logged out!");
+    // navigation.navigate("SignPage")
   }
 
   render() {
@@ -53,7 +51,7 @@ class User extends Component {
             source={require("../assets/images/logotest.png")}
           />
 
-          <Text style={{ fontSize: 20 }}>Your Profile</Text>
+          {/* <Text style={{ fontSize: 20 }}>Your Profile</Text> */}
           <View style={styles.header}>
             <View style={styles.headerContent}>
               {/* <Image
