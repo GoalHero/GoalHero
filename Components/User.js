@@ -33,7 +33,8 @@ class User extends Component {
 
   signOutUser() {
     this.props.logOut();
-    alert("You have succesfully logged out!");
+
+    alert("You have successfully logged out!");
     // navigation.navigate("SignPage")
   }
 

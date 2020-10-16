@@ -237,7 +237,7 @@ class App extends React.Component {
       return (
         <NavigationContainer>
           <Drawer.Navigator initialRouteName="Login/Logout">
-            <Drawer.Screen name="Login/Logout" component={LoginStackScreen} />
+            <Drawer.Screen name="Login/Signup" component={LoginStackScreen} />
           </Drawer.Navigator>
         </NavigationContainer>
       );
