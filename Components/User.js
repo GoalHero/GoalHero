@@ -70,6 +70,11 @@ class User extends Component {
             <Text>Hero Health: {user.health} </Text>
             <Text>Hero Damage: {user.damage} </Text>
           </View>
+          <Button
+            style={styles.buttonStyle}
+            title="Log Out"
+            onPress={() => this.signOutUser()}
+          />
           {/*
           <View style={styles.body}>
             <View style={styles.item}>
