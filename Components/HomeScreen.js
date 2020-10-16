@@ -32,10 +32,10 @@ class HomeScreen extends React.Component {
             style={{ width: 360, height: 140 }}
             source={require("../assets/images/logotest.png")}
           />
-
           <Text style={styles.body}>
             {/* Are you ready to achieve some goals and fight those pesky
             monsters? {"\n\n"}
+
 
             The game is simple. Make goals for yourself. Level up and defeat the
             monsters. {"\n\n"}

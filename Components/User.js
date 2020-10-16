@@ -15,7 +15,9 @@ import { me } from "../Store/user";
 import { fetchHero } from "../Store/hero";
 import user from "../Store/user";
 import hero from "../Store/hero";
-import logout from "../Store/test";
+
+import {logout} from "../Store/user"
+
 
 class User extends Component {
   constructor() {
@@ -30,8 +32,11 @@ class User extends Component {
     this.props.fetchHero();
   }
 
-  async signOutUser() {
-    this.logout(id);
+
+  signOutUser() {
+    this.props.logOut()
+    alert('You have succesfully logged out!')
+   // navigation.navigate("SignPage")
   }
 
   render() {

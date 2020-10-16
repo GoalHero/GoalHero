@@ -17,17 +17,12 @@ import { createStackNavigator } from "@react-navigation/stack";
 import User from "./User";
 import { useForm } from "react-hook-form";
 import axios from "axios";
-import { connect } from "react-redux";
-import { auth } from "../Store/user";
+import {connect} from 'react-redux'
+import {auth,me} from '../Store/user'
 
 const Log = (props) => {
-  const validate = async () => {
-    const user = await axios.get("http://localhost:8080/auth/me");
-    if (user.data) props.navigation.navigate("HomeScreen");
-  };
-  validate();
-  // props.navigation.navigate("SignPage")
-  //  console.log(props.route)
+    
+
   const { handleSubmit, register, setValue } = useForm();
   const onSubmit = async (values) => {
     try {
@@ -48,6 +43,7 @@ const Log = (props) => {
   };
 
   useEffect(() => {
+props.getMe()
     register("email");
     register("password");
   }, [register]);
@@ -137,4 +133,28 @@ const mapDispatch = (dispatch) => {
   };
 };
 
-export default connect(mapLogin, mapDispatch)(Log);
+
+const mapLogin = state => {
+    return {
+     
+      user: state.user
+    }
+  }
+  
+  const mapDispatch = dispatch => {
+   
+    return {
+    
+     login:(email, password, formName)=>
+        dispatch(auth(email, password, formName)),
+        getMe:()=>dispatch (me())
+      
+    }
+  }
+  
+
+
+
+
+  export default connect(mapLogin, mapDispatch)(Log)
+

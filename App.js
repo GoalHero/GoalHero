@@ -15,6 +15,9 @@ import Heroes from "./Components/Heroes";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import store from "./Store";
+import {connect} from 'react-redux'
+import {me} from './Store/user'
+import axios from 'axios'
 
 const HomeStack = createStackNavigator();
 const LoginStack = createStackNavigator();
@@ -204,19 +207,78 @@ const HeroesStackScreen = ({ navigation }) => (
   </HeroesStack.Navigator>
 );
 
-export default function App() {
+ class App extends React.Component {
+  constructor(){
+    super();
+    // this.state={user:{}}
+  }
+ 
+  async componentDidMount(){
+    this.props.getMe();
+  //  const res = await axios.get('http://localhost:8080/auth/me')
+  //  this.setState({user: res.data})
+   }
+
+  render(){
+    // const {isLoggedIn} = this.props
+ if(this.props.isLoggedIn)
+{
   return (
-    <Provider store={store}>
+   
       <NavigationContainer>
         <Drawer.Navigator initialRouteName="Home">
           <Drawer.Screen name="Home" component={HomeStackScreen} />
           <Drawer.Screen name="Goals" component={GoalsStackScreen} />
           <Drawer.Screen name="Play" component={PlayStackScreen} />
-          <Drawer.Screen name="User Profile" component={UserStackScreen} />
-          <Drawer.Screen name="List of Heroes" component={HeroesStackScreen} />
+          <Drawer.Screen name="Hero Profile" component={UserStackScreen} />
+          <Drawer.Screen name="Heroes" component={HeroesStackScreen} />
+        
+        </Drawer.Navigator>
+      </NavigationContainer>
+   
+  );
+}
+else
+{
+
+  return (
+   
+      <NavigationContainer>
+        <Drawer.Navigator initialRouteName="Login/Logout">
           <Drawer.Screen name="Login/Logout" component={LoginStackScreen} />
         </Drawer.Navigator>
       </NavigationContainer>
-    </Provider>
+   
   );
+
 }
+
+
+}}
+
+
+
+
+const mapLogin = state => {
+  return {
+   
+     user: state.user,
+     isLoggedIn:!!state.user.id
+  }
+}
+
+const mapDispatch = dispatch => {
+   
+  return {
+  
+   getMe:()=>
+      dispatch(me())
+    
+  }
+}
+
+
+
+
+
+export default connect(mapLogin,mapDispatch)(App)
