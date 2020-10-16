@@ -126,20 +126,6 @@ const mapLogin = (state) => {
   };
 };
 
-const mapDispatch = (dispatch) => {
-  return {
-    login: (email, password, formName) =>
-      dispatch(auth(email, password, formName)),
-  };
-};
-
-
-const mapLogin = state => {
-    return {
-     
-      user: state.user
-    }
-  }
   
   const mapDispatch = dispatch => {
    
