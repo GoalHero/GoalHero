@@ -207,24 +207,24 @@ const HeroesStackScreen = ({ navigation }) => (
   </HeroesStack.Navigator>
 );
 
-export default class App extends React.Component {
+ class App extends React.Component {
   constructor(){
     super();
-    this.state={user:{}}
+    // this.state={user:{}}
   }
  
   async componentDidMount(){
-   // this.props.getMe();
-   const res = await axios.get('http://localhost:8080/auth/me')
-   this.setState({user: res.data})
+    this.props.getMe();
+  //  const res = await axios.get('http://localhost:8080/auth/me')
+  //  this.setState({user: res.data})
    }
 
   render(){
     // const {isLoggedIn} = this.props
- if(this.state.user)
+ if(this.props.isLoggedIn)
 {
   return (
-    <Provider store={store}>
+   
       <NavigationContainer>
         <Drawer.Navigator initialRouteName="Home">
           <Drawer.Screen name="Home" component={HomeStackScreen} />
@@ -235,20 +235,20 @@ export default class App extends React.Component {
         
         </Drawer.Navigator>
       </NavigationContainer>
-    </Provider>
+   
   );
 }
 else
 {
 
   return (
-    <Provider store={store}>
+   
       <NavigationContainer>
         <Drawer.Navigator initialRouteName="Login/Logout">
           <Drawer.Screen name="Login/Logout" component={LoginStackScreen} />
         </Drawer.Navigator>
       </NavigationContainer>
-    </Provider>
+   
   );
 
 }
@@ -262,8 +262,8 @@ else
 const mapLogin = state => {
   return {
    
-    // user: state.user,
-    // isLoggedIn:!!state.user.id
+     user: state.user,
+     isLoggedIn:!!state.user.id
   }
 }
 
@@ -281,4 +281,4 @@ const mapDispatch = dispatch => {
 
 
 
-connect(mapLogin,mapDispatch)(App)
+export default connect(mapLogin,mapDispatch)(App)

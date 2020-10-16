@@ -21,15 +21,15 @@ import {auth,me} from '../Store/user'
 
 const Log = (props) => {
     
-const validate =async()=>{
-    const user = await axios.get('http://localhost:8080/auth/me')
-    console.log ("%%%%%%%%%%%",user.data,"%%%%%%%%%%%")
-    if(user.data)
-    props.navigation.navigate("HomeScreen")
-    else
-    props.navigation.navigate("SignPage")
-}
-validate()
+// const validate =async()=>{
+//     const user = await axios.get('http://localhost:8080/auth/me')
+//     console.log ("%%%%%%%%%%%",user.data,"%%%%%%%%%%%")
+//     if(user.data)
+//     props.navigation.navigate("HomeScreen")
+//     else
+//     props.navigation.navigate("SignPage")
+// }
+// validate()
    // props.navigation.navigate("SignPage")
   //  console.log(props.route)
   const { handleSubmit, register, setValue } = useForm();
