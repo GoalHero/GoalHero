@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   View,
   Text,
@@ -7,18 +7,18 @@ import {
   StatusBar,
   Image,
   ImageBackground,
-} from "react-native";
+} from 'react-native';
 
 const Heroes = ({ navigation }) => {
   return (
     <ImageBackground
       style={styles.background}
-      source={require("../assets/images/game_background_1.png")}
+      source={require('../assets/images/game_background_1.png')}
     >
       <View style={styles.container}>
         <View style={{ height: 20 }}></View>
-        <Text style={{ fontFamily: "EuphemiaUCAS-Bold" }}>
-          {"\n\n"}Defeat the enemy to level up to a new hero! {"\n\n"}
+        <Text style={{ fontFamily: 'EuphemiaUCAS-Bold' }}>
+          {'\n\n'}Defeat the enemy to level up to a new hero! {'\n\n'}
         </Text>
         <View style={{ height: 50 }}></View>
         <View style={styles.card}>
@@ -27,10 +27,10 @@ const Heroes = ({ navigation }) => {
               width: 100,
               height: 100,
             }}
-            source={require("../assets/images/knight.png")}
+            source={require('../assets/images/knight.png')}
           />
           <Text
-            style={{ textAlign: "center", fontFamily: "EuphemiaUCAS-Bold" }}
+            style={{ textAlign: 'center', fontFamily: 'EuphemiaUCAS-Bold' }}
           >
             KNIGHT
           </Text>
@@ -38,10 +38,10 @@ const Heroes = ({ navigation }) => {
         <View style={styles.card}>
           <Image
             style={{ width: 100, height: 100 }}
-            source={require("../assets/images/barbarian.png")}
+            source={require('../assets/images/barbarian.png')}
           />
           <Text
-            style={{ textAlign: "center", fontFamily: "EuphemiaUCAS-Bold" }}
+            style={{ textAlign: 'center', fontFamily: 'EuphemiaUCAS-Bold' }}
           >
             BARBARIAN
           </Text>
@@ -49,10 +49,10 @@ const Heroes = ({ navigation }) => {
         <View style={styles.card}>
           <Image
             style={{ width: 100, height: 100 }}
-            source={require("../assets/images/archer.png")}
+            source={require('../assets/images/archer.png')}
           />
           <Text
-            style={{ textAlign: "center", fontFamily: "EuphemiaUCAS-Bold" }}
+            style={{ textAlign: 'center', fontFamily: 'EuphemiaUCAS-Bold' }}
           >
             ARCHER
           </Text>
@@ -60,10 +60,10 @@ const Heroes = ({ navigation }) => {
         <View style={styles.card}>
           <Image
             style={{ width: 100, height: 100 }}
-            source={require("../assets/images/druid.png")}
+            source={require('../assets/images/druid.png')}
           />
           <Text
-            style={{ textAlign: "center", fontFamily: "EuphemiaUCAS-Bold" }}
+            style={{ textAlign: 'center', fontFamily: 'EuphemiaUCAS-Bold' }}
           >
             DRUID
           </Text>
@@ -71,10 +71,10 @@ const Heroes = ({ navigation }) => {
         <View style={styles.card}>
           <Image
             style={{ width: 100, height: 100 }}
-            source={require("../assets/images/viking.png")}
+            source={require('../assets/images/viking.png')}
           />
           <Text
-            style={{ textAlign: "center", fontFamily: "EuphemiaUCAS-Bold" }}
+            style={{ textAlign: 'center', fontFamily: 'EuphemiaUCAS-Bold' }}
           >
             VIKING
           </Text>
@@ -82,10 +82,10 @@ const Heroes = ({ navigation }) => {
         <View style={styles.card}>
           <Image
             style={{ width: 100, height: 100 }}
-            source={require("../assets/images/elf.png")}
+            source={require('../assets/images/elf.png')}
           />
           <Text
-            style={{ textAlign: "center", fontFamily: "EuphemiaUCAS-Bold" }}
+            style={{ textAlign: 'center', fontFamily: 'EuphemiaUCAS-Bold' }}
           >
             ELF
           </Text>
@@ -93,10 +93,10 @@ const Heroes = ({ navigation }) => {
         <View style={styles.card}>
           <Image
             style={{ width: 100, height: 100 }}
-            source={require("../assets/images/darkelf.png")}
+            source={require('../assets/images/darkelf.png')}
           />
           <Text
-            style={{ textAlign: "center", fontFamily: "EuphemiaUCAS-Bold" }}
+            style={{ textAlign: 'center', fontFamily: 'EuphemiaUCAS-Bold' }}
           >
             DARK ELF
           </Text>
@@ -104,10 +104,10 @@ const Heroes = ({ navigation }) => {
         <View style={styles.card}>
           <Image
             style={{ width: 100, height: 100 }}
-            source={require("../assets/images/ninja.png")}
+            source={require('../assets/images/ninja.png')}
           />
           <Text
-            style={{ textAlign: "center", fontFamily: "EuphemiaUCAS-Bold" }}
+            style={{ textAlign: 'center', fontFamily: 'EuphemiaUCAS-Bold' }}
           >
             NINJA
           </Text>
@@ -115,10 +115,10 @@ const Heroes = ({ navigation }) => {
         <View style={styles.card}>
           <Image
             style={{ width: 100, height: 100 }}
-            source={require("../assets/images/wizard.png")}
+            source={require('../assets/images/wizard.png')}
           />
           <Text
-            style={{ textAlign: "center", fontFamily: "EuphemiaUCAS-Bold" }}
+            style={{ textAlign: 'center', fontFamily: 'EuphemiaUCAS-Bold' }}
           >
             WIZARD
           </Text>
@@ -126,10 +126,10 @@ const Heroes = ({ navigation }) => {
         <View style={styles.card}>
           <Image
             style={{ width: 100, height: 100 }}
-            source={require("../assets/images/elemental.png")}
+            source={require('../assets/images/elemental.png')}
           />
           <Text
-            style={{ textAlign: "center", fontFamily: "EuphemiaUCAS-Bold" }}
+            style={{ textAlign: 'center', fontFamily: 'EuphemiaUCAS-Bold' }}
           >
             ELEMENTAL
           </Text>
@@ -143,13 +143,13 @@ export default Heroes;
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   card: {
-    flexDirection: "column",
+    flexDirection: 'column',
     // backgroundColor: "#6A7B89",
 
     // borderRadius: 100,
@@ -158,6 +158,6 @@ const styles = StyleSheet.create({
   },
   background: {
     flex: 1,
-    resizeMode: "cover",
+    resizeMode: 'cover',
   },
 });

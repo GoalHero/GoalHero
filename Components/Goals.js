@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { Component, useEffect } from 'react';
 import {
   View,
   Text,
@@ -7,16 +7,16 @@ import {
   StatusBar,
   TextInput,
   ImageBackground,
-} from "react-native";
-import { useForm, useState } from "react-hook-form";
-import { connect } from "react-redux";
-import { fetchGoals, removeGoal, completeGoal, postGoal } from "../Store/goals";
+} from 'react-native';
+import { useForm, useState } from 'react-hook-form';
+import { connect } from 'react-redux';
+import { fetchGoals, removeGoal, completeGoal, postGoal } from '../Store/goals';
 
 const Goals = (props) => {
   const { handleSubmit, register, setValue } = useForm();
 
   useEffect(() => {
-    register("goalName");
+    register('goalName');
 
     props.fetchGoals();
   }, [register]);
@@ -24,7 +24,7 @@ const Goals = (props) => {
   return (
     <ImageBackground
       style={styles.background}
-      source={require("../assets/images/game_background_1.png")}
+      source={require('../assets/images/game_background_1.png')}
     >
       <View style={styles.container}>
         <Text style={styles.goalHeading}>YOUR GOALS</Text>
@@ -53,7 +53,7 @@ const Goals = (props) => {
           <TextInput
             placeholder="Input Box"
             style={styles.inputBox}
-            onChangeText={(text) => setValue("goalName", text)}
+            onChangeText={(text) => setValue('goalName', text)}
           />
           <View style={styles.topMargin}>
             <Button title="Add" onPress={handleSubmit(props.postGoal)} />
@@ -84,35 +84,35 @@ export default connect(mapState, mapDispatch)(Goals);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   goalList: {
-    flexDirection: "column",
-    justifyContent: "space-evenly",
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
   },
   goalRow: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   addGoal: {
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 100,
   },
   increaseVerticalMargin: {
     marginBottom: 50,
   },
   orangeBox: {
-    backgroundColor: "orange",
+    backgroundColor: 'orange',
     width: 120,
     height: 20,
-    textAlign: "center",
+    textAlign: 'center',
   },
   inputBox: {
-    backgroundColor: "orange",
+    backgroundColor: 'orange',
     width: 160,
     height: 60,
-    textAlign: "center",
+    textAlign: 'center',
   },
   goalHeading: {
     marginBottom: 50,
@@ -123,6 +123,6 @@ const styles = StyleSheet.create({
   },
   background: {
     flex: 1,
-    resizeMode: "cover",
+    resizeMode: 'cover',
   },
 });

@@ -1,23 +1,23 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Text, View, StyleSheet, Animated } from "react-native";
+import React, { useRef, useState, useEffect } from 'react';
+import { Text, View, StyleSheet, Animated } from 'react-native';
 
 function useInterval(callback, delay) {
-    const savedCallback = useRef();
-  
-    useEffect(() => {
-      savedCallback.current = callback;
-    }, [callback]);
-  
-    useEffect(() => {
-      function tick() {
-        savedCallback.current();
-      }
-      if (delay !== null) {
-        let id = setInterval(tick, delay);
-        return () => clearInterval(id);
-      }
-    }, [delay]);
-  }
+  const savedCallback = useRef();
+
+  useEffect(() => {
+    savedCallback.current = callback;
+  }, [callback]);
+
+  useEffect(() => {
+    function tick() {
+      savedCallback.current();
+    }
+    if (delay !== null) {
+      let id = setInterval(tick, delay);
+      return () => clearInterval(id);
+    }
+  }, [delay]);
+}
 
 const HealthBar = () => {
   let animation = useRef(new Animated.Value(0));
@@ -31,20 +31,15 @@ const HealthBar = () => {
     Animated.timing(animation.current, {
       toValue: health,
       duration: 1000,
-      useNativeDriver: true
+      useNativeDriver: true,
     }).start();
-  }, [health])
+  }, [health]);
   return (
-    <View style={styles.container}>
+    <View style={styles.healthContainer}>
       <Text>Hero Health</Text>
-      <View style={styles.healthBar}>
-        <Animated.View
-          style={[
-            StyleSheet.absoluteFill,
-            {  },
-          ]}
-        />
-      </View>
+        <View style={styles.healthBar}>
+          <Animated.View style={[StyleSheet.absoluteFill, {}]} />
+        </View>
       <Text>{`${health}%`}</Text>
     </View>
   );
@@ -53,12 +48,13 @@ const HealthBar = () => {
 export default HealthBar;
 
 const styles = StyleSheet.create({
+  healthContainer: {
+    flexDirection: 'column'
+  },
   healthBar: {
-    flex: 1,
-    flexDirection: "column",
-    width: "1000%", 
-    backgroundColor: "white",
-    borderColor: "#000",
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    borderColor: '#000',
     borderWidth: 3,
     borderRadius: 10,
   },

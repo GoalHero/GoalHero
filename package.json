@@ -28,6 +28,7 @@
     "passport-google-oauth": "^2.0.0",
     "pg": "^8.4.1",
     "pg-hstore": "^2.3.3",
+    "prettier": "^2.1.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-hook-form": "^6.9.2",
@@ -50,6 +51,7 @@
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
+    "@testing-library/jest-native": "^3.4.3",
     "redux-devtools-extension": "^2.13.8"
   },
   "private": true

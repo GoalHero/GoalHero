@@ -27,7 +27,6 @@ let characterHurtTick = 0;
 let characterHurt = false;
 let characterDeadTick = 0;
 
-
 const { width, height } = Dimensions.get('screen');
 
 export const Physics = (entities, { touches, time }) => {
@@ -44,10 +43,10 @@ export const Physics = (entities, { touches, time }) => {
           attacking = true;
           if (characterDamage(entities, monsterImmune) && monsterAlive) {
             monsterHealth -= charDamage;
-            entities.initialMonster.state = "hurt";
+            entities.initialMonster.state = 'hurt';
             monsterHurt = true;
-            console.log('monsterHealth:', monsterHealth)
-          };
+            console.log('monsterHealth:', monsterHealth);
+          }
         } else if (t.event.pageY < height / 3) {
           if (allowJump) {
             allowJump = false;
@@ -55,10 +54,10 @@ export const Physics = (entities, { touches, time }) => {
           }
         } else if (t.event.pageX < width / 2) {
           entities.initialChar.face = -1;
-          Matter.Body.applyForce(char, char.position, { x: -0.15, y: 0});
+          Matter.Body.applyForce(char, char.position, { x: -0.15, y: 0 });
         } else {
           entities.initialChar.face = 1;
-          Matter.Body.applyForce(char, char.position, { x: 0.15, y: 0});
+          Matter.Body.applyForce(char, char.position, { x: 0.15, y: 0 });
         }
       }
     });
@@ -70,10 +69,10 @@ export const Physics = (entities, { touches, time }) => {
   }
 
   if (!charAlive) {
-    entities.initialChar.state = "dying";
+    entities.initialChar.state = 'dying';
     if (characterDeadTick > 36) {
       if (characterDeadTick === 50) {
-        Matter.World.remove(world, entities.initialChar.body)
+        Matter.World.remove(world, entities.initialChar.body);
       }
     } else {
       if (characterDeadTick % 4 === 0) {
@@ -84,7 +83,7 @@ export const Physics = (entities, { touches, time }) => {
   } else if (characterHurt) {
     if (characterHurtTick > 36) {
       characterHurt = false;
-      entities.initialChar.state = "idle";
+      entities.initialChar.state = 'idle';
       characterHurtTick = 0;
     } else {
       if (characterHurtTick % 4 === 0) {
@@ -104,10 +103,10 @@ export const Physics = (entities, { touches, time }) => {
   }
 
   if (!monsterAlive) {
-    entities.initialMonster.state = "dying";
+    entities.initialMonster.state = 'dying';
     if (monsterDeadTick > 36) {
       if (monsterDeadTick === 50) {
-        Matter.World.remove(world, entities.initialMonster.body)
+        Matter.World.remove(world, entities.initialMonster.body);
       }
     } else {
       if (monsterDeadTick % 4 === 0) {
@@ -118,7 +117,7 @@ export const Physics = (entities, { touches, time }) => {
   } else if (monsterHurt) {
     if (monsterHurtTick > 20) {
       monsterHurtTick = 0;
-      entities.initialMonster.state = "idle";
+      entities.initialMonster.state = 'idle';
       monsterHurt = false;
     } else {
       if (monsterHurtTick % 4 === 0) {
@@ -128,25 +127,25 @@ export const Physics = (entities, { touches, time }) => {
     }
   } else if (monsterImmune) {
     if (monsterImmuneTick > 72) {
-      entities.initialMonster.state = "idle";
+      entities.initialMonster.state = 'idle';
       monsterImmuneTick = 0;
       monsterImmune = false;
     } else {
       if (monsterImmuneTick % 8 === 0) {
-        entities.initialMonster.pose = `00${monsterImmuneTick / 8}`
+        entities.initialMonster.pose = `00${monsterImmuneTick / 8}`;
       }
       monsterImmuneTick++;
     }
   }
 
   if (tick % 500 === 0) {
-    entities.initialMonster.state = "attacking";
+    entities.initialMonster.state = 'attacking';
     monsterImmune = true;
-    if (characterDamage(entities) && charAlive) {
+    if (characterDamage(entities) && charAlive && monsterAlive) {
       characterHurt = true;
-      entities.initialChar.state = "hurt";
+      entities.initialChar.state = 'hurt';
       charHealth -= monsterDamage;
-      console.log('Character Health:', charHealth)
+      console.log('Character Health:', charHealth);
     }
   }
   if (tick % 100 === 0) {
