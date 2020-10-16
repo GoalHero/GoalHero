@@ -8,6 +8,7 @@ import {
   TextInput,
   TouchableHighlight,
   Alert,
+  ImageBackground,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import "react-native-gesture-handler";
@@ -48,48 +49,50 @@ const Sign = (props) => {
 
   const error = props.error;
   return (
-    <View style={styles.container}>
-      <Image
-        style={{ width: 360, height: 140 }}
-        source={require("../assets/images/logotest.png")}
-      />
-      <Text style={styles.welcome}>Sign Up for GoalHero!</Text>
-      <TextInput
-        placeholder="Name:"
-        style={styles.textInputStyle}
-        onChangeText={(text) => setValue("name", text)}
-      />
-      <TextInput
-        placeholder="Email:"
-        style={styles.textInputStyle}
-        onChangeText={(text) => setValue("email", text)}
-      />
-      <TextInput
-        placeholder="Password:"
-        password={true}
-        style={styles.textInputStyle}
-        onChangeText={(text) => setValue("password", text)}
-      />
-      <View>
-        {error && error.response && <View> {error.response.data} </View>}
-      </View>
+    <ImageBackground
+      style={styles.background}
+      source={require("../assets/images/game_background_1.png")}
+    >
+      <View style={styles.container}>
+        <Image
+          style={{ width: 360, height: 140 }}
+          source={require("../assets/images/logotest.png")}
+        />
+        <Text style={styles.welcome}>Sign Up for GoalHero!</Text>
+        <TextInput
+          placeholder="Name:"
+          style={styles.textInputStyle}
+          onChangeText={(text) => setValue("name", text)}
+        />
+        <TextInput
+          placeholder="Email:"
+          style={styles.textInputStyle}
+          onChangeText={(text) => setValue("email", text)}
+        />
+        <TextInput
+          placeholder="Password:"
+          password={true}
+          style={styles.textInputStyle}
+          onChangeText={(text) => setValue("password", text)}
+        />
+        <View>
+          {error && error.response && <View> {error.response.data} </View>}
+        </View>
 
-      <View style={styles.buttonStyle}>
-        <Button title="Signup" onPress={handleSubmit(onSubmit)} />
-      </View>
+        <View style={styles.buttonStyle}>
+          <Button title="Signup" onPress={handleSubmit(onSubmit)} />
+        </View>
 
-      <StatusBar style="auto" />
-    </View>
+        <StatusBar style="auto" />
+      </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     height: 666,
-    // flex: 0,
-    //   flexDirection:"row",
-    //   flexWrap: "wrap",
-    backgroundColor: "#dddddd",
+
     alignItems: "center",
     // justifyContent: "space-evenly",
   },
@@ -110,16 +113,20 @@ const styles = StyleSheet.create({
     width: "75%",
     height: 38,
     backgroundColor: "white",
-    borderRadius: 100 / 50,
+    borderRadius: 10,
   },
   buttonStyle: {
-    backgroundColor: "pink",
+    backgroundColor: "#F09031",
     width: 200,
     height: 40,
     borderRadius: 200 / 20,
     marginTop: 20,
     alignItems: "center",
     justifyContent: "center",
+  },
+  background: {
+    flex: 1,
+    resizeMode: "cover",
   },
 });
 

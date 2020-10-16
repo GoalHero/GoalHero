@@ -92,10 +92,6 @@ const Log = (props) => {
 const styles = StyleSheet.create({
   container: {
     height: 666,
-    // flex: 0,
-    //   flexDirection:"row",
-    //   flexWrap: "wrap",
-    backgroundColor: "#dddddd",
     alignItems: "center",
     // justifyContent: 'center',
   },
@@ -105,25 +101,20 @@ const styles = StyleSheet.create({
     borderRadius: 200 / 2,
   },
 
-  welcome: {
-    marginTop: 111,
-    fontSize: 28,
-    marginBottom: 99,
-  },
-
   textInputStyle: {
-    marginTop: 8,
-    width: "100%",
+    marginVertical: 20,
+    width: "75%",
     height: 38,
     backgroundColor: "white",
-    borderRadius: 100 / 50,
+    borderRadius: 10,
   },
   buttonStyle: {
-    backgroundColor: "pink",
+    backgroundColor: "#F09031",
+    color: "white",
     width: 200,
     height: 40,
     borderRadius: 200 / 20,
-    marginTop: 55,
+    marginTop: 30,
     alignItems: "center",
     justifyContent: "center",
   },
