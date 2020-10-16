@@ -1,14 +1,14 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const Sequelize = require('sequelize');
+const db = require('../db');
 
 const Goal = db.define('Goal', {
   name: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
   },
   completed: {
     type: Sequelize.BOOLEAN,
-    defaultValue: false
-  }
-})
+    defaultValue: false,
+  },
+});
 
-module.exports = Goal
+module.exports = Goal;

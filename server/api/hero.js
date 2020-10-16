@@ -1,6 +1,6 @@
-const router = require('express').Router()
-const {Hero} = require('../db/models')
-const adminOnly = require('./utils/adminOnly')
+const router = require('express').Router();
+const { Hero } = require('../db/models');
+const adminOnly = require('./utils/adminOnly');
 
 // Gets all heroes with their id, email, and username
 router.get('/', async (req, res, next) => {
@@ -14,56 +14,56 @@ router.get('/', async (req, res, next) => {
     // above is security part
 
     const heroes = await Hero.findAll({
-      attributes: ["name", "health", "damage", "range", "imageUrl"]
-    })
-    res.json(heroes)
+      attributes: ['name', 'health', 'damage', 'range', 'imageUrl'],
+    });
+    res.json(heroes);
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
+});
 
 // User signup, posts to /api/users
 //No security needed, any one can create a new user
 router.post('/', async (req, res, next) => {
   try {
-    const {email, password} = req.body
+    const { email, password } = req.body;
     const currentUser = await User.findOne({
       where: {
-        email: req.user.email
-      }
-    })
+        email: req.user.email,
+      },
+    });
     if (currentUser) {
-      return res.sendStatus(400)
+      return res.sendStatus(400);
     }
     const newUser = await User.create({
       email,
-      password
-    })
-    res.json(newUser)
+      password,
+    });
+    res.json(newUser);
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
+});
 
-// Gets user info from email, including 
+// Gets user info from email, including
 router.get('/me', async (req, res, next) => {
   try {
     const hero = await Hero.findOne({
       where: {
         //securtity: only see himself's user info
-        id: req.user.id
+        id: req.user.id,
       },
-      attributes: ["name", "health", "damage", "range", "imageUrl"],
-    })
+      attributes: ['name', 'health', 'damage', 'range', 'imageUrl'],
+    });
     if (hero) {
-      res.json(hero)
+      res.json(hero);
     } else {
-      res.sendStatus(400)
+      res.sendStatus(400);
     }
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
+});
 
 // User checkout info, changes to api/users/userId
 // router.put('/:userId', async (req, res, next) => {
@@ -104,13 +104,13 @@ router.delete('/:heroId', adminOnly, async (req, res, next) => {
 
     await Hero.destroy({
       where: {
-        id: req.params.heroId
-      }
-    })
-    res.sendStatus(200)
+        id: req.params.heroId,
+      },
+    });
+    res.sendStatus(200);
   } catch (err) {
-    next(err)
+    next(err);
   }
-})
+});
 
-module.exports = router
+module.exports = router;

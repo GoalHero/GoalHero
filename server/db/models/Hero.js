@@ -1,7 +1,7 @@
-const Sequelize = require("sequelize");
-const db = require("../db");
+const Sequelize = require('sequelize');
+const db = require('../db');
 
-const Hero = db.define("Hero", {
+const Hero = db.define('Hero', {
   heroNum: {
     type: Sequelize.INTEGER,
   },

@@ -42,12 +42,12 @@ export const monsterWalking = (entities, monsterHurt, monsterImmune) => {
       consecutive++;
     } else {
       if (direction === 'left') {
-        direction = 'right'
+        direction = 'right';
       } else {
-        direction = 'left'
+        direction = 'left';
       }
       consecutive = 0;
-      randomizer = getRandomInt(100)
+      randomizer = getRandomInt(100);
     }
   }
 };

@@ -1,14 +1,15 @@
-import "react-native-gesture-handler";
-import * as React from "react";
-import { NavigationContainer, StackActions } from "@react-navigation/native";
-import { StyleSheet, Text, View, Button } from "react-native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import HomeScreen from "./Components/HomeScreen";
-import Icon from "react-native-vector-icons/Ionicons";
-import Login from "./Components/Login";
-import User from "./Components/User";
+import 'react-native-gesture-handler';
+import * as React from 'react';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
+import { StyleSheet, Text, View, Button } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import HomeScreen from './Components/HomeScreen';
+import Icon from 'react-native-vector-icons/Ionicons';
+import Login from './Components/Login';
+import User from './Components/User';
 // import Play from "./GameEngine/Play";
+
 import Goals from "./Components/Goals";
 import Play from "./GameEngine/Play";
 import Heroes from "./Components/Heroes";
@@ -18,6 +19,7 @@ import store from "./Store";
 import { connect } from "react-redux";
 import { me } from "./Store/user";
 import axios from "axios";
+
 
 const HomeStack = createStackNavigator();
 const LoginStack = createStackNavigator();
@@ -31,11 +33,11 @@ const HomeStackScreen = ({ navigation }) => (
   <HomeStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: "#650590",
+        backgroundColor: '#650590',
       },
-      headerTintColor: "#fff",
+      headerTintColor: '#fff',
       headerTitleStyle: {
-        fontWeight: "bold",
+        fontWeight: 'bold',
       },
     }}
   >
@@ -61,11 +63,11 @@ const LoginStackScreen = ({ navigation }) => (
   <LoginStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: "#650590",
+        backgroundColor: '#650590',
       },
-      headerTintColor: "#fff",
+      headerTintColor: '#fff',
       headerTitleStyle: {
-        fontWeight: "bold",
+        fontWeight: 'bold',
       },
     }}
   >
@@ -91,11 +93,11 @@ const UserStackScreen = ({ navigation }) => (
   <UserStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: "#650590",
+        backgroundColor: '#650590',
       },
-      headerTintColor: "#fff",
+      headerTintColor: '#fff',
       headerTitleStyle: {
-        fontWeight: "bold",
+        fontWeight: 'bold',
       },
     }}
   >
@@ -121,11 +123,11 @@ const PlayStackScreen = ({ navigation }) => (
   <PlayStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: "#650590",
+        backgroundColor: '#650590',
       },
-      headerTintColor: "#fff",
+      headerTintColor: '#fff',
       headerTitleStyle: {
-        fontWeight: "bold",
+        fontWeight: 'bold',
       },
     }}
   >
@@ -151,11 +153,11 @@ const GoalsStackScreen = ({ navigation }) => (
   <GoalsStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: "#650590",
+        backgroundColor: '#650590',
       },
-      headerTintColor: "#fff",
+      headerTintColor: '#fff',
       headerTitleStyle: {
-        fontWeight: "bold",
+        fontWeight: 'bold',
       },
     }}
   >
@@ -181,11 +183,11 @@ const HeroesStackScreen = ({ navigation }) => (
   <HeroesStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: "#650590",
+        backgroundColor: '#650590',
       },
-      headerTintColor: "#fff",
+      headerTintColor: '#fff',
       headerTitleStyle: {
-        fontWeight: "bold",
+        fontWeight: 'bold',
       },
     }}
   >
@@ -237,7 +239,9 @@ class App extends React.Component {
       return (
         <NavigationContainer>
           <Drawer.Navigator initialRouteName="Login/Logout">
-            <Drawer.Screen name="Login/Signup" component={LoginStackScreen} />
+
+            <Drawer.Screen name="Login/Logout" component={LoginStackScreen} />
+
           </Drawer.Navigator>
         </NavigationContainer>
       );

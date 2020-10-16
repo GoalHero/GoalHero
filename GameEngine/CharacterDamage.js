@@ -11,4 +11,4 @@ export const characterDamage = (entities, monsterImmune = false) => {
       return true;
     }
   }
-}
+};

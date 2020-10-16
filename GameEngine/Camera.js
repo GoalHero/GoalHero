@@ -1,6 +1,6 @@
-import Matter from "matter-js";
-import { StyleSheet, StatusBar, Dimensions } from "react-native";
-import { monsterWalking } from "./MonsterWalking";
+import Matter from 'matter-js';
+import { StyleSheet, StatusBar, Dimensions } from 'react-native';
+import { monsterWalking } from './MonsterWalking';
 
 export const Camera = (entities, { screen }) => {
   let hero = entities.initialChar;

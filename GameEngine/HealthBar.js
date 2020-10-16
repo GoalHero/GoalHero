@@ -1,64 +1,37 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Text, View, StyleSheet, Animated } from "react-native";
+import React, { useRef, useState, useEffect } from 'react';
+import { Text, View, StyleSheet, Animated } from 'react-native';
+import { connect } from 'react-redux'
 
-function useInterval(callback, delay) {
-    const savedCallback = useRef();
-  
-    useEffect(() => {
-      savedCallback.current = callback;
-    }, [callback]);
-  
-    useEffect(() => {
-      function tick() {
-        savedCallback.current();
-      }
-      if (delay !== null) {
-        let id = setInterval(tick, delay);
-        return () => clearInterval(id);
-      }
-    }, [delay]);
-  }
-
-const HealthBar = () => {
-  let animation = useRef(new Animated.Value(0));
-  const [health, setHealth] = useState(100);
-  useInterval(() => {
-    if (health <= 100 && health !== 0) {
-      setHealth(health - 10);
+class healthBar extends React.Component {
+  render() {
+    return (
+        <View style={styles.healthContainer}>
+          <Text>Char Health</Text>
+          <View style={styles.healthBar}>
+            <Animated.View style={[StyleSheet.absoluteFill, {}]} />
+          </View>
+          <Text>{`${this.props.charHealth}%`}</Text>
+        </View>
+      );
     }
-  }, 1000);
-  useEffect(() => {
-    Animated.timing(animation.current, {
-      toValue: health,
-      duration: 1000,
-      useNativeDriver: true
-    }).start();
-  }, [health])
-  return (
-    <View style={styles.container}>
-      <Text>Hero Health</Text>
-      <View style={styles.healthBar}>
-        <Animated.View
-          style={[
-            StyleSheet.absoluteFill,
-            {  },
-          ]}
-        />
-      </View>
-      <Text>{`${health}%`}</Text>
-    </View>
-  );
 };
 
-export default HealthBar;
+const mapState = (state) => {
+  return {
+    charHealth: state.game.charHealth
+  };
+};
+
+export default connect(mapState, null)(healthBar);
 
 const styles = StyleSheet.create({
+  healthContainer: {
+    flexDirection: 'column'
+  },
   healthBar: {
-    flex: 1,
-    flexDirection: "column",
-    width: "1000%", 
-    backgroundColor: "white",
-    borderColor: "#000",
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    borderColor: '#000',
     borderWidth: 3,
     borderRadius: 10,
   },
