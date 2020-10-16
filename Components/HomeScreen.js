@@ -43,7 +43,7 @@ class HomeScreen extends React.Component {
             Lets achieve some goals and fight those monsters.{" "} */}
             <Text>
               The village needs a hero to fight the monsters! {"\n"}
-              Will you be the hero we need? {"\n\n\n\n"}
+              Will you be the hero they need? {"\n\n\n"}
               Go to the GOALS page and set personal goals. {"\n"}
             </Text>
             <Text style={{ color: "black", fontStyle: "italic" }}>
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     textAlign: "center",
     backgroundColor: "#6A7B89",
-    padding: 15,
+    padding: 10,
     borderRadius: 20,
     opacity: 0.7,
     fontWeight: "bold",

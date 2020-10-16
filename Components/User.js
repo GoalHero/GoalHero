@@ -48,7 +48,7 @@ class User extends Component {
             source={require("../assets/images/logotest.png")}
           />
 
-          <Text style={{ fontSize: 20 }}>User Profile</Text>
+          <Text style={{ fontSize: 20 }}>Your Profile</Text>
           <View style={styles.header}>
             <View style={styles.headerContent}>
               {/* <Image

@@ -37,7 +37,7 @@ const HomeStackScreen = ({ navigation }) => (
     }}
   >
     <HomeStack.Screen
-      name="Home"
+      name="GOAL HERO"
       component={HomeScreen}
       options={{
         headerLeft: () => (
@@ -67,7 +67,7 @@ const LoginStackScreen = ({ navigation }) => (
     }}
   >
     <LoginStack.Screen
-      name="Login"
+      name="GOAL HERO"
       component={Login}
       options={{
         headerLeft: () => (
@@ -97,7 +97,7 @@ const UserStackScreen = ({ navigation }) => (
     }}
   >
     <UserStack.Screen
-      name="User"
+      name="USER"
       component={User}
       options={{
         headerLeft: () => (
@@ -127,7 +127,7 @@ const PlayStackScreen = ({ navigation }) => (
     }}
   >
     <PlayStack.Screen
-      name="Play"
+      name="PLAY"
       component={Play}
       options={{
         headerLeft: () => (
@@ -157,7 +157,7 @@ const GoalsStackScreen = ({ navigation }) => (
     }}
   >
     <GoalsStack.Screen
-      name="Goals"
+      name="GOALS"
       component={Goals}
       options={{
         headerLeft: () => (
@@ -187,7 +187,7 @@ const HeroesStackScreen = ({ navigation }) => (
     }}
   >
     <HeroesStack.Screen
-      name="Heroes"
+      name="HEROES"
       component={Heroes}
       options={{
         headerLeft: () => (
