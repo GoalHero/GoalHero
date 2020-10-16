@@ -31,7 +31,7 @@ const HomeStackScreen = ({ navigation }) => (
   <HomeStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: "#009387",
+        backgroundColor: "#650590",
       },
       headerTintColor: "#fff",
       headerTitleStyle: {
@@ -40,14 +40,14 @@ const HomeStackScreen = ({ navigation }) => (
     }}
   >
     <HomeStack.Screen
-      name="Home"
+      name="GOAL HERO"
       component={HomeScreen}
       options={{
         headerLeft: () => (
           <Icon.Button
             name="ios-menu"
             size={25}
-            backgroundColor="#009387"
+            backgroundColor="#650590"
             // backgroundColor="#114C9F"
             onPress={() => navigation.openDrawer()}
           ></Icon.Button>
@@ -61,7 +61,7 @@ const LoginStackScreen = ({ navigation }) => (
   <LoginStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: "#009387",
+        backgroundColor: "#650590",
       },
       headerTintColor: "#fff",
       headerTitleStyle: {
@@ -70,14 +70,14 @@ const LoginStackScreen = ({ navigation }) => (
     }}
   >
     <LoginStack.Screen
-      name="Detail"
+      name="GOAL HERO"
       component={Login}
       options={{
         headerLeft: () => (
           <Icon.Button
             name="ios-menu"
             size={25}
-            backgroundColor="#009387"
+            backgroundColor="#650590"
             // backgroundColor="#114C9F"
             onPress={() => navigation.openDrawer()}
           ></Icon.Button>
@@ -91,7 +91,7 @@ const UserStackScreen = ({ navigation }) => (
   <UserStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: "#009387",
+        backgroundColor: "#650590",
       },
       headerTintColor: "#fff",
       headerTitleStyle: {
@@ -100,14 +100,14 @@ const UserStackScreen = ({ navigation }) => (
     }}
   >
     <UserStack.Screen
-      name="User"
+      name="USER"
       component={User}
       options={{
         headerLeft: () => (
           <Icon.Button
             name="ios-menu"
             size={25}
-            backgroundColor="#009387"
+            backgroundColor="#650590"
             // backgroundColor="#114C9F"
             onPress={() => navigation.openDrawer()}
           ></Icon.Button>
@@ -121,7 +121,7 @@ const PlayStackScreen = ({ navigation }) => (
   <PlayStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: "#009387",
+        backgroundColor: "#650590",
       },
       headerTintColor: "#fff",
       headerTitleStyle: {
@@ -130,14 +130,14 @@ const PlayStackScreen = ({ navigation }) => (
     }}
   >
     <PlayStack.Screen
-      name="Play"
+      name="PLAY"
       component={Play}
       options={{
         headerLeft: () => (
           <Icon.Button
             name="ios-menu"
             size={25}
-            backgroundColor="#009387"
+            backgroundColor="#650590"
             // backgroundColor="#114C9F"
             onPress={() => navigation.openDrawer()}
           ></Icon.Button>
@@ -151,7 +151,7 @@ const GoalsStackScreen = ({ navigation }) => (
   <GoalsStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: "#009387",
+        backgroundColor: "#650590",
       },
       headerTintColor: "#fff",
       headerTitleStyle: {
@@ -160,14 +160,14 @@ const GoalsStackScreen = ({ navigation }) => (
     }}
   >
     <GoalsStack.Screen
-      name="Goals"
+      name="GOALS"
       component={Goals}
       options={{
         headerLeft: () => (
           <Icon.Button
             name="ios-menu"
             size={25}
-            backgroundColor="#009387"
+            backgroundColor="#650590"
             // backgroundColor="#114C9F"
             onPress={() => navigation.openDrawer()}
           ></Icon.Button>
@@ -181,7 +181,7 @@ const HeroesStackScreen = ({ navigation }) => (
   <HeroesStack.Navigator
     screenOptions={{
       headerStyle: {
-        backgroundColor: "#009387",
+        backgroundColor: "#650590",
       },
       headerTintColor: "#fff",
       headerTitleStyle: {
@@ -190,14 +190,14 @@ const HeroesStackScreen = ({ navigation }) => (
     }}
   >
     <HeroesStack.Screen
-      name="Heroes"
+      name="HEROES"
       component={Heroes}
       options={{
         headerLeft: () => (
           <Icon.Button
             name="ios-menu"
             size={25}
-            backgroundColor="#009387"
+            backgroundColor="#650590"
             // backgroundColor="#114C9F"
             onPress={() => navigation.openDrawer()}
           ></Icon.Button>
@@ -228,7 +228,7 @@ const HeroesStackScreen = ({ navigation }) => (
       <NavigationContainer>
         <Drawer.Navigator initialRouteName="Home">
           <Drawer.Screen name="Home" component={HomeStackScreen} />
-          <Drawer.Screen name="Your Goals" component={GoalsStackScreen} />
+          <Drawer.Screen name="Goals" component={GoalsStackScreen} />
           <Drawer.Screen name="Play" component={PlayStackScreen} />
           <Drawer.Screen name="Hero Profile" component={UserStackScreen} />
           <Drawer.Screen name="Heroes" component={HeroesStackScreen} />
