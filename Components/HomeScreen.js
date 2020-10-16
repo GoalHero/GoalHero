@@ -33,14 +33,6 @@ class HomeScreen extends React.Component {
             source={require("../assets/images/logotest.png")}
           />
           <Text style={styles.body}>
-            {/* Are you ready to achieve some goals and fight those pesky
-            monsters? {"\n\n"}
-
-
-            The game is simple. Make goals for yourself. Level up and defeat the
-            monsters. {"\n\n"}
-            Defeating a monster will unlock cool new characters {"\n\n"}
-            Lets achieve some goals and fight those monsters.{" "} */}
             <Text>
               The village needs a hero to fight the monsters! {"\n"}
               Will you be the hero they need? {"\n\n\n"}
@@ -53,7 +45,7 @@ class HomeScreen extends React.Component {
             </Text>
             <Text>
               Every time you complete a goal, your hero {"\n"} will become
-              stronger! Go to the PLAY page to fight the monster! Once you
+              stronger. Go to the PLAY page to fight the monster. Once you
               defeat the {"\n"}monster, a new hero awaits your help! {"\n\n\n"}
             </Text>
             <Text>It's time to train yourself to be your own hero.</Text>
