@@ -67,7 +67,7 @@ const LoginStackScreen = ({ navigation }) => (
     }}
   >
     <LoginStack.Screen
-      name="Detail"
+      name="Login"
       component={Login}
       options={{
         headerLeft: () => (
@@ -210,10 +210,10 @@ export default function App() {
       <NavigationContainer>
         <Drawer.Navigator initialRouteName="Home">
           <Drawer.Screen name="Home" component={HomeStackScreen} />
-          <Drawer.Screen name="Your Goals" component={GoalsStackScreen} />
+          <Drawer.Screen name="Goals" component={GoalsStackScreen} />
           <Drawer.Screen name="Play" component={PlayStackScreen} />
-          <Drawer.Screen name="Hero Profile" component={UserStackScreen} />
-          <Drawer.Screen name="Heroes" component={HeroesStackScreen} />
+          <Drawer.Screen name="User Profile" component={UserStackScreen} />
+          <Drawer.Screen name="List of Heroes" component={HeroesStackScreen} />
           <Drawer.Screen name="Login/Logout" component={LoginStackScreen} />
         </Drawer.Navigator>
       </NavigationContainer>
