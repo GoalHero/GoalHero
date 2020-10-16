@@ -41,8 +41,10 @@ const Sign = (props) => {
       //  console.log("res.data",res.data)
       //console.log("&&&&&",props.user,"^^^^^^^^^^^")
       if (!res.data) throw new Error();
-      Alert.alert('You have succesfully signed up for GoalHero!');
-      props.navigation.navigate('HomeScreen');
+
+      Alert.alert("You have successfully signed up for GoalHero!");
+      props.navigation.navigate("HomeScreen");
+
     } catch (error) {
       Alert.alert('Invalid Input');
     }

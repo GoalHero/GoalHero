@@ -9,15 +9,17 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Login from './Components/Login';
 import User from './Components/User';
 // import Play from "./GameEngine/Play";
-import Goals from './Components/Goals';
-import Play from './GameEngine/Play';
-import Heroes from './Components/Heroes';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import store from './Store';
-import { connect } from 'react-redux';
-import { me } from './Store/user';
-import axios from 'axios';
+
+import Goals from "./Components/Goals";
+import Play from "./GameEngine/Play";
+import Heroes from "./Components/Heroes";
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import store from "./Store";
+import { connect } from "react-redux";
+import { me } from "./Store/user";
+import axios from "axios";
+
 
 const HomeStack = createStackNavigator();
 const LoginStack = createStackNavigator();
@@ -100,7 +102,7 @@ const UserStackScreen = ({ navigation }) => (
     }}
   >
     <UserStack.Screen
-      name="USER"
+      name="HERO PROFILE"
       component={User}
       options={{
         headerLeft: () => (
@@ -237,7 +239,9 @@ class App extends React.Component {
       return (
         <NavigationContainer>
           <Drawer.Navigator initialRouteName="Login/Logout">
+
             <Drawer.Screen name="Login/Logout" component={LoginStackScreen} />
+
           </Drawer.Navigator>
         </NavigationContainer>
       );
