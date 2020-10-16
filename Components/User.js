@@ -74,11 +74,9 @@ class User extends Component {
             <Text>Hero Health: {user.health} </Text>
             <Text>Hero Damage: {user.damage} </Text>
           </View>
-          <Button
-            style={styles.buttonStyle}
-            title="Log Out"
-            onPress={() => this.signOutUser()}
-          />
+          <View style={styles.buttonStyle}>
+            <Button title="Log Out" onPress={() => this.signOutUser()} />
+          </View>
           {/*
           <View style={styles.body}>
             <View style={styles.item}>
@@ -205,15 +203,18 @@ const styles = StyleSheet.create({
     opacity: 0.7,
     marginVertical: 20,
   },
+
   buttonStyle: {
-    backgroundColor: "black",
+    backgroundColor: "#F09031",
+    color: "white",
     width: 200,
     height: 40,
     borderRadius: 200 / 20,
-    marginTop: 55,
+    marginTop: 30,
     alignItems: "center",
     justifyContent: "center",
   },
+
   item: {
     flexDirection: "row",
     backgroundColor: "#6A7B89",
