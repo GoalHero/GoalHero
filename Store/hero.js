@@ -6,9 +6,9 @@ const defaultHero = {};
 
 const getHero = (hero) => ({ type: GET_HERO, hero });
 
-export const fetchHero = () => async (dispatch) => {
+export const fetchHero = (heroId) => async (dispatch) => {
   try {
-    const { data } = await axios.get('http://localhost:8080/api/hero/me');
+    const { data } = await axios.get(`http://localhost:8080/api/hero/${heroId}`);
     dispatch(getHero(data));
   } catch (error) {
     console.log('failed to get api/hero/:id');
