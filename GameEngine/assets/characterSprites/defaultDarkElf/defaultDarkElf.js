@@ -1,4 +1,4 @@
-export default elfImages = {
+export default DarkElfImages = {
   idle000: require("./Idle/Dark_Elf_02_Idle_000.png"),
   idle001: require("./Idle/Dark_Elf_02_Idle_001.png"),
   idle002: require("./Idle/Dark_Elf_02_Idle_002.png"),
