@@ -31,7 +31,13 @@ const Goals = (props) => {
 
   // const [clear, setClear] = useState("")
 
-  const [value, onChangeText] = React.useState("Placeholder!");
+  // const functionOne = (text) => setValue("goalName", text);
+
+  // const functionTwo = () => {
+
+  // }
+
+  // const [value, onChangeText] = React.useState("Placeholder!");
 
   return (
     <ImageBackground
@@ -77,7 +83,7 @@ const Goals = (props) => {
         <View style={styles.addGoal}>
           {/* <Text style={styles.increaseVerticalMargin}>Add A New Goal:</Text> */}
           <TextInput
-            // placeholder={props.input}
+            placeholder={props.input}
             style={styles.inputBox}
             onChangeText={(text) => setValue("goalName", text)}
             // defaultValue={props.default}
@@ -95,6 +101,7 @@ const Goals = (props) => {
               title="Add"
               onPress={handleSubmit(props.postGoal)}
               // setValue={""}
+              // setValue={props.default}
             />
           </View>
         </View>
