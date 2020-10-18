@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Hero } = require('../db/models');
+const { Hero, User } = require('../db/models');
 const adminOnly = require('./utils/adminOnly');
 
 // Gets all heroes with their id, email, and username
@@ -46,7 +46,7 @@ router.post('/', async (req, res, next) => {
 });
 
 // Gets user info from email, including
-router.get('/me', async (req, res, next) => {
+router.get('/:heroId', async (req, res, next) => {
   try {
     const hero = await Hero.findOne({
       where: {
@@ -55,6 +55,7 @@ router.get('/me', async (req, res, next) => {
       },
       attributes: ['name', 'health', 'damage', 'range', 'imageUrl'],
     });
+    await User.addHero(hero)
     if (hero) {
       res.json(hero);
     } else {
