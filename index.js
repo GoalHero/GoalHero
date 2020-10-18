@@ -20,11 +20,6 @@ export default function Root() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // flexDirection:"row",
-    // flexWrap: "wrap",
-    // backgroundColor: '#fff',
-    // alignItems: 'center',
-    // justifyContent: 'center',
   },
   img: {
     width: 55,
