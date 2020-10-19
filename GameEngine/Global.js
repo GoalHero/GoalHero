@@ -6,6 +6,8 @@ import { getMonsterHealth, getCharHealth } from '../Store/game';
 const state = store.getState();
 const game = state.game;
 
+let tick = 0;
+
 // CHARACTER PROPERTIES
 let charHealth = game.charHealth;
 let charDamage = 5;
@@ -39,6 +41,14 @@ const dispatchMonsterHealth = () => {
   store.dispatch(getMonsterHealth(monsterHealth));
 }
 
+const disableCharJump = () => {
+  charJump = false;
+}
+
+const incrementTick = () => {
+  tick++;
+}
+
 export {
   charHealth,
   monsterHealth,
@@ -46,8 +56,12 @@ export {
   monsterRange,
   charPose,
   monsterPose,
+  charJump,
   damageChar,
   damageMonster,
   dispatchCharHealth,
-  dispatchMonsterHealth
+  dispatchMonsterHealth,
+  disableCharJump,
+  tick,
+  incrementTick
 }

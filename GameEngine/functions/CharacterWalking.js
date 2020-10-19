@@ -1,9 +1,15 @@
 import Matter from 'matter-js';
 import { Dimensions } from 'react-native';
 
+import { charHealth } from '../Global'
+
 const { width } = Dimensions.get('screen');
 
 export const characterWalking = (entities, t) => {
+  if (charHealth <= 0) {
+    return;
+  }
+
   const char = entities.initialChar.body
 
   if (t.event.pageX < width / 2) {

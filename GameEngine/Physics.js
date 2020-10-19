@@ -2,10 +2,11 @@ import Matter from 'matter-js';
 import { Dimensions } from 'react-native';
 
 // GLOBAL VARIABLES
-import { charHealth, damageChar, dispatchCharHealth } from './Global'
+import { charJump, disableCharJump, charHealth, monsterHealth, tick, incrementTick } from './Global'
 
 // FUNCTIONS
 import { monsterWalking } from './functions/MonsterWalking';
+import { monsterDamage } from './functions/MonsterDamage';
 
 import { characterWalking } from './functions/CharacterWalking';
 import { characterDamage } from './functions/CharacterDamage';
@@ -21,7 +22,8 @@ export const Physics = (entities, { touches, time }) => {
     .forEach((t) => {
       if (t.event.pageY > height / 1.1 && t.event.pageX > width / 1.25) {
         characterDamage(entities);
-      } else if (t.event.pageY < height / 3) {
+      } else if (t.event.pageY < height / 3 && charJump) {
+        disableCharJump();
         Matter.Body.applyForce(char, char.position, { x: 0, y: 3 });
       } else {
         characterWalking(entities, t)
@@ -31,6 +33,12 @@ export const Physics = (entities, { touches, time }) => {
   Matter.Engine.update(engine, time.delta);
 
   monsterWalking(entities);
+
+  if (tick % 50 === 0) {
+    monsterDamage(entities);
+  }
+
+  incrementTick();
 
   return entities;
 };
