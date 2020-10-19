@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image } from 'react-native';
 import { array, object, string } from 'prop-types';
-import knightImages from './assets/characterSprites/defaultKnights/defaultKnights.js';
+import knightImages from '../assets/characterSprites/defaultKnights/defaultKnights.js';
 
 export default class Character extends Component {
   render() {
