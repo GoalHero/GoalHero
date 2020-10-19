@@ -5,12 +5,15 @@ const { width, height } = Dimensions.get('screen');
 export default class AttackButton extends Component {
   render() {
     return (
-      <Image style={styles.size} source={require('../assets/images/attackbutton.png')} />
+      <Image
+        style={styles.size}
+        // source={require('../assets/images/attackbutton.png')}
+      />
     );
   }
 }
 
-console.log(width)
+console.log(width);
 
 const styles = StyleSheet.create({
   size: {
@@ -19,6 +22,4 @@ const styles = StyleSheet.create({
     left: width - width / 2 - 25,
     top: height - height / 4,
   },
-
 });
-

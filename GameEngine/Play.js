@@ -1,16 +1,24 @@
 import React from 'react';
 import Matter from 'matter-js';
 import { GameEngine } from 'react-native-game-engine';
-import { StyleSheet, StatusBar, Dimensions, Text, View,  Animated, Image } from 'react-native';
-import Character from './Character';
-import Floor from './Floor';
+import {
+  StyleSheet,
+  StatusBar,
+  Dimensions,
+  Text,
+  View,
+  Animated,
+  Image,
+} from 'react-native';
+import Character from './entities/Character';
+import Floor from './entities/Floor';
 import { Physics } from './Physics';
-import HealthBar from './HealthBar';
-import Wall from './Wall';
-import Boundary from './Boundary';
-import Monster from './Monster';
-import AttackButton from './AttackButton';
-import MonsterHealth from './MonsterHealth';
+import HealthBar from './components/HealthBar';
+import Wall from './entities/Wall';
+import Boundary from './entities/Boundary';
+import Monster from './entities/Monster';
+import AttackButton from './components/AttackButton';
+import MonsterHealth from './components/MonsterHealth';
 
 const engine = Matter.Engine.create({ enableSleeping: false });
 const world = engine.world;
@@ -34,13 +42,9 @@ initialMonster.collisionFilter = { group: -1, mask: 1, category: 1 };
 
 const floorSize = Math.trunc(Math.max(width, height) * 0.075);
 const boundarySize = Math.trunc(Math.max(width, height) * 0.009);
-const floor = Matter.Bodies.rectangle(
-  0,
-  height - floorSize,
-  width,
-  floorSize,
-  { isStatic: true }
-);
+const floor = Matter.Bodies.rectangle(0, height - floorSize, width, floorSize, {
+  isStatic: true,
+});
 
 floor.collisionFilter = { group: 0, mask: 1, category: 1 };
 
@@ -72,10 +76,13 @@ export default class Play extends React.Component {
   render() {
     return (
       <View style={styles.playView}>
-        <Image source={require('../assets/images/game_background_1.png')} style={styles.absolute}/>
+        <Image
+          source={require('../assets/images/game_background_1.png')}
+          style={styles.absolute}
+        />
         <View style={styles.absolute}>
           <HealthBar />
-          <MonsterHealth/>
+          <MonsterHealth />
           {/* <AttackButton/> */}
         </View>
 
@@ -139,11 +146,9 @@ const styles = StyleSheet.create({
   playView: {
     width: width,
     height: height,
-    alignItems: "center",
+    alignItems: 'center',
   },
   absolute: {
-    position: 'absolute'
-  }
+    position: 'absolute',
+  },
 });
-
-

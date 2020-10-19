@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Image } from 'react-native';
 import { array, object, string } from 'prop-types';
-import monsterImages from './assets/characterSprites/defaultMonsters/defaultMonsters.js';
+import monsterImages from '../assets/characterSprites/defaultMonsters/defaultMonsters.js';
 
 export default class Monster extends Component {
   render() {
