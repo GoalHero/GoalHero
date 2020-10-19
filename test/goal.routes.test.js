@@ -12,7 +12,7 @@ describe('Routes', () => {
   })
 
   describe('/goals', () => {
-    describe('GET /goalss', () => {
+    describe('GET /goals', () => {
       it('sends all goals', () => {
         return agent
           .get('/api/goals')
