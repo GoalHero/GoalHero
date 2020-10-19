@@ -45,17 +45,15 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-// Gets user info from email, including
+// Gets user info and append to hero 
 router.get('/:heroId', async (req, res, next) => {
   try {
     const hero = await Hero.findOne({
       where: {
-        //securtity: only see himself's user info
-        id: req.user.id,
+        id: req.params.id,
       },
       attributes: ['name', 'health', 'damage', 'range', 'imageUrl'],
     });
-    await User.addHero(hero)
     if (hero) {
       res.json(hero);
     } else {
