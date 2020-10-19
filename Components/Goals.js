@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,24 +7,42 @@ import {
   StatusBar,
   TextInput,
   ImageBackground,
-} from 'react-native';
-import { useForm, useState } from 'react-hook-form';
-import { connect } from 'react-redux';
-import { fetchGoals, removeGoal, completeGoal, postGoal } from '../Store/goals';
+} from "react-native";
+import { useForm, useState } from "react-hook-form";
+import { connect } from "react-redux";
+import { fetchGoals, removeGoal, completeGoal, postGoal } from "../Store/goals";
 
 const Goals = (props) => {
   const { handleSubmit, register, setValue } = useForm();
 
   useEffect(() => {
-    register('goalName');
+    register("goalName");
 
     props.fetchGoals();
   }, [register]);
 
+  // const functionOne = () => {
+  //   props.removeGoal(goal.id)
+  // }
+
+  // const functionTwo = () => {
+
+  // }
+
+  // const [clear, setClear] = useState("")
+
+  // const functionOne = (text) => setValue("goalName", text);
+
+  // const functionTwo = () => {
+
+  // }
+
+  // const [value, onChangeText] = React.useState("Placeholder!");
+
   return (
     <ImageBackground
       style={styles.background}
-      source={require('../assets/images/game_background_1.png')}
+      source={require("../assets/images/game_background_1.png")}
     >
       <View style={styles.container}>
         <Text style={styles.goalHeading}>YOUR GOALS</Text>
@@ -44,6 +62,7 @@ const Goals = (props) => {
                     <Button
                       title="Remove"
                       onPress={() => props.removeGoal(goal.id)}
+                      // onSubmitEditing=
                     ></Button>
                   </View>
 
@@ -66,13 +85,24 @@ const Goals = (props) => {
           <TextInput
             placeholder={props.input}
             style={styles.inputBox}
-
             onChangeText={(text) => setValue("goalName", text)}
-            defaultValue={props.default}
-
+            // defaultValue={props.default}
+            // onSubmitEditing={props.default}
+            // value={""}
+            // value={props.default}
+            // ref={props.default}
+            // value={value}
+            ref={(input) => {
+              props.default;
+            }}
           />
           <View style={styles.topMargin}>
-            <Button title="Add" onPress={handleSubmit(props.postGoal)} />
+            <Button
+              title="Add"
+              onPress={handleSubmit(props.postGoal)}
+              // setValue={""}
+              // setValue={props.default}
+            />
           </View>
         </View>
       </View>
@@ -102,12 +132,12 @@ export default connect(mapState, mapDispatch)(Goals);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   goalList: {
-    flexDirection: 'column',
-    justifyContent: 'space-evenly',
+    flexDirection: "column",
+    justifyContent: "space-evenly",
   },
   goalRow: {
     flexDirection: "row",
@@ -115,14 +145,13 @@ const styles = StyleSheet.create({
     alignContent: "space-between",
   },
   addGoal: {
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 100,
   },
   increaseVerticalMargin: {
     marginBottom: 50,
   },
   orangeBox: {
-
     backgroundColor: "#B7BBBE",
     width: 150,
     height: 50,
@@ -151,7 +180,7 @@ const styles = StyleSheet.create({
   },
   background: {
     flex: 1,
-    resizeMode: 'cover',
+    resizeMode: "cover",
   },
   complete: {
     marginTop: 20,
