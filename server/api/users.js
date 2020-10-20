@@ -107,4 +107,19 @@ router.delete('/:userId', adminOnly, async (req, res, next) => {
   }
 });
 
+
+// router.get('/MonsterHp', async (req, res, next) => {
+//   try {
+  
+//     const user = await User.findOne({
+//      where:{
+//        id:req.user.id
+//      }
+//     });
+//     res.json(users);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
+
 module.exports = router;

@@ -12,7 +12,10 @@ let consecutive = 0;
 let direction = 'left';
 
 export const monsterWalking = (entities) => {
+ 
   if (monsterHealth <= 0) {
+ 
+
     return;
   }
 

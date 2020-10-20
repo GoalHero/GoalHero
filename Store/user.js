@@ -35,7 +35,7 @@ export const updateUser = (newInfo) => {
 export const auth = (email, password, name, method) => async (dispatch) => {
   let res;
   try {
-    console.log('************', email, password, name, method);
+   // console.log('************', email, password, name, method);
     res = await axios.post(`http://localhost:8080/auth/${method}`, {
       email,
       password,
@@ -53,9 +53,30 @@ export const auth = (email, password, name, method) => async (dispatch) => {
   }
 };
 
+export const auth2 = (email, password,  method) => async (dispatch) => {
+  let res;
+  try {
+   // console.log('************', email, password, name, method);
+    res = await axios.post(`http://localhost:8080/auth/${method}`, {
+      email,
+      password,
+      
+    });
+  } catch (authError) {
+    return dispatch(getUser({ error: authError }));
+  }
+
+  try {
+    dispatch(getUser(res.data));
+    // history.push('/home')
+  } catch (dispatchOrHistoryErr) {
+    console.error(dispatchOrHistoryErr);
+  }
+};
+
 export const logout = () => async (dispatch) => {
   try {
-    console.log('hereeeeeeeeeeeeeeee');
+   // console.log('hereeeeeeeeeeeeeeee');
     await axios.post('http://localhost:8080/auth/logout');
     dispatch(removeUser());
     // history.push('/login')

@@ -19,7 +19,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { auth } from '../Store/user';
-
+import store from '../Store'
 const Sign = (props) => {
   const { handleSubmit, register, setValue } = useForm();
 
@@ -36,11 +36,11 @@ const Sign = (props) => {
       const email = values.email;
       const password = values.password;
       await props.signup(email, password, name, formName);
-
-      const res = await axios.get('http://localhost:8080/auth/me');
+const user = store.getState().user
+      // const res = await axios.get('http://localhost:8080/auth/me');
       //  console.log("res.data",res.data)
       //console.log("&&&&&",props.user,"^^^^^^^^^^^")
-      if (!res.data) throw new Error();
+      if (!user.id) throw new Error();
 
       Alert.alert("You have successfully signed up for GoalHero!");
       props.navigation.navigate("HomeScreen");
