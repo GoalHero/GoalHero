@@ -17,8 +17,7 @@ let tick = 0;
 
 // CHARACTER PROPERTIES
 let charHealth = game.charHealth;
-let charDamage = 5;
-let charRange = 85;
+let charDamage = state.hero.damage + state.user.damage;
 let charPose = 0;
 let charAttacking = false;
 let charHurt = false;
@@ -32,6 +31,11 @@ let monsterPose = 0;
 let monsterAttacking = false;
 let monsterHurt = false;
 
+const updateStore = () => {
+  const state = store.getState();
+  charDamage = state.hero.damage + state.user.damage;
+}
+
 const damageChar = () => {
 
   charHealth -= monsterDamage
@@ -42,8 +46,7 @@ const updateStore=()=>{
 }
 
 const damageMonster = () => {
-  updateStore()
-//console.log("222222222222222",monsterHealth)
+  updateStore();
   monsterHealth -= charDamage
 }
 
@@ -66,16 +69,15 @@ const incrementTick = () => {
 export {
   charHealth,
   monsterHealth,
-  charRange,
   monsterRange,
   charPose,
   monsterPose,
   charJump,
+  tick,
   damageChar,
   damageMonster,
   dispatchCharHealth,
   dispatchMonsterHealth,
   disableCharJump,
-  tick,
   incrementTick
 }
