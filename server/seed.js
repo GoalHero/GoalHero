@@ -42,70 +42,67 @@ async function seed() {
       heroNum: 1,
       name: 'Knight',
       damage: 2,
-
-      imageUrl: '../assets/images/knight.png',
+      imageUrl: 'knight',
     }),
     Hero.create({
       heroNum: 2,
       name: 'Barbarian',
       damage: 4,
 
-      imageUrl: '../assets/images/barbarian.png',
-    }),
-    Hero.create({
-      heroNum: 3,
-      name: 'Archer',
-      damage: 6,
-
-      imageUrl: '../assets/images/archer.png',
-    }),
-    Hero.create({
-      heroNum: 4,
-      name: 'Druid',
-      damage: 8,
-
-      imageUrl: '../assets/images/druid.png',
+      imageUrl: 'barbarian',
     }),
     Hero.create({
       heroNum: 5,
       name: 'Viking',
       damage: 10,
 
-      imageUrl: '../assets/images/viking.png',
+      imageUrl: 'viking',
+    }),
+    Hero.create({
+      heroNum: 3,
+      name: 'Archer',
+      damage: 6,
+
+      imageUrl: 'archer',
+    }),
+    Hero.create({
+      heroNum: 4,
+      name: 'Druid',
+      damage: 8,
+      imageUrl: 'druid',
     }),
     Hero.create({
       heroNum: 6,
       name: 'Elf',
       damage: 12,
 
-      imageUrl: '../assets/images/elf.png',
+      imageUrl: 'elf',
     }),
     Hero.create({
       heroNum: 7,
       name: 'Dark Elf',
       damage: 14,
-      imageUrl: '../assets/images/darkelf.png',
+      imageUrl: 'darkelf',
     }),
     Hero.create({
       heroNum: 8,
       name: 'Ninja',
       damage: 16,
-
-      imageUrl: '../assets/images/ninja.png',
+      imageUrl: 'ninja',
     }),
     Hero.create({
       heroNum: 9,
       name: 'Wizard',
       damage: 18,
 
-      imageUrl: '../assets/images/wizard.png',
+      imageUrl: 'wizard',
     }),
     Hero.create({
       heroNum: 10,
       name: 'Elemental',
       damage: 20,
 
-      imageUrl: '../assets/images/elemental.png',
+      imageUrl: 'elemental',
     }),
   ]);
 

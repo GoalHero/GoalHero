@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { Hero, User } = require('../db/models');
 const adminOnly = require('./utils/adminOnly');
+const Sequelize = require("sequelize")
 
 // Gets all heroes with their id, email, and username
 router.get('/', async (req, res, next) => {
@@ -15,7 +16,9 @@ router.get('/', async (req, res, next) => {
 
     const heroes = await Hero.findAll({
       attributes: ['name', 'health', 'damage', 'range', 'imageUrl'],
+      order: Sequelize.col("id") 
     });
+    console.log("these are the heroes", heroes)
     res.json(heroes);
   } catch (err) {
     next(err);
