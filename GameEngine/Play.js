@@ -1,6 +1,8 @@
 import React from 'react';
 import Matter from 'matter-js';
 import { GameEngine } from 'react-native-game-engine';
+import { me } from '../Store/user';
+import { fetchHero } from '../Store/hero';
 import {
   StyleSheet,
   StatusBar,
@@ -75,10 +77,11 @@ Matter.World.add(world, [
 ]);
 
 export class Play extends React.Component {
-  // componentDidMount(){
-  // this.props.setHP()
-  // console.log('5555555555555555555555555555')
-  // }
+  componentDidMount(){
+    this.props.setHP()
+    this.props.fetchHero()
+    this.props.fetchUser()
+  }
 
   render() {
     if (this.props.monsterHealth <= 1) {
@@ -204,6 +207,8 @@ const mapDispatch = (dispatch) => {
   return {
     setHP: () => dispatch(gotMonsterHp()),
     updateKillTimes: () => dispatch(updateKillTimes()),
+    fetchUser: () => dispatch(me()),
+    fetchHero: () => dispatch(fetchHero())
   };
 };
 
