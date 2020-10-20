@@ -11,6 +11,8 @@ import {
 } from "react-native";
 
 import { fetchAllHeroes } from "../Store/heroes";
+import { fetchHero } from '../Store/hero'
+
 const heroImages = {
   1: require("../assets/images/knight.png"),
   2: require("../assets/images/barbarian.png"),
@@ -28,7 +30,8 @@ class Heroes extends Component {
     this.props.fetchAllHeroes();
   }
   render() {
-    const im = "elemental.png";
+    const i = 0; 
+    // const im = "elemental.png";
     const heroes = this.props.heroes;
     if (!heroes) {
       return <View />;
@@ -72,6 +75,7 @@ class Heroes extends Component {
               >
                 KNIGHT
               </Text>
+              {i === 0 ? <Text>unlock</Text> : <Text />}
             </View>
             <View style={styles.card}>
               <Image
@@ -180,6 +184,7 @@ class Heroes extends Component {
 
 const mapState = (state) => {
   return {
+    hero: state.hero,
     heroes: state.heroes,
   };
 };
@@ -187,6 +192,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     fetchAllHeroes: () => dispatch(fetchAllHeroes()),
+    fetchHero: () => dispatch(fetchHero())
   };
 };
 

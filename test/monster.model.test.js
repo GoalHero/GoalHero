@@ -1,7 +1,6 @@
 const {expect} = require('chai');
 const {Monster} = require('../server/db/models/Monster')
 
-
 describe('Monster model', () => {
     beforeEach(() => db.sync({force: true}))
   
