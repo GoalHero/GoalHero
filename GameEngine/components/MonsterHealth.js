@@ -1,9 +1,16 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Animated } from 'react-native';
 import { connect } from 'react-redux';
+import { gotMonsterHp } from '../../Store/game';
 
 class monsterHealth extends React.Component {
+
+  componentDidMount(){
+this.props.setHP()
+
+  }
   render() {
+   // console.log('1111111111',this.props.monsterHealth)
     return (
       <View style={styles.healthContainer}>
         <Text>Monster Health</Text>
@@ -29,7 +36,15 @@ const mapState = (state) => {
   };
 };
 
-export default connect(mapState, null)(monsterHealth);
+const mapDispatch = (dispatch)=>{
+return {
+  setHP:()=>dispatch(gotMonsterHp())
+}
+
+}
+
+
+export default connect(mapState, mapDispatch)(monsterHealth);
 
 const styles = StyleSheet.create({
   healthContainer: {

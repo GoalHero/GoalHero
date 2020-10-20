@@ -1,9 +1,16 @@
 import store from '../Store';
 
 // REDUX
-import { getMonsterHealth, getCharHealth } from '../Store/game';
+import { getMonsterHealth, getCharHealth,gotMonsterHp } from '../Store/game';
+
+
+// (async()=>{
+//   await store.dispatch(gotMonsterHp())
+// })()
+
 
 const state = store.getState();
+//console.log('****************',state.game)
 const game = state.game;
 
 let tick = 0;
@@ -30,12 +37,16 @@ const updateStore = () => {
 }
 
 const damageChar = () => {
+
   charHealth -= monsterDamage
+}
+
+const updateStore=()=>{
+  monsterHealth = store.getState().game.monsterHealth;
 }
 
 const damageMonster = () => {
   updateStore();
-  console.log('damageMonster', charDamage)
   monsterHealth -= charDamage
 }
 

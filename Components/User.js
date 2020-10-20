@@ -178,9 +178,6 @@ const styles = StyleSheet.create({
     padding: 20,
     alignItems: 'center',
   },
-
-
-
   name: {
     fontSize: 16,
     color: '#000000',
