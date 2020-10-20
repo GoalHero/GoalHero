@@ -31,8 +31,8 @@ let monsterHurt = false;
 
 const updateStore = () => {
   const state = store.getState();
-  charDamage = state.hero.damage + state.user.damage;
   monsterHealth = store.getState().game.monsterHealth;
+  charDamage = state.hero.damage + state.user.damage;
 };
 
 const damageChar = () => {
