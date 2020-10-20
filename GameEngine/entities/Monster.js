@@ -5,20 +5,20 @@ import monsterImages from '../assets/characterSprites/defaultMonsters/defaultMon
 import monster2Images from '../assets/characterSprites/defaultMonster2/defaultMonster2.js';
 import monster3Images from '../assets/characterSprites/defaultMonster3/defaultMonster3.js';
 // import store from '../../Store'
-import {connect} from  'react-redux'
+import { connect } from 'react-redux';
 // const index = store.getState().game.killTimes
 
-const allMonsters = [monsterImages,monster2Images,monster3Images]
+const allMonsters = [monsterImages, monster2Images, monster3Images];
 /////////////////////////////
 // const whichMonster= allMonsters[index%3]
 
-export  class Monster extends Component {
+export class Monster extends Component {
   render() {
     const width = this.props.size[0];
     const height = this.props.size[1];
     const x = this.props.body.position.x - width / 2;
     const y = this.props.body.position.y - height / 2;
-    const whichMonster= allMonsters[this.props.killTimes%3]
+    const whichMonster = allMonsters[this.props.killTimes % 3];
     return (
       <Image
         style={{
@@ -46,9 +46,5 @@ const mapState = (state) => {
     killTimes: state.game.killTimes,
   };
 };
-
-
-
-
 
 export default connect(mapState, null)(Monster);

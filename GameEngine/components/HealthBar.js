@@ -7,17 +7,19 @@ class healthBar extends React.Component {
     return (
       <View style={styles.healthContainer}>
         <Text>Char Health</Text>
-        <View style={{
-          flexDirection: 'row',
-          backgroundColor: 'white',
-          borderColor: '#000',
-          borderWidth: 3,
-          borderRadius: 10,
-          width: this.props.charHealth
-        }}>
+        <View
+          style={{
+            flexDirection: 'row',
+            backgroundColor: 'white',
+            borderColor: '#000',
+            borderWidth: 3,
+            borderRadius: 10,
+            width: this.props.charHealth,
+          }}
+        >
           <Animated.View style={[StyleSheet.absoluteFill, {}]} />
         </View>
-        <Text>{`${this.props.charHealth}%`}</Text>
+        <Text>{`${this.props.charHealth} HP`}</Text>
       </View>
     );
   }
@@ -34,5 +36,5 @@ export default connect(mapState, null)(healthBar);
 const styles = StyleSheet.create({
   healthContainer: {
     flexDirection: 'column',
-  }
+  },
 });

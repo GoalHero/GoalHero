@@ -3,7 +3,7 @@ const Goal = require('./Goal');
 // const Character = require('./Character')
 const Monster = require('./Monster');
 const Hero = require('./Hero');
-const UserHeroes = require('./UserHeroes')
+const UserHeroes = require('./UserHeroes');
 const db = require('../db');
 
 User.hasMany(Goal);
@@ -17,5 +17,5 @@ module.exports = {
   Goal,
   Monster,
   Hero,
-  UserHeroes
+  UserHeroes,
 };

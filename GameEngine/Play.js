@@ -9,7 +9,7 @@ import {
   View,
   Animated,
   Image,
-  Alert
+  Alert,
 } from 'react-native';
 import Character from './entities/Character';
 import Floor from './entities/Floor';
@@ -20,8 +20,8 @@ import Boundary from './entities/Boundary';
 import Monster from './entities/Monster';
 import AttackButton from './components/AttackButton';
 import MonsterHealth from './components/MonsterHealth';
-import {connect} from  'react-redux'
-import{gotMonsterHp,updateKillTimes} from '../Store/game'
+import { connect } from 'react-redux';
+import { gotMonsterHp, updateKillTimes } from '../Store/game';
 export const engine = Matter.Engine.create({ enableSleeping: false });
 const world = engine.world;
 const { width, height } = Dimensions.get('screen');
@@ -74,47 +74,46 @@ Matter.World.add(world, [
   initialMonster,
 ]);
 
-export  class Play extends React.Component {
-
-
-
-// componentDidMount(){
-// this.props.setHP()
-// console.log('5555555555555555555555555555')
-// }
-
+export class Play extends React.Component {
+  // componentDidMount(){
+  // this.props.setHP()
+  // console.log('5555555555555555555555555555')
+  // }
 
   render() {
-  if (this.props.monsterHealth<=10){
-   // this.props.setHP()
-    Alert.alert(
-      "Alert Title",
-      "My Alert Msg",
-      [
-        {
-          text: "Ask me later",
-          onPress: () => console.log("Ask me later pressed")
-        },
-        {
-          text: "Cancel",
-          onPress: () => console.log("Cancel Pressed"),
-          style: "cancel"
-        },
-        { text: "OK", onPress: () => {this.props.navigation.navigate("Heroes");
-       this.props.updateKillTimes()
-          this.props.setHP() 
-        }}
-      ],
-      { cancelable: false }
-    );
-    
-   // this.props.setHP()
-// return (<>
+    if (this.props.monsterHealth <= 1) {
+      // this.props.setHP()
+      Alert.alert(
+        'Alert Title',
+        'My Alert Msg',
+        [
+          {
+            text: 'Ask me later',
+            onPress: () => console.log('Ask me later pressed'),
+          },
+          {
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
+          },
+          {
+            text: 'OK',
+            onPress: () => {
+              this.props.navigation.navigate('Heroes');
+              this.props.updateKillTimes();
+              this.props.setHP();
+            },
+          },
+        ],
+        { cancelable: false }
+      );
 
-// </>)
- 
-  }
-//else
+      // this.props.setHP()
+      // return (<>
+
+      // </>)
+    }
+    //else
     return (
       <View style={styles.playView}>
         <Image
@@ -128,7 +127,7 @@ export  class Play extends React.Component {
         </View>
 
         <GameEngine
-        // nav={this.props.navigation}
+          // nav={this.props.navigation}
           systems={[Physics]}
           entities={{
             physics: {
@@ -195,20 +194,17 @@ const styles = StyleSheet.create({
   },
 });
 
-
 const mapState = (state) => {
   return {
     monsterHealth: state.game.monsterHealth,
   };
 };
 
-const mapDispatch = (dispatch)=>{
-return {
-  setHP:()=>dispatch(gotMonsterHp()),
- updateKillTimes:()=>dispatch(updateKillTimes())
-}
-
-}
-
+const mapDispatch = (dispatch) => {
+  return {
+    setHP: () => dispatch(gotMonsterHp()),
+    updateKillTimes: () => dispatch(updateKillTimes()),
+  };
+};
 
 export default connect(mapState, mapDispatch)(Play);
