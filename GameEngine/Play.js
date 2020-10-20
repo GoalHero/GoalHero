@@ -121,7 +121,7 @@ export class Play extends React.Component {
       text2:
         "Tap on the left or right side of the screen to move. Tap the top of the screen to jump. ",
       type: "info",
-      visibilityTime: 7000,
+      visibilityTime: 15000,
       topOffset: 275,
     });
     //else
