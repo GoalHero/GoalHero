@@ -19,22 +19,25 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { auth, me } from '../Store/user';
-
+import store from '../Store'
 const Log = (props) => {
   const { handleSubmit, register, setValue } = useForm();
   const onSubmit = async (values) => {
     try {
+      const name='Fish'
       const formName = 'login';
       const email = values.email;
       const password = values.password;
-      await props.login(email, password, formName);
-
-      const res = await axios.get('http://localhost:8080/auth/me');
-      //  console.log("res.data",res.data)
-      //console.log("&&&&&",props.user,"^^^^^^^^^^^")
-      if (!res.data) throw new Error();
-      Alert.alert('Congratulations');
-      props.navigation.navigate('HomeScreen');
+      await props.login(email, password, name,formName);
+//await props.getMe();
+const user = store.getState().user
+//console.log("******",user)
+      // const res = await axios.get('http://localhost:8080/auth/me');
+      // //  console.log("res.data",res.data)
+      // //console.log("&&&&&",props.user,"^^^^^^^^^^^")
+       if (!user.id) throw new Error();
+       Alert.alert('Congratulations');
+       props.navigation.navigate('HomeScreen');
     } catch (error) {
       Alert.alert('Invalid Input');
     }
@@ -126,8 +129,8 @@ const mapLogin = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    login: (email, password, formName) =>
-      dispatch(auth(email, password, formName)),
+    login: (email, password, name,formName) =>
+      dispatch(auth(email, password, name,formName)),
     getMe: () => dispatch(me()),
   };
 };
