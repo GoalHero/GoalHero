@@ -16,7 +16,7 @@ router.get('/', async (req, res, next) => {
 
     const heroes = await Hero.findAll({
       attributes: ['name', 'health', 'damage', 'range', 'imageUrl'],
-      order: Sequelize.col("id") 
+      order: [['id', 'ASC']]
     });
     console.log("these are the heroes", heroes)
     res.json(heroes);

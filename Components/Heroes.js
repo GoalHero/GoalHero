@@ -10,8 +10,9 @@ import {
   ImageBackground,
 } from "react-native";
 
-import { fetchAllHeroes } from "../Store/heroes";
+import { fetchAllHeroes,fetchUnlockedHeroesNames } from "../Store/heroes";
 import { fetchHero } from '../Store/hero'
+
 
 const heroImages = {
   1: require("../assets/images/knight.png"),
@@ -19,8 +20,8 @@ const heroImages = {
   3: require("../assets/images/archer.png"),
   4: require("../assets/images/viking.png"),
   5: require("../assets/images/druid.png"),
-  6: require("../assets/images/darkelf.png"),
-  7: require("../assets/images/elf.png"),
+  6: require("../assets/images/elf.png"),
+  7: require("../assets/images/darkelf.png"),
   8: require("../assets/images/ninja.png"),
   9: require("../assets/images/wizard.png"),
   10: require("../assets/images/elemental.png"),
@@ -28,9 +29,11 @@ const heroImages = {
 class Heroes extends Component {
   componentDidMount() {
     this.props.fetchAllHeroes();
+   this.props.fetchUnlockedHeroesNames();
   }
   render() {
-    const i = 0; 
+    const unlockedNames = this.props.unlockedHeroesNames
+   
     // const im = "elemental.png";
     const heroes = this.props.heroes;
     if (!heroes) {
@@ -47,36 +50,43 @@ class Heroes extends Component {
               {"\n\n"}Defeat the enemy to level up to a new hero! {"\n\n"}
             </Text>
             <View style={{ height: 50 }}></View>
-            {/* {heroes.map((hero, index) => {
+            {heroes.map((hero, index) => {
+               let textStyling;
+               unlockedNames.includes(hero.name)? textStyling=styles.unlocked : styles.locked
           return (
-           <View style={styles.card} key={hero.id}>
+          
+           <View style={styles.card} key={index}>
            <Image
              style={{
                width: 100,
                height: 100,
              }}
              source={
-              heroImages[index + 1]
+              heroImages[hero.heroNum]
               }
            />
            <Text
-             style={{ textAlign: 'center', fontFamily: 'EuphemiaUCAS-Bold' }}
+             style={[styles.textStyling,textStyling]}
            > {hero.name}
            </Text>
          </View>
-        )})} */}
-            <View style={styles.card}>
+       
+        )})}
+            {/* <View style={styles.card} >
+              
               <Image
+            
                 style={{ width: 100, height: 100 }}
                 source={require("../assets/images/knight.png")}
               />
               <Text
-                style={{ textAlign: "center", fontFamily: "EuphemiaUCAS-Bold" }}
+
+                style={[styles.textStyling,textStyling]}
               >
                 KNIGHT
               </Text>
-              {i === 0 ? <Text>unlock</Text> : <Text />}
-            </View>
+              {/* {i === 0 ? <Text>unlock</Text> : <Text />} */}
+            {/* </View>
             <View style={styles.card}>
               <Image
                 style={{ width: 100, height: 100 }}
@@ -175,7 +185,7 @@ class Heroes extends Component {
               >
                 ELEMENTAL
               </Text>
-            </View>
+            </View> */} 
           </View>
         </ImageBackground>
       );
@@ -184,15 +194,16 @@ class Heroes extends Component {
 
 const mapState = (state) => {
   return {
-    hero: state.hero,
-    heroes: state.heroes,
+  unlockedHeroesNames:state.heroes.unlockedHeroes,
+    heroes: state.heroes.defaultHeroes,
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
     fetchAllHeroes: () => dispatch(fetchAllHeroes()),
-    fetchHero: () => dispatch(fetchHero())
+    fetchUnlockedHeroesNames:()=>dispatch(fetchUnlockedHeroesNames())
+
   };
 };
 
@@ -217,4 +228,12 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: "cover",
   },
+  locked:{
+    color:"red",
+  },
+  unlocked:{
+color:'green'
+  },
+  textStyling:{
+     textAlign: "center", fontFamily: "EuphemiaUCAS-Bold" }
 });

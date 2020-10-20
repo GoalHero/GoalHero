@@ -1,10 +1,33 @@
 import axios from "axios";
 
 const GET_HEROES = "GET_HEROES";
-
+const GET_UNLOCK_HEROES = 'GET_UNLOCK_HEROES'
 const getAllHeroes = (heroes) => ({ type: GET_HEROES, heroes });
+const getUnlockedHeroesNames = (heroNames)=>({
+  type:GET_UNLOCK_HEROES,heroNames
+})
 
-const defaultHeroes = [];
+const initialState = {
+  defaultHeroes : [],
+  unlockedHeroes: [],
+};
+
+
+export const fetchUnlockedHeroesNames = () => async (dispatch) => {
+  try { 
+    const { data: heroesNames } = await axios.get("http://localhost:8080/api/hero/unlockedHeroes");
+   
+    dispatch(getUnlockedHeroesNames(heroesNames));
+  } catch (error) {
+    console.log("failed to get api/heroNames");
+  }
+};
+
+
+
+
+
+
 
 export const fetchAllHeroes = () => async (dispatch) => {
   try {
@@ -15,10 +38,15 @@ export const fetchAllHeroes = () => async (dispatch) => {
   }
 };
 
-export default function (state = defaultHeroes, action) {
+export default function (state = initialState, action) {
   switch (action.type) {
     case GET_HEROES:
-      return action.heroes;
+      return {...state,defaultHeroes:action.heroes};
+      case GET_UNLOCK_HEROES:
+        return {...state,unlockedHeroes:action.heroNames};
+
+
+
     default:
       return state;
   }
