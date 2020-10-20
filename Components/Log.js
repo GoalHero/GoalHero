@@ -18,17 +18,17 @@ import User from './User';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { auth, me } from '../Store/user';
+import { auth, me ,auth2} from '../Store/user';
 import store from '../Store'
 const Log = (props) => {
   const { handleSubmit, register, setValue } = useForm();
   const onSubmit = async (values) => {
     try {
-      const name='Fish'
+      
       const formName = 'login';
       const email = values.email;
       const password = values.password;
-      await props.login(email, password, name,formName);
+      await props.login(email, password, formName);
 //await props.getMe();
 const user = store.getState().user
 //console.log("******",user)
@@ -129,8 +129,8 @@ const mapLogin = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    login: (email, password, name,formName) =>
-      dispatch(auth(email, password, name,formName)),
+    login: (email, password, formName) =>
+      dispatch(auth2(email, password, formName)),
     getMe: () => dispatch(me()),
   };
 };
