@@ -50,7 +50,7 @@ router.get('/userHero', async (req, res, next) => {
     const userHero = await UserHeroes.findOne({
       where: {
         UserId: req.user.id,
-        // current: true
+        current: true
       },
     });
     const hero = await Hero.findOne({
