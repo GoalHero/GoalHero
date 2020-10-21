@@ -84,20 +84,13 @@ router.get('/userHero', async (req, res, next) => {
 
 router.put('/userHero', async (req, res, next) => {
   try {
-    await UserHeroes.update(
-      {
-        current: false
-      },
-      {
-        where: {
-          UserId: req.user.id,
-          current: true
-        },
-        returning: true,
-        plain: true
+    const currentHero = await UserHeroes.findOne({
+      where: {
+        UserId: req.user.id,
+        current: true
       }
-    )
-    const [numOfHeroes, hero] = await UserHeroes.update(
+    })
+    const [num, updatedHero] = await UserHeroes.update(
       {
         current: true
       },
@@ -108,9 +101,25 @@ router.put('/userHero', async (req, res, next) => {
         },
         returning: true,
         plain: true,
-        attributes: ['name', 'health', 'damage', 'range', 'imageUrl'],
       }
     )
+    await UserHeroes.update(
+      {
+        current: false
+      },
+      {
+        where: {
+          UserId: req.user.id,
+          HeroId: currentHero.HeroId
+        }
+      }
+    )
+    const hero = await Hero.findOne({
+      where: {
+        id: updatedHero.HeroId
+      },
+      attributes: ['name', 'health', 'damage', 'range', 'imageUrl'],
+    })
     if (hero) {
       res.json(hero);
     } else {

@@ -12,6 +12,8 @@ import {
 
 import { fetchAllHeroes, fetchUnlockedHeroesNames } from '../Store/heroes';
 import { fetchHero, setSelectedHero } from '../Store/hero';
+import store from '../Store';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 
 const heroImages = {
   1: require('../assets/images/knight.png'),
@@ -32,17 +34,17 @@ class Heroes extends Component {
       selected: ''
     }
   }
-  componentDidMount() {
-    this.props.fetchAllHeroes();
-    this.props.fetchUnlockedHeroesNames();
-    this.props.fetchHero();
+  async componentDidMount() {
+    await this.props.fetchAllHeroes();
+    await this.props.fetchUnlockedHeroesNames();
+    await this.props.fetchHero();
     let selected = this.props.selectedHero
     this.setState({
       selected
     })
   }
-  handleSelection(id) {
-    this.props.setSelectedHero(id)
+  async handleSelection(id) {
+    await this.props.setSelectedHero(id)
     let selected = this.props.selectedHero
     this.setState({
       selected
@@ -77,11 +79,12 @@ class Heroes extends Component {
                 : null
               return (
                 <View style={styles.card} key={hero.id}>
-                  <Image
-                    onPress={() => this.handleSelection(hero.id)}
-                    style={[styles.imageSize, selectedStyling]}
-                    source={heroImages[hero.heroNum]}
-                  />
+                  <TouchableHighlight onPress={() => this.handleSelection(hero.id)}>
+                    <Image
+                      style={[styles.imageSize, selectedStyling]}
+                      source={heroImages[hero.heroNum]}
+                    />
+                  </TouchableHighlight>
                   <Text style={[styles.textStyling, textStyling]}>
                     {' '}
                     {hero.name}
