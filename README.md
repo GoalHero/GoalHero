@@ -64,4 +64,4 @@ Technology | Description
 
 ## Authors
 
-[Danielle Arquisola](https://github.com/daniellearquisola), [Kevin Forhan](https://github.com/kevinforhan), [Stephen Huang](https://github.com/stephen-huang-hash), [Shan Jiang](https://github.com/ericfish12)
+[Danielle Arquisola](https://github.com/daniellearquisola), [Fish](https://github.com/ericfish12), [Kevin Forhan](https://github.com/kevinforhan), [Stephen Huang](https://github.com/stephen-huang-hash)
