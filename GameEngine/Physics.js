@@ -1,5 +1,5 @@
-import Matter from 'matter-js';
-import { Dimensions } from 'react-native';
+import Matter from "matter-js";
+import { Dimensions } from "react-native";
 
 // GLOBAL VARIABLES
 import {
@@ -9,23 +9,27 @@ import {
   monsterHealth,
   tick,
   incrementTick,
-} from './Global';
+  incrementCharPose,
+  incrementMonsterPose,
+} from "./Global";
+import { idle, changePose } from "./animations/Animations";
 
 // FUNCTIONS
-import { monsterWalking } from './functions/MonsterWalking';
-import { monsterDamage } from './functions/MonsterDamage';
+import { monsterWalking } from "./functions/MonsterWalking";
+import { monsterDamage } from "./functions/MonsterDamage";
 
-import { characterWalking } from './functions/CharacterWalking';
-import { characterDamage } from './functions/CharacterDamage';
+import { characterWalking } from "./functions/CharacterWalking";
+import { characterDamage } from "./functions/CharacterDamage";
 
-const { width, height } = Dimensions.get('screen');
+const { width, height } = Dimensions.get("screen");
 
 export const Physics = (entities, { touches, time }) => {
-  let engine = entities['physics'].engine;
+  let engine = entities["physics"].engine;
   let char = entities.initialChar.body;
+  let monster = entities.initialMonster.body;
 
   touches
-    .filter((t) => t.type === 'press')
+    .filter((t) => t.type === "press")
     .forEach((t) => {
       if (t.event.pageY > height / 1.1 && t.event.pageX > width / 1.25) {
         characterDamage(entities);
@@ -39,6 +43,8 @@ export const Physics = (entities, { touches, time }) => {
 
   Matter.Engine.update(engine, time.delta);
 
+  idle(entities, "initialChar");
+
   monsterWalking(entities);
 
   if (tick % 50 === 0) {
@@ -46,6 +52,8 @@ export const Physics = (entities, { touches, time }) => {
   }
 
   incrementTick();
+  incrementCharPose();
+  incrementMonsterPose();
 
   return entities;
 };
