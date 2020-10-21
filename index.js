@@ -5,6 +5,7 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import store from "./Store";
+import Toast from "react-native-toast-message";
 
 export default function Root() {
   return (
@@ -12,6 +13,7 @@ export default function Root() {
       <View style={styles.container}>
         <App />
         <StatusBar style="auto" />
+        <Toast ref={(ref) => Toast.setRef(ref)} />
       </View>
     </Provider>
   );

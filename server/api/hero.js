@@ -49,7 +49,7 @@ router.post('/', async (req, res, next) => {
 });
 
 router.get('/userHero', async (req, res, next) => {
-// Gets user info and append to hero 
+  // Gets user info and append to hero
 
   try {
     const userHero = await UserHeroes.findOne({
@@ -60,10 +60,10 @@ router.get('/userHero', async (req, res, next) => {
     });
     const hero = await Hero.findOne({
       where: {
-        id: userHero.HeroId
+        id: userHero.HeroId,
       },
       attributes: ['name', 'health', 'damage', 'range', 'imageUrl'],
-    })
+    });
     if (hero) {
       res.json(hero);
     } else {

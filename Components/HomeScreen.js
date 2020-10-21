@@ -45,11 +45,9 @@ class HomeScreen extends React.Component {
               that last project you left behind. {'\n\n\n'}
             </Text>
             <Text>
-
-              Every time you complete a goal, your hero {"\n"} will become
+              Every time you complete a goal, your hero {'\n'} will become
               stronger. Go to the PLAY page to fight the monster. Once you
-              defeat the {"\n"}monster, a new hero awaits your help! {"\n\n\n"}
-
+              defeat the {'\n'}monster, a new hero awaits your help! {'\n\n\n'}
             </Text>
             <Text>It's time to train yourself to be your own hero.</Text>
           </Text>
