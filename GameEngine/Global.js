@@ -39,6 +39,7 @@ const damageChar = () => {
   charHealth -= monsterDamage;
 };
 
+
 const damageMonster = () => {
   updateStore();
   monsterHealth -= charDamage;

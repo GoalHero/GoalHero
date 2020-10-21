@@ -22,6 +22,7 @@ class HomeScreen extends React.Component {
   }
 
   render() {
+    const im = 'logotest.png'
     return (
       <ImageBackground
         style={styles.background}
@@ -30,7 +31,7 @@ class HomeScreen extends React.Component {
         <View style={styles.container}>
           <Image
             style={{ width: 360, height: 140 }}
-            source={require('../assets/images/logotest.png')}
+            source={require('../assets/images/'+im)}
           />
           <Text style={styles.body}>
             <Text>
