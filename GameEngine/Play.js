@@ -25,6 +25,7 @@ import MonsterHealth from './components/MonsterHealth';
 import { connect } from 'react-redux';
 import { gotMonsterHp, updateKillTimes } from '../Store/game';
 import Toast from 'react-native-toast-message';
+import { Audio } from "expo-av"
 
 export const engine = Matter.Engine.create({ enableSleeping: false });
 const world = engine.world;
@@ -79,10 +80,20 @@ Matter.World.add(world, [
 ]);
 
 export class Play extends React.Component {
-  componentDidMount() {
+  async componentDidMount() {
     this.props.setHP();
     this.props.fetchHero();
     this.props.fetchUser();
+    try {
+      this.battleSound = new Audio.Sound(); 
+      await this.battleSound.loadAsync(
+        require("../Sound/battleMusic/battle.mp3")
+      )
+      await this.battleSound.setIsLoopingAsync(true); 
+      await this.battleSound.playAsync()
+    } catch (error) {
+      console.log("there was an issue play the battle sounds: ", error)
+    }
   }
 
   render() {

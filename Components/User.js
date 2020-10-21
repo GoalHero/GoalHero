@@ -31,16 +31,16 @@ class User extends Component {
  async componentDidMount() {
     this.props.fetchUser();
     this.props.fetchHero();
-    try {
-      this.backgroundSound = new Audio.Sound(); 
-      await this.backgroundSound.loadAsync(
-        require("../Sound/backgroundMusic/background.mp3")
-      )
-      await this.backgroundSound.setIsLoopingAsync(true); 
-      await this.backgroundSound.playAsync()
-    } catch (error) {
-      console.log("there was an issue play the background sounds: ", error)
-    }
+    // try {
+    //   this.backgroundSound = new Audio.Sound(); 
+    //   await this.backgroundSound.loadAsync(
+    //     require("../Sound/backgroundMusic/background.mp3")
+    //   )
+    //   await this.backgroundSound.setIsLoopingAsync(true); 
+    //   await this.backgroundSound.playAsync()
+    // } catch (error) {
+    //   console.log("there was an issue play the background sounds: ", error)
+    // }
   }
   signOutUser() {
     this.props.logOut();
