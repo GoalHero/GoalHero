@@ -1,13 +1,11 @@
-import store from '../Store';
+import store from "../Store";
 
 // REDUX
-import { getMonsterHealth, getCharHealth,gotMonsterHp } from '../Store/game';
-
+import { getMonsterHealth, getCharHealth, gotMonsterHp } from "../Store/game";
 
 // (async()=>{
 //   await store.dispatch(gotMonsterHp())
 // })()
-
 
 const state = store.getState();
 //console.log('****************',state.game)
@@ -33,38 +31,38 @@ let monsterHurt = false;
 
 const updateStore = () => {
   const state = store.getState();
+  monsterHealth = store.getState().game.monsterHealth;
   charDamage = state.hero.damage + state.user.damage;
-}
+};
 
 const damageChar = () => {
+  charHealth -= monsterDamage;
+};
 
-  charHealth -= monsterDamage
-}
-
-const updateStore=()=>{
-  monsterHealth = store.getState().game.monsterHealth;
-}
+// const updateStore=()=>{
+//   monsterHealth = store.getState().game.monsterHealth;
+// }
 
 const damageMonster = () => {
   updateStore();
-  monsterHealth -= charDamage
-}
+  monsterHealth -= charDamage;
+};
 
 const dispatchCharHealth = () => {
   store.dispatch(getCharHealth(charHealth));
-}
+};
 
 const dispatchMonsterHealth = () => {
   store.dispatch(getMonsterHealth(monsterHealth));
-}
+};
 
 const disableCharJump = () => {
   charJump = false;
-}
+};
 
 const incrementTick = () => {
   tick++;
-}
+};
 
 export {
   charHealth,
@@ -79,5 +77,5 @@ export {
   dispatchCharHealth,
   dispatchMonsterHealth,
   disableCharJump,
-  incrementTick
-}
+  incrementTick,
+};
