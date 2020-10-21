@@ -1,7 +1,18 @@
-import React, { Component } from 'react';
-import { View, Image } from 'react-native';
-import { array, object, string } from 'prop-types';
-import knightImages from '../assets/characterSprites/defaultKnights/defaultKnights.js';
+import React, { Component } from "react";
+import { View, Image } from "react-native";
+import { array, object, string } from "prop-types";
+import knightImages from "../assets/characterSprites/defaultKnights/defaultKnights.js";
+import {
+  ArcherImages,
+  BarbarianImages,
+  DarkElfImages,
+  DruidImages,
+  ElementalImages,
+  KnightImages,
+  NinjaImages,
+  VikingImages,
+  WizardImages,
+} from "../assets/characterSprites/index";
 
 export default class Character extends Component {
   render() {
@@ -13,7 +24,7 @@ export default class Character extends Component {
     return (
       <Image
         style={{
-          position: 'absolute',
+          position: "absolute",
           left: x,
           top: y,
           width: width,
