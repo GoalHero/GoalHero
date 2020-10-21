@@ -10,22 +10,21 @@ const getHero = (hero) => ({ type: GET_HERO, hero });
 export const fetchHero = () => async (dispatch) => {
   try {
     const { data } = await axios.get(`http://localhost:8080/api/hero/userHero`);
-    console.log("array of heroes", data)
+    console.log('array of heroes', data);
     dispatch(getHero(data));
   } catch (error) {
     console.log('failed to get api/hero/:id');
   }
 };
 
-// export const fetchHeroes = () => async (dispatch) => {
-//   try {
-//     const { data } = await axios.get('http://localhost:8080/api/hero')
-//     console.log("this is the data", data)
-//     dispatch(getHeroes(data))
-//   } catch (error) {
-//     console.log('failed to get api/hero')
-//   }
-// }
+export const setSelectedHero = (id) => async (dispatch) => {
+  try {
+    const { data } = await axios.put(`http://localhost:8080/api/hero/userHero`, {id});
+    dispatch(getHero(data));
+  } catch (error) {
+    console.log('failed to change api/hero/:id');
+  }
+}
 
 export default function (state = defaultHero, action) {
   switch (action.type) {

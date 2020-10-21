@@ -7,12 +7,12 @@ import hero from './hero';
 import test from './test';
 import goals from './goals';
 import game from './game';
-import heroes from './heroes'
+import heroes from './heroes';
 
 const reducer = combineReducers({
   user,
   hero,
-  heroes, 
+  heroes,
   goals,
   game,
 });

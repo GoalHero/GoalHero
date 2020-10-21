@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Hero, User, UserHeroes } = require('../db/models');
 const adminOnly = require('./utils/adminOnly');
-const Sequelize = require("sequelize")
+const Sequelize = require('sequelize');
 
 // Gets all heroes with their id, email, and username
 router.get('/', async (req, res, next) => {
@@ -15,10 +15,18 @@ router.get('/', async (req, res, next) => {
     // above is security part
 
     const heroes = await Hero.findAll({
-      attributes: ['id','name', 'health', 'damage', 'range', 'imageUrl','heroNum'],
-      //order: [['id', 'ASC']]
+      attributes: [
+        'id',
+        'name',
+        'health',
+        'damage',
+        'range',
+        'imageUrl',
+        'heroNum',
+      ],
+      order: [['heroNum', 'ASC']]
     });
-    console.log("these are the heroes", heroes)
+    console.log('these are the heroes', heroes);
     res.json(heroes);
   } catch (err) {
     next(err);
@@ -55,7 +63,7 @@ router.get('/userHero', async (req, res, next) => {
     const userHero = await UserHeroes.findOne({
       where: {
         UserId: req.user.id,
-        // current: true
+        current: true
       },
     });
     const hero = await Hero.findOne({
@@ -74,55 +82,75 @@ router.get('/userHero', async (req, res, next) => {
   }
 });
 
+router.put('/userHero', async (req, res, next) => {
+  try {
+    const currentHero = await UserHeroes.findOne({
+      where: {
+        UserId: req.user.id,
+        current: true
+      }
+    })
+    const [num, updatedHero] = await UserHeroes.update(
+      {
+        current: true
+      },
+      {
+        where: {
+          UserId: req.user.id,
+          HeroId: req.body.id
+        },
+        returning: true,
+        plain: true,
+      }
+    )
+    await UserHeroes.update(
+      {
+        current: false
+      },
+      {
+        where: {
+          UserId: req.user.id,
+          HeroId: currentHero.HeroId
+        }
+      }
+    )
+    const hero = await Hero.findOne({
+      where: {
+        id: updatedHero.HeroId
+      },
+      attributes: ['name', 'health', 'damage', 'range', 'imageUrl'],
+    })
+    if (hero) {
+      res.json(hero);
+    } else {
+      res.sendStatus(400);
+    }
+  } catch (err) {
+    next(err);
+  }
+});
 
 router.get('/unlockedHeroes', async (req, res, next) => {
   try {
-  const user = await User.findOne({
-    where: {
-      id: req.user.id
-    }, 
-    include: [
-      {
-        model: Hero
-      }
-    ]
-  })
-  const unlockedHeroesNames = []; 
-  user.Heros.map(hero => {
-    unlockedHeroesNames.push(hero.name)
-  })
-  res.send(unlockedHeroesNames)
+    const user = await User.findOne({
+      where: {
+        id: req.user.id,
+      },
+      include: [
+        {
+          model: Hero,
+        },
+      ],
+    });
+    const unlockedHeroesNames = [];
+    user.Heros.map((hero) => {
+      unlockedHeroesNames.push(hero.name);
+    });
+    res.send(unlockedHeroesNames);
   } catch (err) {
-    next (err)
+    next(err);
   }
-})
-
-// User checkout info, changes to api/users/userId
-// router.put('/:userId', async (req, res, next) => {
-//   try {
-//     const {address, phoneNumber, firstName, lastName} = req.body
-//     const [numberofUpdated, updatedUser] = await User.update(
-//       {
-//         address,
-//         phoneNumber,
-//         firstName,
-//         lastName
-//       },
-//       {
-//         where: {
-//           //security: only change himself's user info
-//           //  id: req.params.userId,
-//           id: req.user.id
-//         },
-//         returning: true,
-//         plain: true
-//       }
-//     )
-//     res.json(updatedUser)
-//   } catch (err) {
-//     next(err)
-//   }
-// })
+});
 
 // User deletion (still needs security for admin only)
 //Security: only admin can delete

@@ -1,11 +1,11 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, Text, View, Image, Button } from "react-native";
-import App from "./App";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-import store from "./Store";
-import Toast from "react-native-toast-message";
+import { StatusBar } from 'expo-status-bar';
+import React from 'react';
+import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import App from './App';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import store from './Store';
+import Toast from 'react-native-toast-message';
 
 export default function Root() {
   return (

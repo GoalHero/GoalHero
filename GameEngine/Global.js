@@ -1,4 +1,4 @@
-import store from "../Store";
+import store from '../Store';
 
 // REDUX
 import { getMonsterHealth, getCharHealth, gotMonsterHp } from '../Store/game';
@@ -38,7 +38,6 @@ const updateStore = () => {
 const damageChar = () => {
   charHealth -= monsterDamage;
 };
-
 
 const damageMonster = () => {
   updateStore();
