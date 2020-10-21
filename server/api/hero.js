@@ -15,8 +15,8 @@ router.get('/', async (req, res, next) => {
     // above is security part
 
     const heroes = await Hero.findAll({
-      attributes: ['name', 'health', 'damage', 'range', 'imageUrl'],
-      order: [['id', 'ASC']]
+      attributes: ['id','name', 'health', 'damage', 'range', 'imageUrl','heroNum'],
+      //order: [['id', 'ASC']]
     });
     console.log("these are the heroes", heroes)
     res.json(heroes);

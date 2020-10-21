@@ -19,8 +19,8 @@ const heroImages = {
   2: require("../assets/images/barbarian.png"),
   3: require("../assets/images/archer.png"),
   4: require("../assets/images/viking.png"),
-  5: require("../assets/images/druid.png"),
-  6: require("../assets/images/elf.png"),
+  5: require("../assets/images/elf.png"),
+  6: require("../assets/images/druid.png"),
   7: require("../assets/images/darkelf.png"),
   8: require("../assets/images/ninja.png"),
   9: require("../assets/images/wizard.png"),
@@ -50,19 +50,20 @@ class Heroes extends Component {
               {"\n\n"}Defeat the enemy to level up to a new hero! {"\n\n"}
             </Text>
             <View style={{ height: 50 }}></View>
-            {heroes.map((hero, index) => {
+            {heroes.map((hero) => {
                let textStyling;
                unlockedNames.includes(hero.name)? textStyling=styles.unlocked : styles.locked
+              // console.log(hero.id)
           return (
           
-           <View style={styles.card} key={index}>
+           <View style={styles.card} key={hero.id}>
            <Image
              style={{
                width: 100,
                height: 100,
              }}
              source={
-              heroImages[hero.heroNum]
+              heroImages[hero.id]
               }
            />
            <Text
