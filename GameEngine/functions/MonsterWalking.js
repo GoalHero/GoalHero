@@ -1,5 +1,5 @@
 import Matter from 'matter-js';
-import { monsterHealth } from '../Global'
+import { monsterHealth } from '../Global';
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -12,10 +12,7 @@ let consecutive = 0;
 let direction = 'left';
 
 export const monsterWalking = (entities) => {
- 
   if (monsterHealth <= 0) {
- 
-
     return;
   }
 

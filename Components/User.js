@@ -6,18 +6,17 @@ import {
   Image,
   Button,
   ImageBackground,
-} from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import HomeScreen from "./HomeScreen";
-import { connect } from "react-redux";
-import { me } from "../Store/user";
-import { fetchHero } from "../Store/hero";
-import user from "../Store/user";
-import hero from "../Store/hero";
+} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './HomeScreen';
+import { connect } from 'react-redux';
+import { me } from '../Store/user';
+import { fetchHero } from '../Store/hero';
+import user from '../Store/user';
+import hero from '../Store/hero';
 
-import { logout } from "../Store/user";
-
+import { logout } from '../Store/user';
 
 class User extends Component {
   constructor() {
@@ -35,8 +34,7 @@ class User extends Component {
   signOutUser() {
     this.props.logOut();
 
-
-    alert("You have successfully logged out!");
+    alert('You have successfully logged out!');
 
     // navigation.navigate("SignPage")
   }
@@ -200,16 +198,14 @@ const styles = StyleSheet.create({
   },
 
   buttonStyle: {
-
-    backgroundColor: "#F09031",
-    color: "white",
+    backgroundColor: '#F09031',
+    color: 'white',
     width: 200,
     height: 40,
     borderRadius: 200 / 20,
     marginTop: 30,
-    alignItems: "center",
-    justifyContent: "center",
-
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   item: {

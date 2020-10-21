@@ -1,7 +1,7 @@
 import Matter from 'matter-js';
 import { Dimensions } from 'react-native';
 
-import { charHealth } from '../Global'
+import { charHealth } from '../Global';
 
 const { width } = Dimensions.get('screen');
 
@@ -10,7 +10,7 @@ export const characterWalking = (entities, t) => {
     return;
   }
 
-  const char = entities.initialChar.body
+  const char = entities.initialChar.body;
 
   if (t.event.pageX < width / 2) {
     entities.initialChar.face = -1;

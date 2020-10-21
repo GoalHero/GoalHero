@@ -7,18 +7,21 @@ import hero from './hero';
 import test from './test';
 import goals from './goals';
 import game from './game';
+import heroes from './heroes'
 
 const reducer = combineReducers({
   user,
   hero,
+  heroes, 
   goals,
-  game
+  game,
 });
 
 const middleware = composeWithDevTools(
-  applyMiddleware(thunkMiddleware
+  applyMiddleware(
+    thunkMiddleware
     // , createLogger({ collapsed: true,logging:false })
-    )
+  )
 );
 
 const store = createStore(reducer, middleware);

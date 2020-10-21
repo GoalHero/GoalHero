@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { Hero, User, UserHeroes } = require('../db/models');
 const adminOnly = require('./utils/adminOnly');
+const Sequelize = require("sequelize")
 
 // Gets all heroes with their id, email, and username
 router.get('/', async (req, res, next) => {
@@ -14,8 +15,10 @@ router.get('/', async (req, res, next) => {
     // above is security part
 
     const heroes = await Hero.findAll({
-      attributes: ['name', 'health', 'damage', 'range', 'imageUrl'],
+      attributes: ['id','name', 'health', 'damage', 'range', 'imageUrl','heroNum'],
+      //order: [['id', 'ASC']]
     });
+    console.log("these are the heroes", heroes)
     res.json(heroes);
   } catch (err) {
     next(err);
@@ -46,7 +49,7 @@ router.post('/', async (req, res, next) => {
 });
 
 router.get('/userHero', async (req, res, next) => {
-// Gets user info and append to hero 
+  // Gets user info and append to hero
 
   try {
     const userHero = await UserHeroes.findOne({
@@ -57,10 +60,10 @@ router.get('/userHero', async (req, res, next) => {
     });
     const hero = await Hero.findOne({
       where: {
-        id: userHero.HeroId
+        id: userHero.HeroId,
       },
       attributes: ['name', 'health', 'damage', 'range', 'imageUrl'],
-    })
+    });
     if (hero) {
       res.json(hero);
     } else {
@@ -70,6 +73,29 @@ router.get('/userHero', async (req, res, next) => {
     next(err);
   }
 });
+
+
+router.get('/unlockedHeroes', async (req, res, next) => {
+  try {
+  const user = await User.findOne({
+    where: {
+      id: req.user.id
+    }, 
+    include: [
+      {
+        model: Hero
+      }
+    ]
+  })
+  const unlockedHeroesNames = []; 
+  user.Heros.map(hero => {
+    unlockedHeroesNames.push(hero.name)
+  })
+  res.send(unlockedHeroesNames)
+  } catch (err) {
+    next (err)
+  }
+})
 
 // User checkout info, changes to api/users/userId
 // router.put('/:userId', async (req, res, next) => {

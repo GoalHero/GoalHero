@@ -27,14 +27,10 @@ const User = db.define('User', {
     type: Sequelize.INTEGER,
     defaultValue: 10,
   },
-
   monsterHP: {
     type: Sequelize.INTEGER,
     defaultValue: 50,
   },
-
-
-
 
   password: {
     type: Sequelize.STRING,
