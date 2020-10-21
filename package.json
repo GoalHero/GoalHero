@@ -7,7 +7,7 @@
     "web": "expo start --web",
     "eject": "expo eject",
     "seed": "node ./server/seed.js",
-    "test": "mocha ./test/*test/js --watch"
+    "test": "mocha ./test/test.js --watch"
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
