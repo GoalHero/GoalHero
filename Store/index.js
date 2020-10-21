@@ -12,13 +12,14 @@ const reducer = combineReducers({
   user,
   hero,
   goals,
-  game
+  game,
 });
 
 const middleware = composeWithDevTools(
-  applyMiddleware(thunkMiddleware
+  applyMiddleware(
+    thunkMiddleware
     // , createLogger({ collapsed: true,logging:false })
-    )
+  )
 );
 
 const store = createStore(reducer, middleware);

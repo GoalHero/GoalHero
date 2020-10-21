@@ -1,6 +1,9 @@
-import React from "react";
-import Matter from "matter-js";
-import { GameEngine } from "react-native-game-engine";
+
+import React from 'react';
+import Matter from 'matter-js';
+import { GameEngine } from 'react-native-game-engine';
+import { me } from '../Store/user';
+import { fetchHero } from '../Store/hero';
 import {
   StyleSheet,
   StatusBar,
@@ -77,31 +80,34 @@ Matter.World.add(world, [
 ]);
 
 export class Play extends React.Component {
-  // componentDidMount(){
-  // this.props.setHP()
-  // console.log('5555555555555555555555555555')
-  // }
+
+  componentDidMount(){
+    this.props.setHP()
+    this.props.fetchHero()
+    this.props.fetchUser()
+  }
 
   render() {
-    if (this.props.monsterHealth <= 10) {
+    if (this.props.monsterHealth <= 1) {
       // this.props.setHP()
       Alert.alert(
-        "Alert Title",
-        "My Alert Msg",
+        'Alert Title',
+        'My Alert Msg',
         [
           {
-            text: "Ask me later",
-            onPress: () => console.log("Ask me later pressed"),
+            text: 'Ask me later',
+            onPress: () => console.log('Ask me later pressed'),
           },
           {
-            text: "Cancel",
-            onPress: () => console.log("Cancel Pressed"),
-            style: "cancel",
+            text: 'Cancel',
+            onPress: () => console.log('Cancel Pressed'),
+            style: 'cancel',
           },
           {
-            text: "OK",
+            text: 'OK',
             onPress: () => {
-              this.props.navigation.navigate("Heroes");
+              this.props.navigation.navigate('Heroes');
+
               this.props.updateKillTimes();
               this.props.setHP();
             },
@@ -115,6 +121,7 @@ export class Play extends React.Component {
 
       // </>)
     }
+
 
     Toast.show({
       text1: "Tap on attack to fight the monster!",
@@ -215,6 +222,8 @@ const mapDispatch = (dispatch) => {
   return {
     setHP: () => dispatch(gotMonsterHp()),
     updateKillTimes: () => dispatch(updateKillTimes()),
+    fetchUser: () => dispatch(me()),
+    fetchHero: () => dispatch(fetchHero())
   };
 };
 

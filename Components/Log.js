@@ -18,26 +18,25 @@ import User from './User';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { auth, me ,auth2} from '../Store/user';
-import store from '../Store'
+import { auth, me, auth2 } from '../Store/user';
+import store from '../Store';
 const Log = (props) => {
   const { handleSubmit, register, setValue } = useForm();
   const onSubmit = async (values) => {
     try {
-      
       const formName = 'login';
       const email = values.email;
       const password = values.password;
       await props.login(email, password, formName);
-//await props.getMe();
-const user = store.getState().user
-//console.log("******",user)
+      //await props.getMe();
+      const user = store.getState().user;
+      //console.log("******",user)
       // const res = await axios.get('http://localhost:8080/auth/me');
       // //  console.log("res.data",res.data)
       // //console.log("&&&&&",props.user,"^^^^^^^^^^^")
-       if (!user.id) throw new Error();
-       Alert.alert('Congratulations');
-       props.navigation.navigate('HomeScreen');
+      if (!user.id) throw new Error();
+      Alert.alert('Congratulations');
+      props.navigation.navigate('HomeScreen');
     } catch (error) {
       Alert.alert('Invalid Input');
     }

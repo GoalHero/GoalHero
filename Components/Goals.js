@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from "react";
+import React, { Component, useEffect } from 'react';
 import {
   View,
   Text,
@@ -7,16 +7,16 @@ import {
   StatusBar,
   TextInput,
   ImageBackground,
-} from "react-native";
-import { useForm, useState } from "react-hook-form";
-import { connect } from "react-redux";
-import { fetchGoals, removeGoal, completeGoal, postGoal } from "../Store/goals";
+} from 'react-native';
+import { useForm, useState } from 'react-hook-form';
+import { connect } from 'react-redux';
+import { fetchGoals, removeGoal, completeGoal, postGoal } from '../Store/goals';
 
 const Goals = (props) => {
   const { handleSubmit, register, setValue } = useForm();
 
   useEffect(() => {
-    register("goalName");
+    register('goalName');
 
     props.fetchGoals();
   }, [register]);
@@ -42,7 +42,7 @@ const Goals = (props) => {
   return (
     <ImageBackground
       style={styles.background}
-      source={require("../assets/images/game_background_1.png")}
+      source={require('../assets/images/game_background_1.png')}
     >
       <View style={styles.container}>
         <Text style={styles.goalHeading}>YOUR GOALS</Text>
@@ -85,7 +85,7 @@ const Goals = (props) => {
           <TextInput
             placeholder={props.input}
             style={styles.inputBox}
-            onChangeText={(text) => setValue("goalName", text)}
+            onChangeText={(text) => setValue('goalName', text)}
             // defaultValue={props.default}
             // onSubmitEditing={props.default}
             // value={""}
@@ -113,8 +113,8 @@ const Goals = (props) => {
 const mapState = (state) => {
   return {
     goals: state.goals,
-    input: "Add New Goal Here ",
-    default: "",
+    input: 'Add New Goal Here ',
+    default: '',
   };
 };
 
@@ -132,39 +132,39 @@ export default connect(mapState, mapDispatch)(Goals);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   goalList: {
-    flexDirection: "column",
-    justifyContent: "space-evenly",
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
   },
   goalRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    alignContent: "space-between",
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignContent: 'space-between',
   },
   addGoal: {
-    alignItems: "center",
+    alignItems: 'center',
     marginTop: 100,
   },
   increaseVerticalMargin: {
     marginBottom: 50,
   },
   orangeBox: {
-    backgroundColor: "#B7BBBE",
+    backgroundColor: '#B7BBBE',
     width: 150,
     height: 50,
-    textAlign: "center",
+    textAlign: 'center',
     opacity: 0.8,
     // borderRadius: 10,
   },
   inputBox: {
-    backgroundColor: "#057BF7",
+    backgroundColor: '#057BF7',
     opacity: 0.8,
     width: 160,
     height: 60,
-    textAlign: "center",
+    textAlign: 'center',
     borderRadius: 10,
   },
   goalHeading: {
@@ -173,25 +173,25 @@ const styles = StyleSheet.create({
   },
   topMargin: {
     marginTop: 20,
-    backgroundColor: "#F09031",
+    backgroundColor: '#F09031',
     width: 100,
     height: 40,
     borderRadius: 200 / 20,
   },
   background: {
     flex: 1,
-    resizeMode: "cover",
+    resizeMode: 'cover',
   },
   complete: {
     marginTop: 20,
-    backgroundColor: "#4DC175",
+    backgroundColor: '#4DC175',
     width: 100,
     height: 40,
     borderRadius: 10,
   },
   remove: {
     marginTop: 20,
-    backgroundColor: "#633193",
+    backgroundColor: '#633193',
     width: 80,
     height: 40,
     borderRadius: 10,
