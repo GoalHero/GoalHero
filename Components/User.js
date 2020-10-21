@@ -15,6 +15,7 @@ import { me } from '../Store/user';
 import { fetchHero } from '../Store/hero';
 import user from '../Store/user';
 import hero from '../Store/hero';
+import { Audio } from "expo-av"; 
 
 import { logout } from '../Store/user';
 
@@ -25,12 +26,22 @@ class User extends Component {
       user: [],
       hero: [],
     };
+    this.backgroundSound = null
   }
-  componentDidMount() {
+ async componentDidMount() {
     this.props.fetchUser();
     this.props.fetchHero();
+    try {
+      this.backgroundSound = new Audio.Sound(); 
+      await this.backgroundSound.loadAsync(
+        require("../Sound/backgroundMusic/background.mp3")
+      )
+      await this.backgroundSound.setIsLoopingAsync(true); 
+      await this.backgroundSound.playAsync()
+    } catch (error) {
+      console.log("there was an issue play the background sounds: ", error)
+    }
   }
-
   signOutUser() {
     this.props.logOut();
 

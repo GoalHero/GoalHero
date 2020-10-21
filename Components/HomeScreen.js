@@ -12,6 +12,8 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { me } from '../Store/user';
 
+import { Audio } from "expo-av"; 
+
 class HomeScreen extends React.Component {
   constructor() {
     super();
@@ -19,6 +21,17 @@ class HomeScreen extends React.Component {
 
   async componentDidMount() {
     this.props.getMe();
+    try {
+      this.backgroundSound = new Audio.Sound(); 
+      await this.backgroundSound.loadAsync(
+        require("../Sound/backgroundMusic/background.mp3")
+      )
+      await this.backgroundSound.setIsLoopingAsync(true); 
+      await this.backgroundSound.playAsync()
+    } catch (error) {
+      console.log("there was an issue play the background sounds: ", error)
+    }
+
   }
 
   render() {
