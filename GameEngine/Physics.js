@@ -43,7 +43,7 @@ export const Physics = (entities, { touches, time }) => {
 
   Matter.Engine.update(engine, time.delta);
 
-  idle(entities, "initialChar");
+  // idle(entities, "initialChar");
 
   monsterWalking(entities);
 
@@ -52,8 +52,8 @@ export const Physics = (entities, { touches, time }) => {
   }
 
   incrementTick();
-  incrementCharPose();
-  incrementMonsterPose();
+  // incrementCharPose();
+  // incrementMonsterPose();
 
   return entities;
 };
