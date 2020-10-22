@@ -94,7 +94,7 @@ export class Play extends React.Component {
     super();
     this.state = {
       rerender: true,
-      rendergame: false,
+      rendergame: true,
     };
   }
   componentDidMount() {
