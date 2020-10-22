@@ -11,8 +11,17 @@ import {
   incrementTick,
   incrementCharPose,
   incrementMonsterPose,
+  monsterPose,
+  charPose,
 } from "./Global";
-import { idle, changePose } from "./animations/Animations";
+import {
+  idle,
+  hurt,
+  dying,
+  attacking,
+  changeCharPose,
+  changeMonsterPose,
+} from "./animations/Animations";
 
 // FUNCTIONS
 import { monsterWalking } from "./functions/MonsterWalking";
@@ -42,18 +51,27 @@ export const Physics = (entities, { touches, time }) => {
     });
 
   Matter.Engine.update(engine, time.delta);
+  incrementTick();
 
-  // idle(entities, "initialChar");
+  idle(entities.initialChar, "initialChar");
+  idle(entities.initialMonster, "initialMonster");
 
   monsterWalking(entities);
 
   if (tick % 50 === 0) {
     monsterDamage(entities);
   }
+  if (tick % 5 === 0) {
+    incrementCharPose();
+    changeCharPose(entities.initialChar);
+    incrementMonsterPose();
+    changeMonsterPose(entities.initialMonster);
+  }
 
-  incrementTick();
-  // incrementCharPose();
-  // incrementMonsterPose();
+  // console.log("\n\n\nmonsterpose\n\n\n", monsterPose);
+  // console.log("\n\n\ncharpose\n\n\n", charPose);
+  // console.log("\n\n\ncharSTATE\n\n", entities.initialChar.state);
+  // console.log("\n\n\nmonsterSTATE\n\n", entities.initialMonster.state);
 
   return entities;
 };

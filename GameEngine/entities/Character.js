@@ -20,7 +20,10 @@ export default class Character extends Component {
     const height = this.props.size[1];
     const x = this.props.body.position.x - width / 2;
     const y = this.props.body.position.y - height / 2;
-
+    // console.log(
+    //   "\n\n\nLOOK AT THIS\n\n\n",
+    //   `${this.props.state}${this.props.pose}`
+    // );
     return (
       <Image
         style={{
