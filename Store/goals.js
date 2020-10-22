@@ -1,6 +1,6 @@
 import axios from 'axios';
-import Store from './../Store'
-import {me} from './user'
+// import Store from './../Store'
+ import {me} from './user'
 const GET_GOALS = 'GET_GOALS';
 
 const goals = [];
