@@ -13,7 +13,6 @@ export const allMonsters = [monsterImages, monster2Images, monster3Images];
 // const whichMonster= allMonsters[index%3]
 
 export default class Monster extends Component {
-  
   render() {
     const width = this.props.size[0];
     const height = this.props.size[1];

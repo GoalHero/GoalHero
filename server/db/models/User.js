@@ -36,9 +36,6 @@ const User = db.define('User', {
     defaultValue: 0,
   },
 
-
-
-
   password: {
     type: Sequelize.STRING,
     // Making `.password` act like a func hides it when serializing to JSON.
