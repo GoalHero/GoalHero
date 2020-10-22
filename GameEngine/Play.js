@@ -24,11 +24,6 @@ import Monster from './entities/Monster';
 import AttackButton from './components/AttackButton';
 import MonsterHealth from './components/MonsterHealth';
 import { connect } from 'react-redux';
-<<<<<<< HEAD
-import { gotMonsterHp, updateKillTimes } from '../Store/game';
-import Toast from 'react-native-toast-message';
-import { Audio } from "expo-av"
-=======
 import { updateKillTimesAndMonster ,gotCharHealth} from '../Store/game';
 import {fetchUnlockedHeroesNames} from '../Store/heroes'
 import store from '../Store'
@@ -37,7 +32,8 @@ import Toast, { DURATION } from "react-native-easy-toast";
 import Dialog, { DialogContent } from "react-native-popup-dialog";
 import {allMonsters} from './entities/Monster'
 import {arr} from './entities/Character'
->>>>>>> 068be980af598a7c5246d6856d865b0a66cd08f2
+import { Audio } from "expo-av"; 
+
 
 export const engine = Matter.Engine.create({ enableSleeping: false });
 const world = engine.world;
@@ -92,32 +88,24 @@ Matter.World.add(world, [
 ]);
 
 export class Play extends React.Component {
-<<<<<<< HEAD
-  async componentDidMount() {
-    this.props.setHP();
-    this.props.fetchHero();
-    this.props.fetchUser();
-    try {
-      this.battleSound = new Audio.Sound(); 
-      await this.battleSound.loadAsync(
-        require("../Sound/battleMusic/battle.mp3")
-      )
-      await this.battleSound.setIsLoopingAsync(true); 
-      await this.battleSound.playAsync()
-    } catch (error) {
-      console.log("there was an issue play the battle sounds: ", error)
-    }
-=======
   constructor(){
     super()
     this.state=({
       rerender:true
     })
   }
-  componentDidMount() {
-   // this.props.setHP();
+ async componentDidMount() {
+    // try {
+    //   this.battleSound = new Audio.Sound(); 
+    //   await this.battleSound.loadAsync(
+    //     require("../Sound/battleMusic/battle.mp3")
+    //   )
+    //   await this.battleSound.setIsLoopingAsync(true); 
+    //   await this.battleSound.playAsync()
+    // } catch (error) {
+    //   console.log("there was an issue play the battle sounds: ", error)
+    // }
    
->>>>>>> 068be980af598a7c5246d6856d865b0a66cd08f2
   }
 
   render() {
