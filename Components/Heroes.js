@@ -95,6 +95,7 @@ class Heroes extends Component {
               return (
                 <View style={styles.card} key={hero.id}>
                   <TouchableHighlight
+                  underlayColor="clear"
                     onPress={() => {
                       this.handleSelection(hero.id, hero.heroNum, hero.name);
                     }}
