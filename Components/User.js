@@ -19,13 +19,7 @@ import hero from '../Store/hero';
 import { logout } from '../Store/user';
 
 class User extends Component {
-  constructor() {
-    super();
-    this.state = {
-      user: [],
-      hero: [],
-    };
-  }
+ 
   componentDidMount() {
     this.props.fetchUser();
     this.props.fetchHero();
@@ -66,14 +60,16 @@ class User extends Component {
 
               <Text style={styles.name}>Name: {user.name}</Text>
               <Text style={styles.userInfo}>Level: {user.level}</Text>
+            <Text>{user.name} Health: {user.health} </Text>
+            <Text>{user.name} Damage: {user.damage}</Text>
             </View>
           </View>
 
           <View style={styles.body}>
             <Text>Current Hero: {hero.name} </Text>
 
-            <Text>Hero Health: {user.health} </Text>
-            <Text>Hero Damage: {user.damage} </Text>
+            <Text>{hero.name} : {hero.health} </Text>
+            <Text>{hero.name} : {hero.damage} </Text>
           </View>
           <View style={styles.buttonStyle}>
             <Button title="Log Out" onPress={() => this.signOutUser()} />
