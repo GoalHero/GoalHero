@@ -18,7 +18,7 @@ class HomeScreen extends React.Component {
   constructor() {
     super();
     this.state = {
-      isPlay: true 
+      isPlay: true, 
     }
     this.backgroundSound = null;
   }
@@ -90,7 +90,11 @@ class HomeScreen extends React.Component {
             <Text>{'\n\n\n'}</Text>
           </View>
         </View>
-        <Button title="pause" style={styles.button} onPress={() => this.pauseMusic()}> pause </Button>
+        <Button title ={ this.state.isPlay ? "pause" : "play" }
+        style={styles.button} 
+        onPress={() => this.pauseMusic()}
+        > pause 
+        </Button>
       </ImageBackground>
     );
   }
@@ -139,7 +143,8 @@ const styles = StyleSheet.create({
   button: {
    width: 100, 
    height: 50, 
-   textAlign: 'center'
+   textAlign: 'center', 
+   backgroundColor: '#F09031',
   }, 
   logo: {
     width: 280,
