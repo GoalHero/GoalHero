@@ -33,10 +33,6 @@ let monsterPose = 0;
 let monsterAttacking = false;
 let monsterHurt = false;
 
-// HIT DETECTION
-let hitDistanceX = 250;
-let hitDistanceY = 200;
-
 const updateStore = () => {
   const state = store.getState();
   charHealth = state.game.charHealth;
@@ -77,8 +73,6 @@ export {
   monsterPose,
   charJump,
   tick,
-  hitDistanceX,
-  hitDistanceY,
   damageChar,
   damageMonster,
   dispatchCharHealth,

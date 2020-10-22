@@ -12,8 +12,7 @@ import defaultElf from '../assets/characterSprites/defaultElf/defaultElf.js';
 import defaultNinjas from '../assets/characterSprites/defaultNinjas/defaultNinjas.js';
 import defaultViking from '../assets/characterSprites/defaultViking/defaultViking.js';
 import defaultWizard from '../assets/characterSprites/defaultWizard/defaultWizard.js';
-import axios from 'axios'
-
+import axios from 'axios';
 
 // let heroNum ;
 // (async()=>{
@@ -21,7 +20,6 @@ import axios from 'axios'
 //  heroNum =data.heroNum
 //  console.log(heroNum,'************')
 // })()
-
 
 export let arr = [0];
 const allHeros = [

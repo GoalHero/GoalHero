@@ -1,4 +1,4 @@
-import Matter from 'matter-js';
+import Matter, { MouseConstraint } from 'matter-js';
 import { Dimensions } from 'react-native';
 
 // GLOBAL VARIABLES
@@ -22,15 +22,12 @@ import { characterDamage } from './functions/CharacterDamage';
 
 const { width, height } = Dimensions.get('screen');
 
-const verifyTouch = (t, monster) => {
-  const verifyX = Math.abs(t.event.pageX - monster.position.x) < hitDistanceX;
-  const verifyY = Math.abs(t.event.pageY - monster.position.y) < hitDistanceY;
-  // console.log('x', Math.abs(t.event.pageX - monster.position.x))
-  // console.log('y', Math.abs(t.event.pageY - monster.position.y))
-  if (verifyX && verifyY) {
+const verifyTouch = (t) => {
+  const x = t.event.pageX;
+  const y = t.event.pageY;
+
+  if (x > 290 && y > 595) {
     return true;
-  } else {
-    return false;
   }
 };
 
@@ -42,8 +39,7 @@ export const Physics = (entities, { touches, time }) => {
   touches
     .filter((t) => t.type === 'press')
     .forEach((t) => {
-      console.log(t.event.pageY, monster.position.y);
-      if (verifyTouch(t, monster)) {
+      if (verifyTouch(t)) {
         console.log('attack');
         characterDamage(entities);
       } else if (t.event.pageY < height / 3 && charJump) {

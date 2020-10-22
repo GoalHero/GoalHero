@@ -1,7 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Animated } from 'react-native';
+import { Text, View, StyleSheet, Animated, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { gotMonsterHp } from '../../Store/game';
+const { width, height } = Dimensions.get('screen');
 
 class monsterHealth extends React.Component {
   componentDidMount() {
@@ -21,7 +22,7 @@ class monsterHealth extends React.Component {
             borderColor: '#000',
             borderWidth: 3,
             borderRadius: 10,
-            width: this.props.monsterHealth,
+            width: (this.props.monsterHealth / 300) * width,
             alignContent: 'center',
           }}
         >

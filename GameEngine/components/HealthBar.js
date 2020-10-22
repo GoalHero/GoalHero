@@ -1,7 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Animated } from 'react-native';
+import { Text, View, StyleSheet, Animated, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { gotCharHealth } from '../../Store/game';
+const { width, height } = Dimensions.get('screen');
 
 class healthBar extends React.Component {
   componentDidMount() {
@@ -18,7 +19,7 @@ class healthBar extends React.Component {
             borderColor: '#000',
             borderWidth: 3,
             borderRadius: 10,
-            width: this.props.charHealth,
+            width: (this.props.charHealth / 300) * width,
           }}
         >
           <Animated.View style={[StyleSheet.absoluteFill, {}]} />
