@@ -23,9 +23,12 @@ import Monster from './entities/Monster';
 import AttackButton from './components/AttackButton';
 import MonsterHealth from './components/MonsterHealth';
 import { connect } from 'react-redux';
-import { gotMonsterHp, updateKillTimes } from '../Store/game';
+import { updateKillTimesAndMonster ,gotCharHealth} from '../Store/game';
+import {fetchUnlockedHeroesNames} from '../Store/heroes'
+import store from '../Store'
 import Toast from 'react-native-toast-message';
-
+import {allMonsters} from './entities/Monster'
+import {arr} from './entities/Character'
 export const engine = Matter.Engine.create({ enableSleeping: false });
 const world = engine.world;
 const { width, height } = Dimensions.get('screen');
@@ -79,14 +82,19 @@ Matter.World.add(world, [
 ]);
 
 export class Play extends React.Component {
+  constructor(){
+    super()
+    this.state=({
+      rerender:true
+    })
+  }
   componentDidMount() {
-    this.props.setHP();
-    this.props.fetchHero();
-    this.props.fetchUser();
+   // this.props.setHP();
+   
   }
 
   render() {
-    if (this.props.monsterHealth <= 1) {
+    if (this.props.monsterHealth <= 0) {
       // this.props.setHP()
       Alert.alert(
         'Alert Title',
@@ -103,11 +111,15 @@ export class Play extends React.Component {
           },
           {
             text: 'OK',
-            onPress: () => {
+            onPress: async() => {
+        //  arr[0]=7
+allMonsters.push(allMonsters.shift());
+this.props.healChar()
+            await  this.props.updateKillTimesAndMonster();
+             await store.dispatch(fetchUnlockedHeroesNames())
               this.props.navigation.navigate('Heroes');
-
-              this.props.updateKillTimes();
-              this.props.setHP();
+              this.setState({rerender:!this.state.rerender})
+             // this.props.setHP();
             },
           },
         ],
@@ -217,10 +229,10 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    setHP: () => dispatch(gotMonsterHp()),
-    updateKillTimes: () => dispatch(updateKillTimes()),
-    fetchUser: () => dispatch(me()),
-    fetchHero: () => dispatch(fetchHero()),
+  
+    updateKillTimesAndMonster: () => dispatch(updateKillTimesAndMonster()),
+    healChar: () => dispatch(gotCharHealth())
+   
   };
 };
 

@@ -14,6 +14,7 @@ import { fetchAllHeroes, fetchUnlockedHeroesNames } from '../Store/heroes';
 import { fetchHero, setSelectedHero } from '../Store/hero';
 import store from '../Store';
 import { TouchableHighlight } from 'react-native-gesture-handler';
+import {arr} from './../GameEngine/entities/Character'
 
 const heroImages = {
   1: require('../assets/images/knight.png'),
@@ -43,9 +44,11 @@ class Heroes extends Component {
       selected
     })
   }
-  async handleSelection(id) {
+  async handleSelection(id,heroNum) {
+    arr[0]=heroNum-1
+   // console.log("***********",arr[0])
     await this.props.setSelectedHero(id)
-    let selected = this.props.selectedHero
+    let selected = store.getState().hero
     this.setState({
       selected
     })
@@ -69,6 +72,7 @@ class Heroes extends Component {
             </Text>
             <View style={{ height: 50 }}></View>
             {heroes.map((hero) => {
+            //  console.log(this.state.selected.name)
               let textStyling;
               let selectedStyling;
               unlockedNames.includes(hero.name)
@@ -79,7 +83,7 @@ class Heroes extends Component {
                 : null
               return (
                 <View style={styles.card} key={hero.id}>
-                  <TouchableHighlight onPress={() => this.handleSelection(hero.id)}>
+                  <TouchableHighlight onPress={() => this.handleSelection(hero.id,hero.heroNum)}>
                     <Image
                       style={[styles.imageSize, selectedStyling]}
                       source={heroImages[hero.heroNum]}

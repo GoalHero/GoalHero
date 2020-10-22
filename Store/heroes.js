@@ -14,7 +14,7 @@ const initialState = {
 };
 
 export const fetchUnlockedHeroesNames = () => async (dispatch) => {
-  try {
+  try {console.log('dedgrhserghserherhwerhwre')
     const { data: heroesNames } = await axios.get(
       'http://localhost:8080/api/hero/unlockedHeroes'
     );

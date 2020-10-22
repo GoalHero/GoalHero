@@ -70,7 +70,7 @@ router.get('/userHero', async (req, res, next) => {
       where: {
         id: userHero.HeroId,
       },
-      attributes: ['name', 'health', 'damage', 'range', 'imageUrl'],
+      attributes: ['heroNum','name', 'health', 'damage', 'range', 'imageUrl'],
     });
     if (hero) {
       res.json(hero);
@@ -81,7 +81,7 @@ router.get('/userHero', async (req, res, next) => {
     next(err);
   }
 });
-
+//set select hero
 router.put('/userHero', async (req, res, next) => {
   try {
     const currentHero = await UserHeroes.findOne({
@@ -147,6 +147,43 @@ router.get('/unlockedHeroes', async (req, res, next) => {
       unlockedHeroesNames.push(hero.name);
     });
     res.send(unlockedHeroesNames);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/unlockNewHeroes', async (req, res, next) => {
+  try {
+  //  console.log('HEREeeeeeee')
+    const user = await User.findOne({
+      where: {
+        id: req.user.id,
+      },
+      // include: [
+      //   {
+      //     model: Hero,
+      //   },
+      // ],
+    });
+    let whichUnlockedHeroId ;
+    if(user.killTimes+1<=10){
+    whichUnlockedHeroId = user.killTimes+1
+const hero = await Hero.findOne({
+  where:{
+    heroNum:whichUnlockedHeroId
+  }
+})
+await user.addHero(hero);
+res.send("unlockedNewHeroes");
+    }
+else
+res.sendStatus(433)
+
+
+
+
+ 
+   
   } catch (err) {
     next(err);
   }
