@@ -32,9 +32,9 @@ export const monsterWalking = (entities) => {
     if (direction === 'left') {
       walkLeft();
     }
-    // } else {
-    //   walkRight();
-    // }
+     } else {
+       walkRight();
+     }
     consecutive++;
   } else {
     if (direction === 'left') {
