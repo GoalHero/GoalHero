@@ -24,7 +24,7 @@ import Monster from './entities/Monster';
 import AttackButton from './components/AttackButton';
 import MonsterHealth from './components/MonsterHealth';
 import { connect } from 'react-redux';
-import { updateKillTimesAndMonster ,gotCharHealth} from '../Store/game';
+import { updateKillTimesAndMonster ,gotCharHealth,gotMonsterHp} from '../Store/game';
 import {fetchUnlockedHeroesNames} from '../Store/heroes'
 import store from '../Store'
 // import Toast from "react-native-toast-message";
@@ -98,61 +98,41 @@ export class Play extends React.Component {
   }
 
   render() {
-    if (this.props.monsterHealth <= 0) {
-      // this.props.setHP()
-      Alert.alert(
-        "You defeated the monster!",
-        "Ready for your new hero?",
-        [
-          {
-            text: "YES",
-            onPress: () => {
-              this.props.navigation.navigate("Heroes");
+   
 
-              this.props.updateKillTimes();
-              this.props.setHP();
-            },
-          },
-        ],
-        { cancelable: false }
-      );
-
-      // this.props.setHP()
-      // return (<>
-
-      // </>)
-    }
-
-    if (this.props.monsterHealth <= 1) {
-      // this.props.setHP()
-      Alert.alert(
-        "You defeated the monster!",
-        "Ready for your new hero?",
-        [
-          {
-            text: "YES",
-            onPress: () => {
-              this.props.navigation.navigate("Heroes");
-
-              this.props.updateKillTimes();
-              this.props.setHP();
-            },
-          },
-        ],
-        { cancelable: false }
-      );
-
-      // this.props.setHP()
-      // return (<>
-
-      // </>)
-    }
-
-    if (this.props.healthBar <= 1) {
+    if (this.props.healthBar<= 0) {
       // this.props.setHP()
       Alert.alert(
         "Your hero died!",
         "Time to complete more goals!",
+        [
+          {
+            text: "YES",
+            onPress: async() => {
+            await  this.props.healChar()
+           await   this.props.healMonster() 
+             this.props.navigation.navigate("Goals");
+             
+             // this.props.updateKillTimesAndMonster();
+             this.setState({rerender:!this.state.rerender})
+            },
+          },
+        ],
+        { cancelable: false }
+      );
+
+      // this.props.setHP()
+      // return (<>
+
+      // </>)
+    }
+
+   else if (this.props.monsterHealth <= 0) {
+      // this.props.setHP()
+      Alert.alert(
+        "You defeated the monster!",
+        "Ready for your new hero?",
+       
         [
           {
             text: "LET'S GO!",
@@ -271,7 +251,7 @@ const styles = StyleSheet.create({
 const mapState = (state) => {
   return {
     monsterHealth: state.game.monsterHealth,
-    healthBar: state.game.healthBar,
+    healthBar: state.game.charHealth,
   };
 };
 
@@ -279,7 +259,8 @@ const mapDispatch = (dispatch) => {
   return {
   
     updateKillTimesAndMonster: () => dispatch(updateKillTimesAndMonster()),
-    healChar: () => dispatch(gotCharHealth())
+    healChar: () => dispatch(gotCharHealth()),
+    healMonster:()=>dispatch(gotMonsterHp())
    
   };
 };
