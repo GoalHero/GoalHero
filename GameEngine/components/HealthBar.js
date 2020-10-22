@@ -6,7 +6,7 @@ class healthBar extends React.Component {
   render() {
     return (
       <View style={styles.healthContainer}>
-        <Text>Hero Health</Text>
+        <Text style={{ fontFamily: "Menlo-Regular" }}>Hero Health</Text>
         <View
           style={{
             flexDirection: "row",
@@ -19,7 +19,9 @@ class healthBar extends React.Component {
         >
           <Animated.View style={[StyleSheet.absoluteFill, {}]} />
         </View>
-        <Text>{`${this.props.charHealth} HP`}</Text>
+        <Text
+          style={{ fontFamily: "Menlo-Regular" }}
+        >{`${this.props.charHealth} HP`}</Text>
       </View>
     );
   }
