@@ -31,6 +31,8 @@ import {
 import { fetchUnlockedHeroesNames } from '../Store/heroes';
 import store from '../Store';
 // import Toast from "react-native-toast-message";
+import { Audio } from "expo-av"; 
+
 import Toast, { DURATION } from 'react-native-easy-toast';
 import Dialog, { DialogContent } from 'react-native-popup-dialog';
 import { allMonsters } from './entities/Monster';
@@ -95,10 +97,19 @@ export class Play extends React.Component {
       rerender: true,
     };
   }
-  componentDidMount() {
-    // this.props.setHP();
-  }
+ async componentDidMount() {
+    // try {
+    //   this.battleSound = new Audio.Sound(); 
+    //   await this.battleSound.loadAsync(
+    //     require("../Sound/battleMusic/battle.mp3")
+    //   )
+    //   await this.battleSound.setIsLoopingAsync(true); 
+    //   await this.battleSound.playAsync()
+    // } catch (error) {
+    //   console.log("there was an issue play the battle sounds: ", error)
+    // }
 
+  }
   render() {
     if (this.props.healthBar <= 0) {
       // this.props.setHP()

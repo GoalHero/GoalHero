@@ -12,13 +12,27 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { me } from '../Store/user';
 import { fetchHero } from '../Store/hero';
+import { Audio } from "expo-av"; 
 
 class HomeScreen extends React.Component {
   constructor() {
     super();
+    this.backgroundSound = null;
   }
 
   async componentDidMount() {
+    this.props.getMe();
+    try {
+      this.backgroundSound = new Audio.Sound(); 
+      await this.backgroundSound.loadAsync(
+        require("../Sound/battleMusic/battle.mp3")
+      )
+      await this.backgroundSound.setIsLoopingAsync(true); 
+      await this.backgroundSound.playAsync()
+    } catch (error) {
+      console.log("there was an issue play the backgroundMusic sounds: ", error)
+    }
+
     //this.props.getMe();
     this.props.fetchHero();
     this.props.fetchUser();
