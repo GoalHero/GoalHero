@@ -1,7 +1,7 @@
 import store from '../Store';
 
 // REDUX
-import { getMonsterHealth, getCharHealth, gotMonsterHp } from '../Store/game';
+import { getMonsterHealth, getCharHealth, gotMonsterHp } from "../Store/game";
 
 // (async()=>{
 //   await store.dispatch(gotMonsterHp())
@@ -24,6 +24,8 @@ let charPose = 0;
 let charAttacking = false;
 let charHurt = false;
 let charJump = true;
+let charImage = state.hero.imageUrl;
+let charState = ["idle", "hurt", "dying", "attacking"];
 
 // MONSTER PROPERTIES
 let monsterHealth = game.monsterHealth;
@@ -65,6 +67,28 @@ const incrementTick = () => {
   tick++;
 };
 
+const incrementCharPose = () => {
+  charPose++;
+  if (charPose > 9) {
+    charPose = 0;
+  }
+};
+
+const incrementMonsterPose = () => {
+  monsterPose++;
+  if (monsterPose > 9) {
+    monsterPose = 0;
+  }
+};
+
+const resetCharPose = () => {
+  charPose = 0;
+};
+
+const resetMonsterPose = () => {
+  monsterPose = 0;
+};
+
 export {
   charHealth,
   monsterHealth,
@@ -79,5 +103,12 @@ export {
   dispatchMonsterHealth,
   disableCharJump,
   incrementTick,
+
+  incrementCharPose,
+  incrementMonsterPose,
+  resetCharPose,
+  resetMonsterPose,
+
   updateStore,
+
 };

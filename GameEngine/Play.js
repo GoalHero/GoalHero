@@ -92,12 +92,14 @@ Matter.World.add(world, [
 ]);
 
 export class Play extends React.Component {
+
   constructor() {
     super();
     this.state = {
       rerender: true,
       rendergame: false,
     };
+
   }
   //  async componentDidMount() {
 
@@ -117,6 +119,7 @@ export class Play extends React.Component {
     if (this.props.healthBar <= 0) {
       // this.props.setHP()
       Alert.alert(
+
         "Your hero died!",
         "Time to complete more goals!",
         [
@@ -138,6 +141,7 @@ export class Play extends React.Component {
 
       // this.props.setHP()
       // return (<>
+
 
       // </>)
     } else if (this.props.monsterHealth <= 0) {
@@ -171,14 +175,6 @@ export class Play extends React.Component {
       // </>)
     }
 
-    // Toast.show({
-    //   text1: "Tap on attack to fight the monster!",
-    //   text2:
-    //     "Tap on the left or right side of the screen to move. Tap the top of the screen to jump. ",
-    //   type: "info",
-    //   visibilityTime: 15000,
-    //   topOffset: 275,
-    // });
 
     //else
     if (this.state.rendergame) {
@@ -347,9 +343,11 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
+
     updateKillTimesAndMonster: () => dispatch(updateKillTimesAndMonster()),
     healChar: () => dispatch(gotCharHealth()),
     healMonster: () => dispatch(gotMonsterHp()),
+
   };
 };
 

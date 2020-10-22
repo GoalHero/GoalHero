@@ -1,3 +1,6 @@
+
+
+
 import React, { Component } from 'react';
 import { View, Image } from 'react-native';
 import { array, object, string } from 'prop-types';
@@ -37,27 +40,25 @@ const allHeros = [
   defaultElemental,
 ];
 
+
 export default class Character extends Component {
   async componentDidMount(){
     const { data } = await axios.get(`http://localhost:8080/api/hero/userHero`);
       heroNum =data.heroNum
-      console.log(heroNum,'************')
+     
       chooseHeroPicture[0]=heroNum-1
   }
   render() {
-    // console.log("###******************")
+   
     const width = this.props.size[0];
     const height = this.props.size[1];
     const x = this.props.body.position.x - width / 2;
     const y = this.props.body.position.y - height / 2;
-    //  let index = this.props.selectedHero.heroNum-1
-    // let whichHero ;
-    //   this.props.selectedHero ? whichHero =allHeros[index]:whichHero =knightImages
 
     return (
       <Image
         style={{
-          position: 'absolute',
+          position: "absolute",
           left: x,
           top: y,
           width: width,

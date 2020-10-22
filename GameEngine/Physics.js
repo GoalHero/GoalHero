@@ -1,5 +1,7 @@
+
 import Matter, { MouseConstraint } from 'matter-js';
 import { Dimensions } from 'react-native';
+
 
 // GLOBAL VARIABLES
 import {
@@ -9,18 +11,30 @@ import {
   monsterHealth,
   tick,
   incrementTick,
-  hitDistanceX,
-  hitDistanceY,
-} from './Global';
+
+  incrementCharPose,
+  incrementMonsterPose,
+  monsterPose,
+  charPose,
+} from "./Global";
+import {
+  idle,
+  hurt,
+  dying,
+  attacking,
+  changeCharPose,
+  changeMonsterPose,
+} from "./animations/Animations";
+
 
 // FUNCTIONS
-import { monsterWalking } from './functions/MonsterWalking';
-import { monsterDamage } from './functions/MonsterDamage';
+import { monsterWalking } from "./functions/MonsterWalking";
+import { monsterDamage } from "./functions/MonsterDamage";
 
-import { characterWalking } from './functions/CharacterWalking';
-import { characterDamage } from './functions/CharacterDamage';
+import { characterWalking } from "./functions/CharacterWalking";
+import { characterDamage } from "./functions/CharacterDamage";
 
-const { width, height } = Dimensions.get('screen');
+const { width, height } = Dimensions.get("screen");
 
 const verifyTouch = (t) => {
   const x = t.event.pageX;
@@ -32,12 +46,12 @@ const verifyTouch = (t) => {
 };
 
 export const Physics = (entities, { touches, time }) => {
-  let engine = entities['physics'].engine;
+  let engine = entities["physics"].engine;
   let char = entities.initialChar.body;
   let monster = entities.initialMonster.body;
 
   touches
-    .filter((t) => t.type === 'press')
+    .filter((t) => t.type === "press")
     .forEach((t) => {
       if (verifyTouch(t)) {
         console.log('attack');
@@ -51,14 +65,27 @@ export const Physics = (entities, { touches, time }) => {
     });
 
   Matter.Engine.update(engine, time.delta);
+  incrementTick();
+
+  idle(entities.initialChar, "initialChar");
+  idle(entities.initialMonster, "initialMonster");
 
   monsterWalking(entities);
 
   if (tick % 50 === 0) {
     monsterDamage(entities);
   }
+  if (tick % 5 === 0) {
+    incrementCharPose();
+    changeCharPose(entities.initialChar);
+    incrementMonsterPose();
+    changeMonsterPose(entities.initialMonster);
+  }
 
-  incrementTick();
+  // console.log("\n\n\nmonsterpose\n\n\n", monsterPose);
+  // console.log("\n\n\ncharpose\n\n\n", charPose);
+  // console.log("\n\n\ncharSTATE\n\n", entities.initialChar.state);
+  // console.log("\n\n\nmonsterSTATE\n\n", entities.initialMonster.state);
 
   return entities;
 };
