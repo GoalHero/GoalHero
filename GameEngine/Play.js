@@ -12,22 +12,26 @@ import {
   Animated,
   Image,
   Alert,
-} from "react-native";
-import Character from "./entities/Character";
-import Floor from "./entities/Floor";
-import { Physics } from "./Physics";
-import HealthBar from "./components/HealthBar";
-import Wall from "./entities/Wall";
-import Boundary from "./entities/Boundary";
-import Monster from "./entities/Monster";
-import AttackButton from "./components/AttackButton";
-import MonsterHealth from "./components/MonsterHealth";
-import healthBar from "./components/HealthBar";
-import { connect } from "react-redux";
-import { gotMonsterHp, updateKillTimes } from "../Store/game";
+
+} from 'react-native';
+import Character from './entities/Character';
+import Floor from './entities/Floor';
+import { Physics } from './Physics';
+import HealthBar from './components/HealthBar';
+import Wall from './entities/Wall';
+import Boundary from './entities/Boundary';
+import Monster from './entities/Monster';
+import AttackButton from './components/AttackButton';
+import MonsterHealth from './components/MonsterHealth';
+import { connect } from 'react-redux';
+import { updateKillTimesAndMonster ,gotCharHealth} from '../Store/game';
+import {fetchUnlockedHeroesNames} from '../Store/heroes'
+import store from '../Store'
 // import Toast from "react-native-toast-message";
 import Toast, { DURATION } from "react-native-easy-toast";
 import Dialog, { DialogContent } from "react-native-popup-dialog";
+import {allMonsters} from './entities/Monster'
+import {arr} from './entities/Character'
 
 export const engine = Matter.Engine.create({ enableSleeping: false });
 const world = engine.world;
@@ -82,14 +86,19 @@ Matter.World.add(world, [
 ]);
 
 export class Play extends React.Component {
+  constructor(){
+    super()
+    this.state=({
+      rerender:true
+    })
+  }
   componentDidMount() {
-    this.props.setHP();
-    this.props.fetchHero();
-    this.props.fetchUser();
+   // this.props.setHP();
+   
   }
 
   render() {
-    if (this.props.monsterHealth <= 1) {
+    if (this.props.monsterHealth <= 0) {
       // this.props.setHP()
       Alert.alert(
         "You defeated the monster!",
@@ -147,11 +156,16 @@ export class Play extends React.Component {
         [
           {
             text: "LET'S GO!",
-            onPress: () => {
-              this.props.navigation.navigate("Heroes");
+            onPress: async() => {
+        //  arr[0]=7
+allMonsters.push(allMonsters.shift());
+this.props.healChar()
+            await  this.props.updateKillTimesAndMonster();
+             await store.dispatch(fetchUnlockedHeroesNames())
+              this.props.navigation.navigate('Heroes');
+              this.setState({rerender:!this.state.rerender})
+             // this.props.setHP();
 
-              this.props.updateKillTimes();
-              this.props.setHP();
             },
           },
         ],
@@ -263,10 +277,10 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    setHP: () => dispatch(gotMonsterHp()),
-    updateKillTimes: () => dispatch(updateKillTimes()),
-    fetchUser: () => dispatch(me()),
-    fetchHero: () => dispatch(fetchHero()),
+  
+    updateKillTimesAndMonster: () => dispatch(updateKillTimesAndMonster()),
+    healChar: () => dispatch(gotCharHealth())
+   
   };
 };
 

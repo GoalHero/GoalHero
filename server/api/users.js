@@ -1,9 +1,9 @@
-const router = require('express').Router();
-const { User, Hero, Goal } = require('../db/models');
-const adminOnly = require('./utils/adminOnly');
+const router = require("express").Router();
+const { User, Hero, Goal } = require("../db/models");
+const adminOnly = require("./utils/adminOnly");
 
 // Gets all users with their id, email
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     // Security
     // if (!req.user.isAdmin) {
@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
     // }
 
     const users = await User.findAll({
-      attributes: ['id', 'email'],
+      attributes: ["id", "email"],
     });
     res.json(users);
   } catch (err) {
@@ -23,7 +23,7 @@ router.get('/', async (req, res, next) => {
 
 // User signup, posts to /api/users
 // No security needed, any one can create a new user
-router.post('/', async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const currentUser = await User.findOne({
@@ -45,7 +45,7 @@ router.post('/', async (req, res, next) => {
 });
 
 // Gets user and char info from id
-router.get('/me', async (req, res, next) => {
+router.get("/me", async (req, res, next) => {
   try {
     const user = await User.findOne({
       where: {
@@ -54,7 +54,7 @@ router.get('/me', async (req, res, next) => {
         id: req.user.id,
       },
 
-      attributes: ['email', 'name', 'level', 'health', 'damage'],
+      attributes: ["email", "name", "level", "health", "damage"],
       include: [Hero, Goal],
     });
     if (user) {
@@ -68,7 +68,7 @@ router.get('/me', async (req, res, next) => {
 });
 
 // Updates user info
-router.put('/me', async (req, res, next) => {
+router.put("/me", async (req, res, next) => {
   try {
     const [numberOfUpdates, updatedUser] = await User.update(
       {
@@ -94,12 +94,13 @@ router.put('/me', async (req, res, next) => {
   }
 });
 
-router.delete('/:userId', adminOnly, async (req, res, next) => {
+router.delete("/:userId", adminOnly, async (req, res, next) => {
   try {
     await User.destroy({
       where: {
         id: req.params.userId,
       },
+      
     });
     res.sendStatus(200);
   } catch (err) {
@@ -107,18 +108,31 @@ router.delete('/:userId', adminOnly, async (req, res, next) => {
   }
 });
 
-// router.get('/MonsterHp', async (req, res, next) => {
-//   try {
+router.put("/UpdateHpAndKill", async (req, res, next) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        id: req.user.id,
+      },
+    });
+    console.log(user.monsterHP,user.killTimes,'gwrhweherher')
+    await User.update(
+      { monsterHP: user.monsterHP +5,
+      killTimes:user.killTimes+1
+      },
+      {
+        where: {
+          id: req.user.id,
+        },
+        returning: true,
+        plain: true,
+      }
+    );
 
-//     const user = await User.findOne({
-//      where:{
-//        id:req.user.id
-//      }
-//     });
-//     res.json(users);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+    res.send("updetedHP");
+  } catch (err) {
+    next(err);
+  }
+});
 
 module.exports = router;

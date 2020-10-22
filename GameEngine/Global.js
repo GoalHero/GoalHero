@@ -14,7 +14,11 @@ const game = state.game;
 let tick = 0;
 
 // CHARACTER PROPERTIES
-let charHealth = game.charHealth;
+//console.log( state.hero.health )
+
+let charHealth = state.hero.health  + state.user.health;
+//console.log(state.hero.health + state.user.health)
+//let charHealth=111
 let charDamage = state.hero.damage + state.user.damage;
 let charPose = 0;
 let charAttacking = false;
@@ -29,9 +33,10 @@ let monsterPose = 0;
 let monsterAttacking = false;
 let monsterHurt = false;
 
-const updateStore = () => {
+ const updateStore = () => {
   const state = store.getState();
-  monsterHealth = store.getState().game.monsterHealth;
+   charHealth = state.game.charHealth 
+  monsterHealth = state.game.monsterHealth;
   charDamage = state.hero.damage + state.user.damage;
 };
 
@@ -74,4 +79,5 @@ export {
   dispatchMonsterHealth,
   disableCharJump,
   incrementTick,
+  updateStore
 };
