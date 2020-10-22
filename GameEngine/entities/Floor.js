@@ -18,6 +18,7 @@ export default class Floor extends Component {
           width: width,
           height: height,
           backgroundColor: this.props.color || 'pink',
+          zIndex: 1,
         }}
       />
     );

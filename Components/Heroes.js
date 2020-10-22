@@ -45,10 +45,13 @@ class Heroes extends Component {
     });
   }
   async handleSelection(id, heroNum, heroName) {
-    let currentHeroId = this.props.selectedHero.id
+    let currentHeroId = this.props.selectedHero.id;
 
-    if (currentHeroId === id || this.props.unlockedHeroesNames.indexOf(heroName) === -1) {
-      return
+    if (
+      currentHeroId === id ||
+      this.props.unlockedHeroesNames.indexOf(heroName) === -1
+    ) {
+      return;
     }
     await this.props.setSelectedHero(id);
     chooseHeroPicture[0] = heroNum - 1;
@@ -91,7 +94,11 @@ class Heroes extends Component {
                 : null;
               return (
                 <View style={styles.card} key={hero.id}>
-                  <TouchableHighlight onPress={() => {this.handleSelection(hero.id, hero.heroNum, hero.name)}}>
+                  <TouchableHighlight
+                    onPress={() => {
+                      this.handleSelection(hero.id, hero.heroNum, hero.name);
+                    }}
+                  >
                     <Image
                       style={[styles.imageSize, selectedStyling]}
                       source={heroImages[hero.heroNum]}

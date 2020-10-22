@@ -12,6 +12,7 @@ import {
   Animated,
   Image,
   Alert,
+  Button,
 } from 'react-native';
 import Character from './entities/Character';
 import Floor from './entities/Floor';
@@ -95,6 +96,7 @@ export class Play extends React.Component {
     super();
     this.state = {
       rerender: true,
+      rendergame: false,
     };
   }
  async componentDidMount() {
@@ -176,72 +178,80 @@ export class Play extends React.Component {
     // });
 
     //else
-    return (
-      <View style={styles.playView}>
-        <Image
-          source={require('../assets/images/game_background_1.png')}
-          style={styles.absolute}
-        />
-        <View style={styles.absolute}>
-          <HealthBar />
-          <MonsterHealth />
-          {/* <AttackButton/> */}
-        </View>
+    if (this.state.rendergame) {
+      return (
+        <View style={styles.playView}>
+          <Image
+            source={require('../assets/images/game_background_1.png')}
+            style={styles.absolute}
+          />
+          <View style={styles.absolute}>
+            <HealthBar />
+            <MonsterHealth />
+          </View>
+          <AttackButton />
 
-        <GameEngine
-          // nav={this.props.navigation}
-          systems={[Physics]}
-          entities={{
-            physics: {
-              engine: engine,
-              world: world,
-            },
-            initialChar: {
-              body: initialChar,
-              size: [charSize * 1.2, charSize],
-              state: 'idle',
-              pose: '000',
-              face: 1,
-              renderer: Character,
-            },
-            initialMonster: {
-              body: initialMonster,
-              size: [monsterSize * 1.3, monsterSize],
-              state: 'idle',
-              pose: '000',
-              face: -1,
-              renderer: Monster,
-            },
-            floor: {
-              body: floor,
-              size: [width, floorSize],
-              color: 'green',
-              renderer: Floor,
-            },
-            wall: {
-              body: wall,
-              size: [width, height],
-              color: 'clear',
-              renderer: Wall,
-            },
-            rightBoundary: {
-              body: rightBoundary,
-              size: [boundarySize, height],
-              color: 'clear',
-              renderer: Boundary,
-            },
-            leftBoundary: {
-              body: leftBoundary,
-              size: [boundarySize, height],
-              color: 'clear',
-              renderer: Boundary,
-            },
-          }}
-        >
-          <StatusBar hidden={true} />
-        </GameEngine>
-      </View>
-    );
+          <GameEngine
+            // nav={this.props.navigation}
+            systems={[Physics]}
+            entities={{
+              physics: {
+                engine: engine,
+                world: world,
+              },
+              initialChar: {
+                body: initialChar,
+                size: [charSize * 1.2, charSize],
+                state: 'idle',
+                pose: '000',
+                face: 1,
+                renderer: Character,
+              },
+              initialMonster: {
+                body: initialMonster,
+                size: [monsterSize * 1.3, monsterSize],
+                state: 'idle',
+                pose: '000',
+                face: -1,
+                renderer: Monster,
+              },
+              floor: {
+                body: floor,
+                size: [width, floorSize],
+                color: 'green',
+                renderer: Floor,
+              },
+              wall: {
+                body: wall,
+                size: [width, height],
+                color: 'clear',
+                renderer: Wall,
+              },
+              rightBoundary: {
+                body: rightBoundary,
+                size: [boundarySize, height],
+                color: 'clear',
+                renderer: Boundary,
+              },
+              leftBoundary: {
+                body: leftBoundary,
+                size: [boundarySize, height],
+                color: 'clear',
+                renderer: Boundary,
+              },
+            }}
+          >
+            <StatusBar hidden={true} />
+          </GameEngine>
+        </View>
+      );
+    } else {
+      return (
+        <View>
+          <Button title="Play"></Button>
+        </View>
+      );
+    }
   }
 }
 

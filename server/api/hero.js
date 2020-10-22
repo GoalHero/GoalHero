@@ -70,7 +70,15 @@ router.get('/userHero', async (req, res, next) => {
       where: {
         id: userHero.HeroId,
       },
-      attributes: ['id', 'heroNum', 'name', 'health', 'damage', 'range', 'imageUrl'],
+      attributes: [
+        'id',
+        'heroNum',
+        'name',
+        'health',
+        'damage',
+        'range',
+        'imageUrl',
+      ],
     });
     if (hero) {
       res.json(hero);
@@ -118,7 +126,15 @@ router.put('/userHero', async (req, res, next) => {
       where: {
         id: updatedHero.HeroId,
       },
-      attributes: ['id', 'heroNum', 'name', 'health', 'damage', 'range', 'imageUrl'],
+      attributes: [
+        'id',
+        'heroNum',
+        'name',
+        'health',
+        'damage',
+        'range',
+        'imageUrl',
+      ],
     });
     if (hero) {
       res.json(hero);

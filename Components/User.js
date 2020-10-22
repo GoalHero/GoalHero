@@ -20,7 +20,6 @@ import { Audio } from "expo-av";
 import { logout } from '../Store/user';
 
 class User extends Component {
- 
   componentDidMount() {
     this.props.fetchUser();
     this.props.fetchHero();
@@ -70,8 +69,10 @@ class User extends Component {
 
               <Text style={styles.name}>Name: {user.name}</Text>
               <Text style={styles.userInfo}>Level: {user.level}</Text>
+
             <Text>User Health: {user.health} </Text>
             <Text>User Damage: {user.damage}</Text>
+
             </View>
           </View>
 
@@ -80,6 +81,7 @@ class User extends Component {
 
             <Text>Hero Health : {hero.health} </Text>
             <Text>Hero Damage : {hero.damage} </Text>
+
           </View>
           <View style={styles.buttonStyle}>
             <Button title="Log Out" onPress={() => this.signOutUser()} />
