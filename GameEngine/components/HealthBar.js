@@ -9,6 +9,7 @@ class healthBar extends React.Component {
     this.props.setHP();
   }
   render() {
+    const health = this.props.charHealth >= 0 ? this.props.charHealth : 0
     return (
       <View style={styles.healthContainer}>
         <Text style={{ fontFamily: 'Menlo-Regular' }}>Hero Health</Text>
@@ -26,7 +27,7 @@ class healthBar extends React.Component {
         </View>
         <Text
           style={{ fontFamily: 'Menlo-Regular' }}
-        >{`${this.props.charHealth} HP`}</Text>
+        >{`${health} HP`}</Text>
       </View>
     );
   }

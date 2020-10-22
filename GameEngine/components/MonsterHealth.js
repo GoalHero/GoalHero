@@ -9,7 +9,7 @@ class monsterHealth extends React.Component {
     this.props.setHP();
   }
   render() {
-    // console.log('1111111111',this.props.monsterHealth)
+    const health = this.props.monsterHealth >= 0 ? this.props.monsterHealth : 0
     return (
       <View style={styles.healthContainer}>
         <Text style={{ fontFamily: 'Menlo-Regular' }}>
@@ -30,7 +30,7 @@ class monsterHealth extends React.Component {
         </View>
         <Text
           style={{ fontFamily: 'Menlo-Regular' }}
-        >{`${this.props.monsterHealth} HP`}</Text>
+        >{`${health} HP`}</Text>
         <Text
           style={{
             fontFamily: 'Menlo-Regular',
