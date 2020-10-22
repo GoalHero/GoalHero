@@ -98,16 +98,16 @@ export class Play extends React.Component {
     };
   }
  async componentDidMount() {
-    try {
-      this.battleSound = new Audio.Sound(); 
-      await this.battleSound.loadAsync(
-        require("../Sound/battleMusic/battle.mp3")
-      )
-      await this.battleSound.setIsLoopingAsync(true); 
-      await this.battleSound.playAsync()
-    } catch (error) {
-      console.log("there was an issue play the battle sounds: ", error)
-    }
+    // try {
+    //   this.battleSound = new Audio.Sound(); 
+    //   await this.battleSound.loadAsync(
+    //     require("../Sound/battleMusic/battle.mp3")
+    //   )
+    //   await this.battleSound.setIsLoopingAsync(true); 
+    //   await this.battleSound.playAsync()
+    // } catch (error) {
+    //   console.log("there was an issue play the battle sounds: ", error)
+    // }
 
   }
   render() {

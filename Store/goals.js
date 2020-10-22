@@ -1,5 +1,6 @@
 import axios from 'axios';
-
+// import Store from './../Store'
+ import {me} from './user'
 const GET_GOALS = 'GET_GOALS';
 
 const goals = [];
@@ -53,6 +54,7 @@ export const completeGoal = (id) => async (dispatch) => {
     let { data: user } = await axios.get(`http://localhost:8080/api/users/me`);
     let goals = user.Goals;
     dispatch(getGoals(goals));
+    dispatch(me())
   } catch (error) {
     console.log(`failed to complete goal api/goals/${id}`);
   }
