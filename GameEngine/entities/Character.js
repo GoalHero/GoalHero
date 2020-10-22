@@ -21,7 +21,9 @@ import axios from 'axios';
 //  console.log(heroNum,'************')
 // })()
 
-export let arr = [0];
+
+export let chooseHeroPicture = [0];
+
 const allHeros = [
   knightImages,
   defaultBarbarian,
@@ -36,6 +38,12 @@ const allHeros = [
 ];
 
 export default class Character extends Component {
+  async componentDidMount(){
+    const { data } = await axios.get(`http://localhost:8080/api/hero/userHero`);
+      heroNum =data.heroNum
+      console.log(heroNum,'************')
+      chooseHeroPicture[0]=heroNum-1
+  }
   render() {
     // console.log("###******************")
     const width = this.props.size[0];
@@ -56,7 +64,7 @@ export default class Character extends Component {
           height: height,
           transform: [{ scaleX: this.props.face }],
         }}
-        source={allHeros[arr[0]][`${this.props.state}${this.props.pose}`]}
+        source={allHeros[chooseHeroPicture[0]][`${this.props.state}${this.props.pose}`]}
       />
     );
   }
