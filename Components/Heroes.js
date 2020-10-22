@@ -45,10 +45,23 @@ class Heroes extends Component {
     });
   }
 
+isSame(heroNum,newHeroNum,heroId){
+if(heroNum===newHeroNum)
+{return true;}
+this.handleSelection(hero.id,hero.heroNum)
+return false;
+}
+
+
+
   async handleSelection(id,heroNum) {
-    arr[0]=heroNum-1
+   console.log(heroNum,'==?',this.props.selectedHero.heroNum)
+    if(heroNum!==this.props.selectedHero.heroNum){
+      await this.props.setSelectedHero(id)
+      arr[0]=heroNum-1
+    }
    // console.log("***********",arr[0])
-    await this.props.setSelectedHero(id)
+   
     let selected = store.getState().hero
 
     this.setState({
@@ -86,7 +99,8 @@ class Heroes extends Component {
               return (
                 <View style={styles.card} key={hero.id}>
 
-                  <TouchableHighlight onPress={() => this.handleSelection(hero.id,hero.heroNum)}>
+                  <TouchableHighlight onPress={() =>{
+                   }}>
 
                     <Image
                       style={[styles.imageSize, selectedStyling]}
