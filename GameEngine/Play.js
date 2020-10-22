@@ -36,7 +36,7 @@ import { Audio } from "expo-av";
 import Toast, { DURATION } from 'react-native-easy-toast';
 import Dialog, { DialogContent } from 'react-native-popup-dialog';
 import { allMonsters } from './entities/Monster';
-import { arr } from './entities/Character';
+
 
 export const engine = Matter.Engine.create({ enableSleeping: false });
 const world = engine.world;

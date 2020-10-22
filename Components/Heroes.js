@@ -14,7 +14,7 @@ import { fetchAllHeroes, fetchUnlockedHeroesNames } from '../Store/heroes';
 import { fetchHero, setSelectedHero } from '../Store/hero';
 import store from '../Store';
 import { TouchableHighlight } from 'react-native-gesture-handler';
-import { arr } from './../GameEngine/entities/Character';
+import { chooseHeroPicture } from './../GameEngine/entities/Character';
 
 const heroImages = {
   1: require('../assets/images/knight.png'),
@@ -51,7 +51,7 @@ class Heroes extends Component {
       return
     }
     await this.props.setSelectedHero(id);
-    arr[0] = heroNum - 1;
+    chooseHeroPicture[0] = heroNum - 1;
 
     // console.log("***********",arr[0])
 
