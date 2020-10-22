@@ -10,7 +10,7 @@ import {
   tick,
   incrementTick,
   hitDistanceX,
-  hitDistanceY
+  hitDistanceY,
 } from './Global';
 
 // FUNCTIONS
@@ -23,8 +23,8 @@ import { characterDamage } from './functions/CharacterDamage';
 const { width, height } = Dimensions.get('screen');
 
 const verifyTouch = (t, monster) => {
-  const verifyX = Math.abs(t.event.pageX - monster.position.x) < hitDistanceX
-  const verifyY = Math.abs(t.event.pageY - monster.position.y) < hitDistanceY
+  const verifyX = Math.abs(t.event.pageX - monster.position.x) < hitDistanceX;
+  const verifyY = Math.abs(t.event.pageY - monster.position.y) < hitDistanceY;
   // console.log('x', Math.abs(t.event.pageX - monster.position.x))
   // console.log('y', Math.abs(t.event.pageY - monster.position.y))
   if (verifyX && verifyY) {
@@ -32,19 +32,19 @@ const verifyTouch = (t, monster) => {
   } else {
     return false;
   }
-}
+};
 
 export const Physics = (entities, { touches, time }) => {
   let engine = entities['physics'].engine;
   let char = entities.initialChar.body;
-  let monster = entities.initialMonster.body
+  let monster = entities.initialMonster.body;
 
   touches
     .filter((t) => t.type === 'press')
     .forEach((t) => {
-      console.log(t.event.pageY, monster.position.y)
+      console.log(t.event.pageY, monster.position.y);
       if (verifyTouch(t, monster)) {
-        console.log('attack')
+        console.log('attack');
         characterDamage(entities);
       } else if (t.event.pageY < height / 3 && charJump) {
         disableCharJump();
