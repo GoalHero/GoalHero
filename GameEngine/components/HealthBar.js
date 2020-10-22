@@ -1,17 +1,17 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Animated } from 'react-native';
-import { connect } from 'react-redux';
+import React, { useRef, useState, useEffect } from "react";
+import { Text, View, StyleSheet, Animated } from "react-native";
+import { connect } from "react-redux";
 
 class healthBar extends React.Component {
   render() {
     return (
       <View style={styles.healthContainer}>
-        <Text>Char Health</Text>
+        <Text>Hero Health</Text>
         <View
           style={{
-            flexDirection: 'row',
-            backgroundColor: 'white',
-            borderColor: '#000',
+            flexDirection: "row",
+            backgroundColor: "white",
+            borderColor: "#000",
             borderWidth: 3,
             borderRadius: 10,
             width: this.props.charHealth,
@@ -35,6 +35,6 @@ export default connect(mapState, null)(healthBar);
 
 const styles = StyleSheet.create({
   healthContainer: {
-    flexDirection: 'column',
+    flexDirection: "column",
   },
 });
