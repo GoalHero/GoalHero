@@ -11,6 +11,7 @@ import {
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { me } from '../Store/user';
+import { fetchHero } from '../Store/hero';
 
 class HomeScreen extends React.Component {
   constructor() {
@@ -18,7 +19,9 @@ class HomeScreen extends React.Component {
   }
 
   async componentDidMount() {
-    this.props.getMe();
+    //this.props.getMe();
+    this.props.fetchHero();
+    this.props.fetchUser();
   }
 
   render() {
@@ -69,6 +72,8 @@ const mapLogin = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     getMe: () => dispatch(me()),
+    fetchUser: () => dispatch(me()),
+    fetchHero: () => dispatch(fetchHero()),
   };
 };
 
