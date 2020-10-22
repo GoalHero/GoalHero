@@ -12,6 +12,8 @@ import {
   Animated,
   Image,
   Alert,
+  Button,
+  ImageBackground,
 } from "react-native";
 import Character from "./entities/Character";
 import Floor from "./entities/Floor";
@@ -23,8 +25,19 @@ import Monster from "./entities/Monster";
 import AttackButton from "./components/AttackButton";
 import MonsterHealth from "./components/MonsterHealth";
 import { connect } from "react-redux";
-import { gotMonsterHp, updateKillTimes } from "../Store/game";
-import Toast from "react-native-toast-message";
+import {
+  updateKillTimesAndMonster,
+  gotCharHealth,
+  gotMonsterHp,
+} from "../Store/game";
+import { fetchUnlockedHeroesNames } from "../Store/heroes";
+import store from "../Store";
+// import Toast from "react-native-toast-message";
+import { Audio } from "expo-av";
+
+import Toast, { DURATION } from "react-native-easy-toast";
+import Dialog, { DialogContent } from "react-native-popup-dialog";
+import { allMonsters } from "./entities/Monster";
 
 export const engine = Matter.Engine.create({ enableSleeping: false });
 const world = engine.world;
@@ -79,35 +92,77 @@ Matter.World.add(world, [
 ]);
 
 export class Play extends React.Component {
-  componentDidMount() {
-    this.props.setHP();
-    this.props.fetchHero();
-    this.props.fetchUser();
-  }
 
+  constructor() {
+    super();
+    this.state = {
+      rerender: true,
+      rendergame: false,
+    };
+
+  }
+  //  async componentDidMount() {
+
+  //     // try {
+  //     //   this.battleSound = new Audio.Sound();
+  //     //   await this.battleSound.loadAsync(
+  //     //     require("../Sound/battleMusic/battle.mp3")
+  //     //   )
+  //     //   await this.battleSound.setIsLoopingAsync(true);
+  //     //   await this.battleSound.playAsync()
+  //     // } catch (error) {
+  //     //   console.log("there was an issue play the battle sounds: ", error)
+  //     // }
+
+  //   }
   render() {
-    if (this.props.monsterHealth <= 1) {
+    if (this.props.healthBar <= 0) {
       // this.props.setHP()
       Alert.alert(
-        "Alert Title",
-        "My Alert Msg",
+
+        "Your hero died!",
+        "Time to complete more goals!",
         [
           {
-            text: "Ask me later",
-            onPress: () => console.log("Ask me later pressed"),
-          },
-          {
-            text: "Cancel",
-            onPress: () => console.log("Cancel Pressed"),
-            style: "cancel",
-          },
-          {
-            text: "OK",
-            onPress: () => {
-              this.props.navigation.navigate("Heroes");
+            text: "YES",
+            onPress: async () => {
+              this.setState({ rendergame: false });
+              await this.props.healChar();
+              await this.props.healMonster();
+              this.props.navigation.navigate("Goals");
 
-              this.props.updateKillTimes();
-              this.props.setHP();
+              // this.props.updateKillTimesAndMonster();
+              this.setState({ rerender: !this.state.rerender });
+            },
+          },
+        ],
+        { cancelable: false }
+      );
+
+      // this.props.setHP()
+      // return (<>
+
+
+      // </>)
+    } else if (this.props.monsterHealth <= 0) {
+      // this.props.setHP()
+      Alert.alert(
+        "You defeated the monster!",
+        "Ready for your new hero?",
+
+        [
+          {
+            text: "LET'S GO!",
+            onPress: async () => {
+              //  arr[0]=7
+              this.setState({ rendergame: false });
+              await this.props.updateKillTimesAndMonster();
+              allMonsters.push(allMonsters.shift());
+              await this.props.healChar();
+              await store.dispatch(fetchUnlockedHeroesNames());
+              this.props.navigation.navigate("Heroes");
+              this.setState({ rerender: !this.state.rerender });
+              // this.props.setHP();
             },
           },
         ],
@@ -120,81 +175,108 @@ export class Play extends React.Component {
       // </>)
     }
 
-    Toast.show({
-      text1: "Tap on attack to fight the monster!",
-      text2:
-        "Tap on the left or right side of the screen to move. Tap the top of the screen to jump. ",
-      type: "info",
-      visibilityTime: 15000,
-      topOffset: 275,
-    });
-    //else
-    return (
-      <View style={styles.playView}>
-        <Image
-          source={require("../assets/images/game_background_1.png")}
-          style={styles.absolute}
-        />
-        <View style={styles.absolute}>
-          <HealthBar />
-          <MonsterHealth />
-          {/* <AttackButton/> */}
-        </View>
 
-        <GameEngine
-          // nav={this.props.navigation}
-          systems={[Physics]}
-          entities={{
-            physics: {
-              engine: engine,
-              world: world,
-            },
-            initialChar: {
-              body: initialChar,
-              size: [charSize * 1.2, charSize],
-              state: "idle",
-              pose: "000",
-              face: 1,
-              renderer: Character,
-            },
-            initialMonster: {
-              body: initialMonster,
-              size: [monsterSize * 1.3, monsterSize],
-              state: "idle",
-              pose: "000",
-              face: -1,
-              renderer: Monster,
-            },
-            floor: {
-              body: floor,
-              size: [width, floorSize],
-              color: "green",
-              renderer: Floor,
-            },
-            wall: {
-              body: wall,
-              size: [width, height],
-              color: "clear",
-              renderer: Wall,
-            },
-            rightBoundary: {
-              body: rightBoundary,
-              size: [boundarySize, height],
-              color: "clear",
-              renderer: Boundary,
-            },
-            leftBoundary: {
-              body: leftBoundary,
-              size: [boundarySize, height],
-              color: "clear",
-              renderer: Boundary,
-            },
-          }}
+    //else
+    if (this.state.rendergame) {
+      return (
+        <View style={styles.playView}>
+          <Image
+            source={require("../assets/images/game_background_1.png")}
+            style={styles.absolute}
+          />
+          <View style={styles.absolute}>
+            <HealthBar />
+            <MonsterHealth />
+          </View>
+          <AttackButton />
+
+          <GameEngine
+            // nav={this.props.navigation}
+            systems={[Physics]}
+            entities={{
+              physics: {
+                engine: engine,
+                world: world,
+              },
+              initialChar: {
+                body: initialChar,
+                size: [charSize * 1.2, charSize],
+                state: "idle",
+                pose: "000",
+                face: 1,
+                renderer: Character,
+              },
+              initialMonster: {
+                body: initialMonster,
+                size: [monsterSize * 1.3, monsterSize],
+                state: "idle",
+                pose: "000",
+                face: -1,
+                renderer: Monster,
+              },
+              floor: {
+                body: floor,
+                size: [width, floorSize],
+                color: "green",
+                renderer: Floor,
+              },
+              wall: {
+                body: wall,
+                size: [width, height],
+                color: "clear",
+                renderer: Wall,
+              },
+              rightBoundary: {
+                body: rightBoundary,
+                size: [boundarySize, height],
+                color: "clear",
+                renderer: Boundary,
+              },
+              leftBoundary: {
+                body: leftBoundary,
+                size: [boundarySize, height],
+                color: "clear",
+                renderer: Boundary,
+              },
+            }}
+          >
+            <StatusBar hidden={true} />
+          </GameEngine>
+        </View>
+      );
+    } else {
+      return (
+        <ImageBackground
+          style={styles.background}
+          source={require("../assets/images/game_background_1.png")}
         >
-          <StatusBar hidden={true} />
-        </GameEngine>
-      </View>
-    );
+          <View style={styles.container}>
+            <Image
+              style={{ width: 360, height: 140 }}
+              source={require("../assets/images/logotest.png")}
+            />
+            <Text style={styles.body}>
+              <Text>
+                Time for battle!!! {"\n"}
+                Go unlock that new hero! {"\n\n"}
+                Press play when ready to fight the monster {"\n"}
+              </Text>
+            </Text>
+            <View>
+              <Text>{"\n\n\n"}</Text>
+            </View>
+          </View>
+          <View style={styles.buttonStyle}>
+            <Button
+              title="Play"
+              onPress={() => {
+                this.setState({ rendergame: true });
+              }}
+            ></Button>
+          </View>
+        </ImageBackground>
+      );
+    }
   }
 }
 
@@ -207,20 +289,65 @@ const styles = StyleSheet.create({
   absolute: {
     position: "absolute",
   },
+  buttonStyle: {
+    backgroundColor: "#F09031",
+    // color: 'white',
+    width: 200,
+    height: 40,
+    borderRadius: 200 / 20,
+    // marginTop: 2,
+    // alignItems: 'center',
+    // justifyContent: 'center',
+  },
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "space-between",
+    color: "purple",
+  },
+  header: {
+    justifyContent: "center",
+    fontSize: 20,
+    padding: 30,
+    color: "black",
+  },
+  body: {
+    fontSize: 12,
+    textAlign: "center",
+    backgroundColor: "#6A7B89",
+    padding: 10,
+    borderRadius: 20,
+    opacity: 0.7,
+    fontWeight: "bold",
+    fontFamily: "Menlo-Regular",
+    color: "white",
+  },
+  logo: {
+    width: 280,
+    height: 280,
+    marginLeft: "20%",
+    marginTop: "10%",
+  },
+  background: {
+    flex: 1,
+    resizeMode: "cover",
+  },
 });
 
 const mapState = (state) => {
   return {
     monsterHealth: state.game.monsterHealth,
+    healthBar: state.game.charHealth,
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
-    setHP: () => dispatch(gotMonsterHp()),
-    updateKillTimes: () => dispatch(updateKillTimes()),
-    fetchUser: () => dispatch(me()),
-    fetchHero: () => dispatch(fetchHero()),
+
+    updateKillTimesAndMonster: () => dispatch(updateKillTimesAndMonster()),
+    healChar: () => dispatch(gotCharHealth()),
+    healMonster: () => dispatch(gotMonsterHp()),
+
   };
 };
 

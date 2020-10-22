@@ -107,18 +107,29 @@ router.delete('/:userId', adminOnly, async (req, res, next) => {
   }
 });
 
-// router.get('/MonsterHp', async (req, res, next) => {
-//   try {
+router.put('/UpdateHpAndKill', async (req, res, next) => {
+  try {
+    const user = await User.findOne({
+      where: {
+        id: req.user.id,
+      },
+    });
+    console.log(user.monsterHP, user.killTimes, 'gwrhweherher');
+    await User.update(
+      { monsterHP: user.monsterHP + 5, killTimes: user.killTimes + 1 },
+      {
+        where: {
+          id: req.user.id,
+        },
+        returning: true,
+        plain: true,
+      }
+    );
 
-//     const user = await User.findOne({
-//      where:{
-//        id:req.user.id
-//      }
-//     });
-//     res.json(users);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+    res.send('updetedHP');
+  } catch (err) {
+    next(err);
+  }
+});
 
 module.exports = router;

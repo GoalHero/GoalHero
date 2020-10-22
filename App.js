@@ -37,6 +37,7 @@ const HomeStackScreen = ({ navigation }) => (
       headerTintColor: '#fff',
       headerTitleStyle: {
         fontWeight: 'bold',
+        fontFamily: 'Futura',
       },
     }}
   >
@@ -67,6 +68,7 @@ const LoginStackScreen = ({ navigation }) => (
       headerTintColor: '#fff',
       headerTitleStyle: {
         fontWeight: 'bold',
+        fontFamily: 'Futura',
       },
     }}
   >
@@ -97,6 +99,7 @@ const UserStackScreen = ({ navigation }) => (
       headerTintColor: '#fff',
       headerTitleStyle: {
         fontWeight: 'bold',
+        fontFamily: 'Futura',
       },
     }}
   >
@@ -127,6 +130,7 @@ const PlayStackScreen = ({ navigation }) => (
       headerTintColor: '#fff',
       headerTitleStyle: {
         fontWeight: 'bold',
+        fontFamily: 'Futura',
       },
     }}
   >
@@ -157,6 +161,7 @@ const GoalsStackScreen = ({ navigation }) => (
       headerTintColor: '#fff',
       headerTitleStyle: {
         fontWeight: 'bold',
+        fontFamily: 'Futura',
       },
     }}
   >
@@ -187,6 +192,7 @@ const HeroesStackScreen = ({ navigation }) => (
       headerTintColor: '#fff',
       headerTitleStyle: {
         fontWeight: 'bold',
+        fontFamily: 'Futura',
       },
     }}
   >

@@ -31,6 +31,10 @@ const User = db.define('User', {
     type: Sequelize.INTEGER,
     defaultValue: 50,
   },
+  killTimes: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+  },
 
   password: {
     type: Sequelize.STRING,

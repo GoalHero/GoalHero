@@ -39,6 +39,7 @@
     "react-native-easy-toast": "^1.2.0",
     "react-native-game-engine": "^1.2.0",
     "react-native-gesture-handler": "^1.7.0",
+    "react-native-popup-dialog": "^0.18.3",
     "react-native-progress": "^4.1.2",
     "react-native-reanimated": "^1.13.1",
     "react-native-safe-area-context": "^3.1.4",
@@ -52,7 +53,8 @@
     "redux-thunk": "^2.3.0",
     "sequelize": "^6.3.5",
     "serve": "^11.3.2",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.3.0",
+    "expo-av": "~8.6.0"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
