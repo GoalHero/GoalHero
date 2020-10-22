@@ -31,7 +31,7 @@ export const monsterWalking = (entities) => {
   if (consecutive < randomizer) {
     if (direction === 'left') {
       walkLeft();
-    }
+    
      } else {
        walkRight();
      }
