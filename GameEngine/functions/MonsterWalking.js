@@ -1,5 +1,5 @@
 import Matter from 'matter-js';
-import { monsterHealth,updateStore } from '../Global';
+import { monsterHealth, updateStore } from '../Global';
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -13,7 +13,7 @@ let direction = 'left';
 
 export const monsterWalking = (entities) => {
   if (monsterHealth <= 0) {
-    updateStore()
+    updateStore();
     return;
   }
 

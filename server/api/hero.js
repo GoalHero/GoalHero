@@ -24,7 +24,7 @@ router.get('/', async (req, res, next) => {
         'imageUrl',
         'heroNum',
       ],
-      order: [['heroNum', 'ASC']]
+      order: [['heroNum', 'ASC']],
     });
     console.log('these are the heroes', heroes);
     res.json(heroes);
@@ -63,14 +63,14 @@ router.get('/userHero', async (req, res, next) => {
     const userHero = await UserHeroes.findOne({
       where: {
         UserId: req.user.id,
-        current: true
+        current: true,
       },
     });
     const hero = await Hero.findOne({
       where: {
         id: userHero.HeroId,
       },
-      attributes: ['heroNum','name', 'health', 'damage', 'range', 'imageUrl'],
+      attributes: ['id', 'heroNum', 'name', 'health', 'damage', 'range', 'imageUrl'],
     });
     if (hero) {
       res.json(hero);
@@ -87,39 +87,39 @@ router.put('/userHero', async (req, res, next) => {
     const currentHero = await UserHeroes.findOne({
       where: {
         UserId: req.user.id,
-        current: true
-      }
-    })
+        current: true,
+      },
+    });
     const [num, updatedHero] = await UserHeroes.update(
       {
-        current: true
+        current: true,
       },
       {
         where: {
           UserId: req.user.id,
-          HeroId: req.body.id
+          HeroId: req.body.id,
         },
         returning: true,
         plain: true,
       }
-    )
+    );
     await UserHeroes.update(
       {
-        current: false
+        current: false,
       },
       {
         where: {
           UserId: req.user.id,
-          HeroId: currentHero.HeroId
-        }
+          HeroId: currentHero.HeroId,
+        },
       }
-    )
+    );
     const hero = await Hero.findOne({
       where: {
-        id: updatedHero.HeroId
+        id: updatedHero.HeroId,
       },
-      attributes: ['name', 'health', 'damage', 'range', 'imageUrl'],
-    })
+      attributes: ['id', 'heroNum', 'name', 'health', 'damage', 'range', 'imageUrl'],
+    });
     if (hero) {
       res.json(hero);
     } else {
@@ -154,7 +154,7 @@ router.get('/unlockedHeroes', async (req, res, next) => {
 
 router.post('/unlockNewHeroes', async (req, res, next) => {
   try {
-  //  console.log('HEREeeeeeee')
+    //  console.log('HEREeeeeeee')
     const user = await User.findOne({
       where: {
         id: req.user.id,
@@ -165,25 +165,17 @@ router.post('/unlockNewHeroes', async (req, res, next) => {
       //   },
       // ],
     });
-    let whichUnlockedHeroId ;
-    if(user.killTimes+1<=10){
-    whichUnlockedHeroId = user.killTimes+1
-const hero = await Hero.findOne({
-  where:{
-    heroNum:whichUnlockedHeroId
-  }
-})
-await user.addHero(hero);
-res.send("unlockedNewHeroes");
-    }
-else
-res.sendStatus(433)
-
-
-
-
- 
-   
+    let whichUnlockedHeroId;
+    if (user.killTimes + 1 <= 100) {
+      whichUnlockedHeroId = user.killTimes + 1;
+      const hero = await Hero.findOne({
+        where: {
+          heroNum: whichUnlockedHeroId,
+        },
+      });
+      await user.addHero(hero);
+      res.send('unlockedNewHeroes');
+    } else res.sendStatus(433);
   } catch (err) {
     next(err);
   }
