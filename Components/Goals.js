@@ -8,12 +8,13 @@ import {
   TextInput,
   ImageBackground,
 } from "react-native";
-import { useForm, useState } from "react-hook-form";
+import { useForm, useState, Controller } from "react-hook-form";
 import { connect } from "react-redux";
 import { fetchGoals, removeGoal, completeGoal, postGoal } from "../Store/goals";
+import { event } from "react-native-reanimated";
 
 const Goals = (props) => {
-  const { handleSubmit, register, setValue, reset } = useForm();
+  const { handleSubmit, register, setValue, control } = useForm();
 
   useEffect(() => {
     register("goalName");
@@ -39,10 +40,21 @@ const Goals = (props) => {
 
   // const [value, onChangeText] = React.useState("Placeholder!");
 
-  const submitAndClear = (goal) => {
-    handleSubmit(goal);
-    reset();
-  };
+  // const submitAndClear = (goal, event) => {
+  //   handleSubmit(goal);
+  //   event.target.reset();
+  // };
+
+  // const [text, setText] = useState("");
+
+  // const clearInput = () => {
+  //   setText("");
+  // };
+
+  // const submitAndClear = (goal) => {
+  //   handleSubmit(goal);
+  //   clearInput();
+  // };
 
   return (
     <ImageBackground
@@ -86,8 +98,20 @@ const Goals = (props) => {
         </View>
 
         <View style={styles.addGoal}>
+          {/* <form style={styles.addGoal}> */}
           {/* <Text style={styles.increaseVerticalMargin}>Add A New Goal:</Text> */}
-          <TextInput
+          <Controller
+            control={control}
+            render={({ onChange }) => (
+              <TextInput
+                style={styles.inputBox}
+                onChangeText={(text) => setValue("goalName", text)}
+              />
+            )}
+            name="goals"
+            defaultValue="test"
+          />
+          {/* <TextInput
             placeholder={props.input}
             style={styles.inputBox}
             onChangeText={(text) => setValue("goalName", text)}
@@ -100,17 +124,18 @@ const Goals = (props) => {
             ref={(input) => {
               props.default;
             }}
+          /> */}
+          {/* <View style={styles.topMargin}> */}
+          <Button
+            title="Add"
+            onPress={handleSubmit(props.postGoal)}
+            // onPress={submitAndClear(props.postGoal)}
+            // onPress={submitAndClear(props.postGoal, event)}
+            // setValue={props.default}
           />
-          <View style={styles.topMargin}>
-            <Button
-              title="Add"
-              onPress={handleSubmit(props.postGoal)}
-              // onChange={reset()}
-              // onPress={submitAndClear(props.postGoal)}
-              // setValue={""}
-              // setValue={props.default}
-            />
-          </View>
+          {/* </View> */}
+
+          {/* </form> */}
         </View>
       </View>
     </ImageBackground>
@@ -121,7 +146,6 @@ const mapState = (state) => {
   return {
     goals: state.goals,
     input: "Add New Goal Here ",
-    default: "",
   };
 };
 
