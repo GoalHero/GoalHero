@@ -39,6 +39,7 @@
     "react-native-easy-toast": "^1.2.0",
     "react-native-game-engine": "^1.2.0",
     "react-native-gesture-handler": "^1.7.0",
+    "react-native-popup-dialog": "^0.18.3",
     "react-native-progress": "^4.1.2",
     "react-native-reanimated": "^1.13.1",
     "react-native-safe-area-context": "^3.1.4",
