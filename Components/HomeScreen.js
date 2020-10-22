@@ -17,8 +17,12 @@ import { Audio } from "expo-av";
 class HomeScreen extends React.Component {
   constructor() {
     super();
+    this.state = {
+      isPlay: true 
+    }
     this.backgroundSound = null;
   }
+
 
   async componentDidMount() {
     this.props.getMe();
@@ -38,6 +42,20 @@ class HomeScreen extends React.Component {
     this.props.fetchUser();
   }
 
+  pauseMusic() {
+    if (this.state.isPlay) {
+      this.setState({
+        isPlay: false
+      })
+      this.backgroundSound.stopAsync()
+    }
+    else {
+      this.backgroundSound.playAsync()
+      this.setState({
+        isPlay: true
+      })
+    }
+  }
   render() {
     const im = 'logotest.png';
     return (
@@ -72,6 +90,7 @@ class HomeScreen extends React.Component {
             <Text>{'\n\n\n'}</Text>
           </View>
         </View>
+        <Button title="pause" style={styles.button} onPress={() => this.pauseMusic()}> pause </Button>
       </ImageBackground>
     );
   }
@@ -117,6 +136,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Menlo-Regular',
     color: 'white',
   },
+  button: {
+   width: 100, 
+   height: 50, 
+   textAlign: 'center'
+  }, 
   logo: {
     width: 280,
     height: 280,
