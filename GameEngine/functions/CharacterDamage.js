@@ -15,7 +15,7 @@ export const characterDamage = (entities) => {
   const state = store.getState();
   let charRange = state.hero.range;
   updateStore()
-console.log(charHealth,"===========>")
+//console.log(charHealth,"===========>")
   if (
     Math.abs(char.position.x - monster.position.x) < charRange &&
     monsterHealth > 0 &&
