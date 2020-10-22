@@ -22,6 +22,7 @@ import Boundary from "./entities/Boundary";
 import Monster from "./entities/Monster";
 import AttackButton from "./components/AttackButton";
 import MonsterHealth from "./components/MonsterHealth";
+import healthBar from "./components/HealthBar";
 import { connect } from "react-redux";
 import { gotMonsterHp, updateKillTimes } from "../Store/game";
 // import Toast from "react-native-toast-message";
@@ -96,6 +97,56 @@ export class Play extends React.Component {
         [
           {
             text: "YES",
+            onPress: () => {
+              this.props.navigation.navigate("Heroes");
+
+              this.props.updateKillTimes();
+              this.props.setHP();
+            },
+          },
+        ],
+        { cancelable: false }
+      );
+
+      // this.props.setHP()
+      // return (<>
+
+      // </>)
+    }
+
+    if (this.props.monsterHealth <= 1) {
+      // this.props.setHP()
+      Alert.alert(
+        "You defeated the monster!",
+        "Ready for your new hero?",
+        [
+          {
+            text: "YES",
+            onPress: () => {
+              this.props.navigation.navigate("Heroes");
+
+              this.props.updateKillTimes();
+              this.props.setHP();
+            },
+          },
+        ],
+        { cancelable: false }
+      );
+
+      // this.props.setHP()
+      // return (<>
+
+      // </>)
+    }
+
+    if (this.props.healthBar <= 1) {
+      // this.props.setHP()
+      Alert.alert(
+        "Your hero died!",
+        "Time to complete more goals!",
+        [
+          {
+            text: "LET'S GO!",
             onPress: () => {
               this.props.navigation.navigate("Heroes");
 
@@ -206,6 +257,7 @@ const styles = StyleSheet.create({
 const mapState = (state) => {
   return {
     monsterHealth: state.game.monsterHealth,
+    healthBar: state.game.healthBar,
   };
 };
 
