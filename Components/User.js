@@ -84,64 +84,6 @@ class User extends Component {
           <View style={styles.buttonStyle}>
             <Button title="Log Out" onPress={() => this.signOutUser()} />
           </View>
-          {/*
-          <View style={styles.body}>
-            <View style={styles.item}>
-              <View style={styles.iconContent}>
-                <Image
-                  style={styles.icon}
-                  source={{
-                    uri:
-                      "https://img.icons8.com/color/70/000000/filled-like.png",
-                  }}
-                />
-              </View>
-              <View style={styles.infoContent}>
-                <Text style={styles.info}>Health: {user.health}</Text>
-              </View>
-            </View>
-            <View style={styles.item}>
-              <View style={styles.iconContent}>
-                <Image
-                  style={styles.icon}
-                  source={{
-                    uri:
-                      "https://img.icons8.com/color/70/000000/administrator-male.png",
-                  }}
-                />
-              </View>
-              <View style={styles.infoContent}>
-                <Text style={{ textAlign: "center" }}>
-                  Damage: {user.damage}
-                </Text>
-              </View>
-            </View>
-            <View style={styles.item}>
-              <View style={styles.iconContent}>
-                <Image
-                  style={styles.icon}
-                  source={{
-                    uri: "https://img.icons8.com/color/70/000000/groups.png",
-                  }}
-                />
-              </View>
-              <View style={styles.infoContent}>
-                <Text style={styles.info}>Heroes: {hero.name}</Text>
-                <Text style={styles.item}></Text>
-                <Image
-                  style={styles.icon}
-                  source={{
-                    uri: `${hero.imageUrl}`,
-                  }}
-                />
-                <Button
-                  style={styles.buttonStyle}
-                  title="Log Out"
-                  onPress={() => this.signOutUser()}
-                />
-              </View>
-            </View>
-          </View> */}
         </View>
       </ImageBackground>
     );

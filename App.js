@@ -234,9 +234,9 @@ class App extends React.Component {
           <Drawer.Navigator initialRouteName="Home">
             <Drawer.Screen name="Home" component={HomeStackScreen} />
             <Drawer.Screen name="Goals" component={GoalsStackScreen} />
-            <Drawer.Screen name="Play" component={PlayStackScreen} />
             <Drawer.Screen name="Profile" component={UserStackScreen} />
             <Drawer.Screen name="Heroes" component={HeroesStackScreen} />
+            <Drawer.Screen name="Play" component={PlayStackScreen} />
           </Drawer.Navigator>
         </NavigationContainer>
       );

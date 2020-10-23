@@ -12,7 +12,15 @@ class healthBar extends React.Component {
     const health = this.props.charHealth >= 0 ? this.props.charHealth : 0;
     return (
       <View style={styles.healthContainer}>
-        <Text style={{ fontFamily: "Menlo-Regular" }}>Hero Health</Text>
+        <Text
+          style={{
+            fontFamily: "Menlo-Regular",
+            textAlign: "left",
+            marginLeft: 2,
+          }}
+        >
+          Hero Health
+        </Text>
         <View
           style={{
             flexDirection: "row",
@@ -45,6 +53,6 @@ export default connect(mapState, mapDispatch)(healthBar);
 
 const styles = StyleSheet.create({
   healthContainer: {
-    flexDirection: "column",
+    // flexDirection: "column",
   },
 });
