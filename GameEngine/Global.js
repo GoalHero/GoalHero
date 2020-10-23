@@ -14,18 +14,12 @@ const game = state.game;
 let tick = 0;
 
 // CHARACTER PROPERTIES
-//console.log( state.hero.health )
-
 let charHealth = state.hero.health + state.user.health;
-//console.log(state.hero.health + state.user.health)
-//let charHealth=111
 let charDamage = state.hero.damage + state.user.damage;
 let charPose = 0;
 let charAttacking = false;
 let charHurt = false;
 let charJump = true;
-let charImage = state.hero.imageUrl;
-let charState = ["idle", "hurt", "dying", "attacking"];
 
 // MONSTER PROPERTIES
 let monsterHealth = game.monsterHealth;
@@ -89,6 +83,22 @@ const resetMonsterPose = () => {
   monsterPose = 0;
 };
 
+const setCharHurt = (bool) => {
+  charHurt = bool;
+}
+
+const setCharAttacking = (bool) => {
+  charAttacking = bool;
+}
+
+const setMonsterHurt = (bool) => {
+  monsterHurt = bool;
+}
+
+const setMonsterAttacking = (bool) => {
+  monsterAttacking = bool;
+}
+
 export {
   charHealth,
   monsterHealth,
@@ -97,18 +107,23 @@ export {
   monsterPose,
   charJump,
   tick,
+  charAttacking,
+  charHurt,
+  monsterAttacking,
+  monsterHurt,
   damageChar,
   damageMonster,
   dispatchCharHealth,
   dispatchMonsterHealth,
   disableCharJump,
   incrementTick,
-
   incrementCharPose,
   incrementMonsterPose,
   resetCharPose,
   resetMonsterPose,
-
   updateStore,
-
+  setCharHurt,
+  setCharAttacking,
+  setMonsterHurt,
+  setMonsterAttacking
 };

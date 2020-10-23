@@ -3,8 +3,6 @@ import {
   monsterHealth,
   tick,
   incrementTick,
-  // charState,
-  // charImage,
   charPose,
   monsterPose,
   resetCharPose,
@@ -21,18 +19,18 @@ export const idle = (entity, name) => {
   resetObj[name];
 };
 
-export const hurt = (entities, name) => {
-  entities.name.state = "hurt";
+export const hurt = (entity, name) => {
+  entity.state = "hurt";
   resetObj[name];
 };
 
-export const dying = (entities, name) => {
-  entities.name.state = "dying";
+export const dying = (entity, name) => {
+  entity.state = "dying";
   resetObj[name];
 };
 
-export const attacking = (entities, name) => {
-  entities.name.state = "attacking";
+export const attacking = (entity, name) => {
+  entity.state = "attacking";
   resetObj[name];
 };
 
@@ -43,3 +41,4 @@ export const changeCharPose = (entity) => {
 export const changeMonsterPose = (entity) => {
   entity.pose = `00${monsterPose}`;
 };
+
