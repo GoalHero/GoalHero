@@ -17,7 +17,7 @@ export const fetchUnlockedHeroesNames = () => async (dispatch) => {
   try {
     //console.log('dedgrhserghserherhwerhwre');
     const { data: heroesNames } = await axios.get(
-      'http://localhost:8080/api/hero/unlockedHeroes'
+      'https://goal-hero-capstone.herokuapp.com/api/hero/unlockedHeroes'
     );
 
     dispatch(getUnlockedHeroesNames(heroesNames));
@@ -28,7 +28,7 @@ export const fetchUnlockedHeroesNames = () => async (dispatch) => {
 
 export const fetchAllHeroes = () => async (dispatch) => {
   try {
-    const { data: heroes } = await axios.get('http://localhost:8080/api/hero');
+    const { data: heroes } = await axios.get('https://goal-hero-capstone.herokuapp.com/api/hero');
     dispatch(getAllHeroes(heroes));
   } catch (error) {
     console.log('failed to get api/hero');

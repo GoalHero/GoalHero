@@ -222,8 +222,7 @@ class App extends React.Component {
 
   async componentDidMount() {
     this.props.getMe();
-    //  const res = await axios.get('http://localhost:8080/auth/me')
-    //  this.setState({user: res.data})
+    
   }
 
   render() {

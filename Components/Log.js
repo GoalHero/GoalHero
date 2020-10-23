@@ -30,10 +30,7 @@ const Log = (props) => {
       await props.login(email, password, formName);
       //await props.getMe();
       const user = store.getState().user;
-      //console.log("******",user)
-      // const res = await axios.get('http://localhost:8080/auth/me');
-      // //  console.log("res.data",res.data)
-      // //console.log("&&&&&",props.user,"^^^^^^^^^^^")
+     
       if (!user.id) throw new Error();
       Alert.alert("Congratulations");
       props.navigation.navigate("HomeScreen");

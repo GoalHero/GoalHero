@@ -9,7 +9,7 @@ const getHero = (hero) => ({ type: GET_HERO, hero });
 
 export const fetchHero = () => async (dispatch) => {
   try {
-    const { data } = await axios.get(`http://localhost:8080/api/hero/userHero`);
+    const { data } = await axios.get(`https://goal-hero-capstone.herokuapp.com/api/hero/userHero`);
     // console.log('array of heroes', data);
     dispatch(getHero(data));
   } catch (error) {
@@ -20,7 +20,7 @@ export const fetchHero = () => async (dispatch) => {
 export const setSelectedHero = (id) => async (dispatch) => {
   try {
     const { data } = await axios.put(
-      `http://localhost:8080/api/hero/userHero`,
+      `https://goal-hero-capstone.herokuapp.com/api/hero/userHero`,
       { id }
     );
     dispatch(getHero(data));

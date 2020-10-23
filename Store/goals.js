@@ -10,7 +10,7 @@ const getGoals = (goals) => ({ type: GET_GOALS, goals });
 export const fetchGoals = () => async (dispatch) => {
   try {
     const { data: user } = await axios.get(
-      `http://localhost:8080/api/users/me`
+      `https://goal-hero-capstone.herokuapp.com/api/users/me`
     );
     const goals = user.Goals;
     dispatch(getGoals(goals));
@@ -23,10 +23,10 @@ export const fetchGoals = () => async (dispatch) => {
 export const postGoal = (values) => async (dispatch) => {
   try {
     console.log('goalName', values.goalName);
-    await axios.post(`http://localhost:8080/api/goals/users/me`, {
+    await axios.post(`https://goal-hero-capstone.herokuapp.com/api/goals/users/me`, {
       name: values.goalName,
     });
-    let { data: user } = await axios.get(`http://localhost:8080/api/users/me`);
+    let { data: user } = await axios.get(`https://goal-hero-capstone.herokuapp.com/api/users/me`);
     const goals = user.Goals;
     dispatch(getGoals(goals));
   } catch (error) {
@@ -37,8 +37,8 @@ export const postGoal = (values) => async (dispatch) => {
 export const removeGoal = (id) => async (dispatch) => {
   try {
     console.log('removeId', id);
-    await axios.delete(`http://localhost:8080/api/goals/${id}`);
-    let { data: user } = await axios.get(`http://localhost:8080/api/users/me`);
+    await axios.delete(`https://goal-hero-capstone.herokuapp.com/api/goals/${id}`);
+    let { data: user } = await axios.get(`https://goal-hero-capstone.herokuapp.com/api/users/me`);
     let goals = user.Goals;
     dispatch(getGoals(goals));
   } catch (error) {
@@ -49,9 +49,9 @@ export const removeGoal = (id) => async (dispatch) => {
 export const completeGoal = (id) => async (dispatch) => {
   try {
     console.log('completeId', id);
-    await axios.put(`http://localhost:8080/api/goals/${id}`);
-    await axios.put(`http://localhost:8080/api/users/me`);
-    let { data: user } = await axios.get(`http://localhost:8080/api/users/me`);
+    await axios.put(`https://goal-hero-capstone.herokuapp.com/api/goals/${id}`);
+    await axios.put(`https://goal-hero-capstone.herokuapp.com/api/users/me`);
+    let { data: user } = await axios.get(`https://goal-hero-capstone.herokuapp.com/api/users/me`);
     let goals = user.Goals;
     dispatch(getGoals(goals));
     dispatch(me());

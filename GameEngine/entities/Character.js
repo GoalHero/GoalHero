@@ -14,12 +14,7 @@ import defaultViking from '../assets/characterSprites/defaultViking/defaultVikin
 import defaultWizard from '../assets/characterSprites/defaultWizard/defaultWizard.js';
 import axios from 'axios';
 
-// let heroNum ;
-// (async()=>{
-//   const { data } = await axios.get(`http://localhost:8080/api/hero/userHero`);
-//  heroNum =data.heroNum
-//  console.log(heroNum,'************')
-// })()
+
 
 export let chooseHeroPicture = [0];
 
@@ -38,7 +33,7 @@ const allHeros = [
 
 export default class Character extends Component {
   async componentDidMount() {
-    const { data } = await axios.get(`http://localhost:8080/api/hero/userHero`);
+    const { data } = await axios.get(`https://goal-hero-capstone.herokuapp.com/api/hero/userHero`);
     heroNum = data.heroNum;
 
     chooseHeroPicture[0] = heroNum - 1;
