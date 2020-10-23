@@ -23,23 +23,10 @@ class User extends Component {
   componentDidMount() {
     this.props.fetchUser();
     this.props.fetchHero();
-    // try {
-    //   this.backgroundSound = new Audio.Sound();
-    //   await this.backgroundSound.loadAsync(
-    //     require("../Sound/backgroundMusic/background.mp3")
-    //   )
-    //   await this.backgroundSound.setIsLoopingAsync(true);
-    //   await this.backgroundSound.playAsync()
-    // } catch (error) {
-    //   console.log("there was an issue play the background sounds: ", error)
-    // }
   }
   signOutUser() {
     this.props.logOut();
-
     alert("You have successfully logged out!");
-
-    // navigation.navigate("SignPage")
   }
 
   render() {
@@ -55,31 +42,34 @@ class User extends Component {
             style={{ width: 360, height: 140 }}
             source={require("../assets/images/logotest.png")}
           />
-
-          {/* <Text style={{ fontSize: 20 }}>Your Profile</Text> */}
           <View style={styles.header}>
             <View style={styles.headerContent}>
-              {/* <Image
-                style={styles.avatar}
-                source={{
-                  uri:
-                    "https://cdn4.vectorstock.com/i/1000x1000/35/68/person-icon-male-user-profile-avatar-vector-18833568.jpg",
-                }}
-              /> */}
+              <Text style={{ fontSize: 20, fontFamily: "Menlo-Regular" }}>
+                {user.name}
+                {"\n"}
+              </Text>
 
-              <Text style={styles.name}>Name: {user.name}</Text>
-              <Text style={styles.userInfo}>Level: {user.level}</Text>
+              <Text style={styles.name}>Level: {user.level}</Text>
 
-              <Text>User Health: {user.health} </Text>
-              <Text>User Damage: {user.damage}</Text>
+              <Text style={styles.userContent}>Health: {user.health} </Text>
+              <Text style={styles.userContent}> Damage: {user.damage}</Text>
             </View>
           </View>
 
           <View style={styles.body}>
-            <Text>Current Hero: {hero.name} </Text>
+            <Text
+              style={{
+                fontSize: 20,
+                fontFamily: "Menlo-Regular",
+                color: "white",
+              }}
+            >
+              HERO{"\n"}
+            </Text>
+            <Text style={styles.heroContent}>Current Hero: {hero.name} </Text>
 
-            <Text>Hero Health : {hero.health} </Text>
-            <Text>Hero Damage : {hero.damage} </Text>
+            <Text style={styles.heroContent}>Hero Health: {hero.health} </Text>
+            <Text style={styles.heroContent}>Hero Damage: {hero.damage} </Text>
           </View>
           <View style={styles.buttonStyle}>
             <Button title="Log Out" onPress={() => this.signOutUser()} />
@@ -115,19 +105,21 @@ const styles = StyleSheet.create({
   },
   header: {
     marginTop: 15,
-    backgroundColor: "#6A7B89",
+    backgroundColor: "#34B4D6",
     padding: 15,
     borderRadius: 20,
     opacity: 0.7,
+    width: 215,
   },
   headerContent: {
-    padding: 20,
+    padding: 10,
     alignItems: "center",
   },
   name: {
-    fontSize: 16,
-    color: "#000000",
+    fontSize: 18,
+    color: "black",
     fontWeight: "600",
+    fontFamily: "Menlo-Regular",
   },
   userInfo: {
     fontSize: 16,
@@ -137,12 +129,13 @@ const styles = StyleSheet.create({
   body: {
     // height: 500,
     alignItems: "center",
-    backgroundColor: "#6A7B89",
+    backgroundColor: "#00447A",
 
     borderRadius: 10,
     padding: 20,
     opacity: 0.7,
     marginVertical: 20,
+    width: 215,
   },
 
   buttonStyle: {
@@ -151,7 +144,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 40,
     borderRadius: 200 / 20,
-    marginTop: 30,
+    marginTop: 10,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -169,6 +162,7 @@ const styles = StyleSheet.create({
     paddingRight: 5,
     textAlign: "center",
     // backgroundColor: "white",
+    color: "white",
   },
   icon: {
     width: 50,
@@ -178,11 +172,19 @@ const styles = StyleSheet.create({
   info: {
     fontSize: 30,
     marginTop: 40,
-    color: "black",
+    color: "white",
     textAlign: "center",
   },
   background: {
     flex: 1,
     resizeMode: "cover",
+  },
+  userContent: {
+    color: "black",
+    fontFamily: "Menlo-Regular",
+  },
+  heroContent: {
+    color: "white",
+    fontFamily: "Menlo-Regular",
   },
 });

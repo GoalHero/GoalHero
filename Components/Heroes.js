@@ -181,6 +181,6 @@ const styles = StyleSheet.create({
     borderColor: "orange",
     borderRadius: 20,
     backgroundColor: "#FFE8D4",
-    opacity: 0.8,
+    opacity: 0.9,
   },
 });
