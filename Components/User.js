@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   StyleSheet,
   Text,
@@ -6,40 +6,27 @@ import {
   Image,
   Button,
   ImageBackground,
-} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './HomeScreen';
-import { connect } from 'react-redux';
-import { me } from '../Store/user';
-import { fetchHero } from '../Store/hero';
-import user from '../Store/user';
-import hero from '../Store/hero';
-import { Audio } from "expo-av"; 
+} from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import HomeScreen from "./HomeScreen";
+import { connect } from "react-redux";
+import { me } from "../Store/user";
+import { fetchHero } from "../Store/hero";
+import user from "../Store/user";
+import hero from "../Store/hero";
+import { Audio } from "expo-av";
 
-import { logout } from '../Store/user';
+import { logout } from "../Store/user";
 
 class User extends Component {
   componentDidMount() {
     this.props.fetchUser();
     this.props.fetchHero();
-    // try {
-    //   this.backgroundSound = new Audio.Sound(); 
-    //   await this.backgroundSound.loadAsync(
-    //     require("../Sound/backgroundMusic/background.mp3")
-    //   )
-    //   await this.backgroundSound.setIsLoopingAsync(true); 
-    //   await this.backgroundSound.playAsync()
-    // } catch (error) {
-    //   console.log("there was an issue play the background sounds: ", error)
-    // }
   }
   signOutUser() {
     this.props.logOut();
-
-    alert('You have successfully logged out!');
-
-    // navigation.navigate("SignPage")
+    alert("You have successfully logged out!");
   }
 
   render() {
@@ -48,102 +35,45 @@ class User extends Component {
     return (
       <ImageBackground
         style={styles.background}
-        source={require('../assets/images/game_background_1.png')}
+        source={require("../assets/images/game_background_1.png")}
       >
         <View style={styles.container}>
           <Image
             style={{ width: 360, height: 140 }}
-            source={require('../assets/images/logotest.png')}
+            source={require("../assets/images/logotest.png")}
           />
-
-          {/* <Text style={{ fontSize: 20 }}>Your Profile</Text> */}
           <View style={styles.header}>
             <View style={styles.headerContent}>
-              {/* <Image
-                style={styles.avatar}
-                source={{
-                  uri:
-                    "https://cdn4.vectorstock.com/i/1000x1000/35/68/person-icon-male-user-profile-avatar-vector-18833568.jpg",
-                }}
-              /> */}
+              <Text style={{ fontSize: 20, fontFamily: "Menlo-Regular" }}>
+                {user.name}
+                {"\n"}
+              </Text>
 
-              <Text style={styles.name}>Name: {user.name}</Text>
-              <Text style={styles.userInfo}>Level: {user.level}</Text>
+              <Text style={styles.name}>Level: {user.level}</Text>
 
-            <Text>User Health: {user.health} </Text>
-            <Text>User Damage: {user.damage}</Text>
-
+              <Text style={styles.userContent}>Health: {user.health} </Text>
+              <Text style={styles.userContent}> Damage: {user.damage}</Text>
             </View>
           </View>
 
           <View style={styles.body}>
-            <Text>Current Hero: {hero.name} </Text>
+            <Text
+              style={{
+                fontSize: 20,
+                fontFamily: "Menlo-Regular",
+                color: "white",
+              }}
+            >
+              HERO{"\n"}
+            </Text>
+            <Text style={styles.heroContent}>Current Hero: {hero.name} </Text>
 
-            <Text>Hero Health : {hero.health} </Text>
-            <Text>Hero Damage : {hero.damage} </Text>
-
+            <Text style={styles.heroContent}>Hero Health: {hero.health} </Text>
+            <Text style={styles.heroContent}>Hero Damage: {hero.damage} </Text>
           </View>
           <View style={styles.buttonStyle}>
             <Button title="Log Out" onPress={() => this.signOutUser()} />
           </View>
-          {/*
-          <View style={styles.body}>
-            <View style={styles.item}>
-              <View style={styles.iconContent}>
-                <Image
-                  style={styles.icon}
-                  source={{
-                    uri:
-                      "https://img.icons8.com/color/70/000000/filled-like.png",
-                  }}
-                />
-              </View>
-              <View style={styles.infoContent}>
-                <Text style={styles.info}>Health: {user.health}</Text>
-              </View>
-            </View>
-            <View style={styles.item}>
-              <View style={styles.iconContent}>
-                <Image
-                  style={styles.icon}
-                  source={{
-                    uri:
-                      "https://img.icons8.com/color/70/000000/administrator-male.png",
-                  }}
-                />
-              </View>
-              <View style={styles.infoContent}>
-                <Text style={{ textAlign: "center" }}>
-                  Damage: {user.damage}
-                </Text>
-              </View>
-            </View>
-            <View style={styles.item}>
-              <View style={styles.iconContent}>
-                <Image
-                  style={styles.icon}
-                  source={{
-                    uri: "https://img.icons8.com/color/70/000000/groups.png",
-                  }}
-                />
-              </View>
-              <View style={styles.infoContent}>
-                <Text style={styles.info}>Heroes: {hero.name}</Text>
-                <Text style={styles.item}></Text>
-                <Image
-                  style={styles.icon}
-                  source={{
-                    uri: `${hero.imageUrl}`,
-                  }}
-                />
-                <Button
-                  style={styles.buttonStyle}
-                  title="Log Out"
-                  onPress={() => this.signOutUser()}
-                />
-              </View>
-            </View>
-          </View> */}
         </View>
       </ImageBackground>
     );
@@ -170,65 +100,69 @@ export default connect(mapState, mapDispatch)(User);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 30,
   },
   header: {
     marginTop: 15,
-    backgroundColor: '#6A7B89',
+    backgroundColor: "#34B4D6",
     padding: 15,
     borderRadius: 20,
     opacity: 0.7,
+    width: 215,
   },
   headerContent: {
-    padding: 20,
-    alignItems: 'center',
+    padding: 10,
+    alignItems: "center",
   },
   name: {
-    fontSize: 16,
-    color: '#000000',
-    fontWeight: '600',
+    fontSize: 18,
+    color: "black",
+    fontWeight: "600",
+    fontFamily: "Menlo-Regular",
   },
   userInfo: {
     fontSize: 16,
-    color: '#000000',
-    fontWeight: '600',
+    color: "#000000",
+    fontWeight: "600",
   },
   body: {
     // height: 500,
-    alignItems: 'center',
-    backgroundColor: '#6A7B89',
+    alignItems: "center",
+    backgroundColor: "#00447A",
 
     borderRadius: 10,
     padding: 20,
     opacity: 0.7,
     marginVertical: 20,
+    width: 215,
   },
 
   buttonStyle: {
-    backgroundColor: '#F09031',
-    color: 'white',
-    width: 200,
+    backgroundColor: "#F09031",
+    color: "white",
+    width: 100,
     height: 40,
     borderRadius: 200 / 20,
-    marginTop: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: 10,
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   item: {
-    flexDirection: 'row',
-    backgroundColor: '#6A7B89',
+    flexDirection: "row",
+    backgroundColor: "#6A7B89",
     padding: 15,
     borderRadius: 20,
     opacity: 0.7,
   },
   infoContent: {
     flex: 1,
-    alignItems: 'flex-start',
+    alignItems: "flex-start",
     paddingRight: 5,
-    textAlign: 'center',
+    textAlign: "center",
     // backgroundColor: "white",
+    color: "white",
   },
   icon: {
     width: 50,
@@ -238,11 +172,19 @@ const styles = StyleSheet.create({
   info: {
     fontSize: 30,
     marginTop: 40,
-    color: 'black',
-    textAlign: 'center',
+    color: "white",
+    textAlign: "center",
   },
   background: {
     flex: 1,
-    resizeMode: 'cover',
+    resizeMode: "cover",
+  },
+  userContent: {
+    color: "black",
+    fontFamily: "Menlo-Regular",
+  },
+  heroContent: {
+    color: "white",
+    fontFamily: "Menlo-Regular",
   },
 });

@@ -92,14 +92,12 @@ Matter.World.add(world, [
 ]);
 
 export class Play extends React.Component {
-
   constructor() {
     super();
     this.state = {
       rerender: true,
       rendergame: false,
     };
-
   }
   //  async componentDidMount() {
 
@@ -119,7 +117,6 @@ export class Play extends React.Component {
     if (this.props.healthBar <= 0) {
       // this.props.setHP()
       Alert.alert(
-
         "Your hero died!",
         "Time to complete more goals!",
         [
@@ -141,7 +138,6 @@ export class Play extends React.Component {
 
       // this.props.setHP()
       // return (<>
-
 
       // </>)
     } else if (this.props.monsterHealth <= 0) {
@@ -174,7 +170,6 @@ export class Play extends React.Component {
 
       // </>)
     }
-
 
     //else
     if (this.state.rendergame) {
@@ -255,24 +250,49 @@ export class Play extends React.Component {
               style={{ width: 360, height: 140 }}
               source={require("../assets/images/logotest.png")}
             />
-            <Text style={styles.body}>
-              <Text>
-                Time for battle!!! {"\n"}
-                Go unlock that new hero! {"\n\n"}
-                Press play when ready to fight the monster {"\n"}
+            <View style={styles.body}>
+              <Text
+                style={{
+                  textAlign: "center",
+                  color: "white",
+                  fontFamily: "Menlo-Regular",
+                  fontWeight: "bold",
+                }}
+              >
+                HOW TO PLAY {"\n"}
               </Text>
-            </Text>
+              <Text style={styles.text}>
+                Tap the attack button in lower {"\n"}
+                right side to attack the monster! {"\n\n"}
+                Tap on the left and right sides of {"\n"}
+                the screen to move around {"\n\n"}
+                Tap on the top of the screen to jump {"\n\n\n"}
+              </Text>
+              <Text
+                style={{
+                  textAlign: "center",
+                  color: "black",
+                  fontFamily: "Menlo-Regular",
+                }}
+              >
+                It's time for battle!
+                {"\n"}
+                Press PLAY when you're ready!
+              </Text>
+            </View>
             <View>
               <Text>{"\n\n\n"}</Text>
             </View>
           </View>
-          <View style={styles.buttonStyle}>
-            <Button
-              title="Play"
-              onPress={() => {
-                this.setState({ rendergame: true });
-              }}
-            ></Button>
+          <View style={styles.buttonContainer}>
+            <View style={styles.topMargin}>
+              <Button
+                title="Play"
+                onPress={() => {
+                  this.setState({ rendergame: true });
+                }}
+              ></Button>
+            </View>
           </View>
         </ImageBackground>
       );
@@ -296,7 +316,7 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 200 / 20,
     // marginTop: 2,
-    // alignItems: 'center',
+    alignItems: "center",
     // justifyContent: 'center',
   },
   container: {
@@ -312,9 +332,10 @@ const styles = StyleSheet.create({
     color: "black",
   },
   body: {
+    marginTop: 20,
     fontSize: 12,
     textAlign: "center",
-    backgroundColor: "#6A7B89",
+    backgroundColor: "#037F5A", //blue
     padding: 10,
     borderRadius: 20,
     opacity: 0.7,
@@ -332,6 +353,23 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: "cover",
   },
+  text: {
+    textAlign: "center",
+    color: "white",
+    fontFamily: "Menlo-Regular",
+  },
+  topMargin: {
+    marginTop: 20,
+    backgroundColor: "#F09031", //orange (blue text)
+    width: 100,
+    height: 40,
+    borderRadius: 200 / 20,
+    // marginHorizontal: 140,
+  },
+  buttonContainer: {
+    alignItems: "center",
+    marginBottom: 50,
+  },
 });
 
 const mapState = (state) => {
@@ -343,11 +381,9 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-
     updateKillTimesAndMonster: () => dispatch(updateKillTimesAndMonster()),
     healChar: () => dispatch(gotCharHealth()),
     healMonster: () => dispatch(gotMonsterHp()),
-
   };
 };
 
