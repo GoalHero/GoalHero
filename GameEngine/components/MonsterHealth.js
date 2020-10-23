@@ -28,7 +28,9 @@ class monsterHealth extends React.Component {
         >
           <Animated.View style={[StyleSheet.absoluteFill, {}]} />
         </View>
+
         <Text style={{ fontFamily: "Menlo-Regular" }}>{`${health} HP`}</Text>
+
       </View>
     );
   }

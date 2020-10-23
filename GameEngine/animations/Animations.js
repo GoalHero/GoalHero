@@ -7,7 +7,7 @@ import {
   monsterPose,
   resetCharPose,
   resetMonsterPose,
-} from "../Global";
+} from '../Global';
 
 const resetObj = {
   initialChar: () => resetCharPose(),
@@ -15,22 +15,22 @@ const resetObj = {
 };
 
 export const idle = (entity, name) => {
-  entity.state = "idle";
+  entity.state = 'idle';
   resetObj[name];
 };
 
 export const hurt = (entity, name) => {
-  entity.state = "hurt";
+  entity.state = 'hurt';
   resetObj[name];
 };
 
 export const dying = (entity, name) => {
-  entity.state = "dying";
+  entity.state = 'dying';
   resetObj[name];
 };
 
 export const attacking = (entity, name) => {
-  entity.state = "attacking";
+  entity.state = 'attacking';
   resetObj[name];
 };
 
@@ -41,4 +41,3 @@ export const changeCharPose = (entity) => {
 export const changeMonsterPose = (entity) => {
   entity.pose = `00${monsterPose}`;
 };
-

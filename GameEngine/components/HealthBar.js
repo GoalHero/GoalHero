@@ -33,7 +33,9 @@ class healthBar extends React.Component {
         >
           <Animated.View style={[StyleSheet.absoluteFill, {}]} />
         </View>
-        <Text style={{ fontFamily: "Menlo-Regular" }}>{`${health} HP`}</Text>
+
+        <Text style={{ fontFamily: 'Menlo-Regular' }}>{`${health} HP`}</Text>
+
       </View>
     );
   }

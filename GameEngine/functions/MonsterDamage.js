@@ -5,10 +5,10 @@ import {
   monsterHealth,
   monsterRange,
   setCharHurt,
-  setMonsterAttacking
+  setMonsterAttacking,
 } from '../Global';
 
-import { hurt, attacking } from '../animations/Animations'
+import { hurt, attacking } from '../animations/Animations';
 
 export const monsterDamage = (entities) => {
   let char = entities.initialChar.body;
@@ -20,10 +20,10 @@ export const monsterDamage = (entities) => {
     monsterHealth > 0
   ) {
     setMonsterAttacking(true);
-    attacking(entities.initialMonster, "initialMonster");
+    attacking(entities.initialMonster, 'initialMonster');
 
     setCharHurt(true);
-    hurt(entities.initialChar, "initialChar");
+    hurt(entities.initialChar, 'initialChar');
     damageChar();
     dispatchCharHealth();
   }

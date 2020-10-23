@@ -10,11 +10,14 @@ import {
   ImageBackground,
 } from "react-native";
 
-import { fetchAllHeroes, fetchUnlockedHeroesNames } from "../Store/heroes";
-import { fetchHero, setSelectedHero } from "../Store/hero";
-import store from "../Store";
-import { TouchableHighlight } from "react-native-gesture-handler";
-import { chooseHeroPicture } from "./../GameEngine/entities/Character";
+
+import { fetchAllHeroes, fetchUnlockedHeroesNames } from '../Store/heroes';
+import { fetchHero, setSelectedHero } from '../Store/hero';
+import store from '../Store';
+import { TouchableHighlight } from 'react-native-gesture-handler';
+import { chooseHeroPicture } from './../GameEngine/entities/Character';
+import { setGameRunning } from '../GameEngine/Global';
+
 
 const heroImages = {
   1: require("../assets/images/knight.png"),
@@ -64,6 +67,8 @@ class Heroes extends Component {
   render() {
     const unlockedNames = this.props.unlockedHeroesNames;
     const heroes = this.props.heroes;
+
+    setGameRunning(false);
 
     if (!heroes) {
       return <View />;

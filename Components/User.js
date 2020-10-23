@@ -6,23 +6,27 @@ import {
   Image,
   Button,
   ImageBackground,
-} from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import HomeScreen from "./HomeScreen";
-import { connect } from "react-redux";
-import { me } from "../Store/user";
-import { fetchHero } from "../Store/hero";
-import user from "../Store/user";
-import hero from "../Store/hero";
-import { Audio } from "expo-av";
 
-import { logout } from "../Store/user";
+} from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from './HomeScreen';
+import { connect } from 'react-redux';
+import { me } from '../Store/user';
+import { fetchHero } from '../Store/hero';
+import user from '../Store/user';
+import hero from '../Store/hero';
+import { Audio } from 'expo-av';
+import { setGameRunning } from '../GameEngine/Global';
+
+import { logout } from '../Store/user';
+
 
 class User extends Component {
   componentDidMount() {
     this.props.fetchUser();
     this.props.fetchHero();
+
   }
   signOutUser() {
     this.props.logOut();
@@ -32,6 +36,7 @@ class User extends Component {
   render() {
     const user = this.props.user;
     const hero = this.props.hero;
+    setGameRunning(false);
     return (
       <ImageBackground
         style={styles.background}
@@ -49,14 +54,17 @@ class User extends Component {
                 {"\n"}
               </Text>
 
+
               <Text style={styles.name}>Level: {user.level}</Text>
 
               <Text style={styles.userContent}>Health: {user.health} </Text>
               <Text style={styles.userContent}> Damage: {user.damage}</Text>
+
             </View>
           </View>
 
           <View style={styles.body}>
+
             <Text
               style={{
                 fontSize: 20,
@@ -70,6 +78,7 @@ class User extends Component {
 
             <Text style={styles.heroContent}>Hero Health: {hero.health} </Text>
             <Text style={styles.heroContent}>Hero Damage: {hero.damage} </Text>
+
           </View>
           <View style={styles.buttonStyle}>
             <Button title="Log Out" onPress={() => this.signOutUser()} />
