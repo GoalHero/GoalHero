@@ -48,7 +48,9 @@ import { characterDamage } from './functions/CharacterDamage';
 const { width, height } = Dimensions.get('screen');
 
 const verifyTouch = (entities) => {
+
   if (!charAttacking && !monsterAttacking) {
+    
     setCharAttacking(true);
     attacking(entities.initialChar, 'initialChar');
     characterDamage(entities);
@@ -94,7 +96,7 @@ export const Physics = (entities, { touches, time }) => {
     idle(entities.initialMonster, 'initialMonster');
   }
 
-  if (tick % 100 === 0 && !charAttacking && gameRunning) {
+  if (tick % 30 === 0 && !charAttacking && gameRunning) {
     setCharJump(true);
     monsterDamage(entities);
   }

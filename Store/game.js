@@ -36,7 +36,7 @@ export const gotMonsterHp = () => async (dispatch) => {
     const res = await axios.get('http://localhost:8080/auth/me');
     const monsterHP = res.data.monsterHP;
     const killTimes = res.data.killTimes;
-    console.log(killTimes, '===========>');
+    
     dispatch(getMonsterHealth(monsterHP));
     dispatch(updateKillTimes(killTimes));
   } catch (error) {
