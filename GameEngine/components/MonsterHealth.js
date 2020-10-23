@@ -9,6 +9,7 @@ class monsterHealth extends React.Component {
     this.props.setHP();
   }
   render() {
+    const monsterHP = this.props.user.monsterHP+20
     const health = this.props.monsterHealth >= 0 ? this.props.monsterHealth : 0;
     return (
       <View style={styles.healthContainer}>
@@ -22,7 +23,7 @@ class monsterHealth extends React.Component {
             borderColor: "#000",
             borderWidth: 3,
             borderRadius: 10,
-            width: (this.props.monsterHealth / 300) * width,
+            width: (this.props.monsterHealth / monsterHP) * width,
             alignContent: "center",
           }}
         >
@@ -39,6 +40,7 @@ class monsterHealth extends React.Component {
 const mapState = (state) => {
   return {
     monsterHealth: state.game.monsterHealth,
+    user: state.user,
   };
 };
 
