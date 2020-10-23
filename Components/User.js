@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   StyleSheet,
   Text,
@@ -6,29 +6,29 @@ import {
   Image,
   Button,
   ImageBackground,
-} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from './HomeScreen';
-import { connect } from 'react-redux';
-import { me } from '../Store/user';
-import { fetchHero } from '../Store/hero';
-import user from '../Store/user';
-import hero from '../Store/hero';
-import { Audio } from "expo-av"; 
+} from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import HomeScreen from "./HomeScreen";
+import { connect } from "react-redux";
+import { me } from "../Store/user";
+import { fetchHero } from "../Store/hero";
+import user from "../Store/user";
+import hero from "../Store/hero";
+import { Audio } from "expo-av";
 
-import { logout } from '../Store/user';
+import { logout } from "../Store/user";
 
 class User extends Component {
   componentDidMount() {
     this.props.fetchUser();
     this.props.fetchHero();
     // try {
-    //   this.backgroundSound = new Audio.Sound(); 
+    //   this.backgroundSound = new Audio.Sound();
     //   await this.backgroundSound.loadAsync(
     //     require("../Sound/backgroundMusic/background.mp3")
     //   )
-    //   await this.backgroundSound.setIsLoopingAsync(true); 
+    //   await this.backgroundSound.setIsLoopingAsync(true);
     //   await this.backgroundSound.playAsync()
     // } catch (error) {
     //   console.log("there was an issue play the background sounds: ", error)
@@ -37,7 +37,7 @@ class User extends Component {
   signOutUser() {
     this.props.logOut();
 
-    alert('You have successfully logged out!');
+    alert("You have successfully logged out!");
 
     // navigation.navigate("SignPage")
   }
@@ -48,12 +48,12 @@ class User extends Component {
     return (
       <ImageBackground
         style={styles.background}
-        source={require('../assets/images/game_background_1.png')}
+        source={require("../assets/images/game_background_1.png")}
       >
         <View style={styles.container}>
           <Image
             style={{ width: 360, height: 140 }}
-            source={require('../assets/images/logotest.png')}
+            source={require("../assets/images/logotest.png")}
           />
 
           {/* <Text style={{ fontSize: 20 }}>Your Profile</Text> */}
@@ -70,9 +70,8 @@ class User extends Component {
               <Text style={styles.name}>Name: {user.name}</Text>
               <Text style={styles.userInfo}>Level: {user.level}</Text>
 
-            <Text>User Health: {user.health} </Text>
-            <Text>User Damage: {user.damage}</Text>
-
+              <Text>User Health: {user.health} </Text>
+              <Text>User Damage: {user.damage}</Text>
             </View>
           </View>
 
@@ -81,7 +80,6 @@ class User extends Component {
 
             <Text>Hero Health : {hero.health} </Text>
             <Text>Hero Damage : {hero.damage} </Text>
-
           </View>
           <View style={styles.buttonStyle}>
             <Button title="Log Out" onPress={() => this.signOutUser()} />
@@ -170,34 +168,34 @@ export default connect(mapState, mapDispatch)(User);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
     marginTop: 30,
   },
   header: {
     marginTop: 15,
-    backgroundColor: '#6A7B89',
+    backgroundColor: "#6A7B89",
     padding: 15,
     borderRadius: 20,
     opacity: 0.7,
   },
   headerContent: {
     padding: 20,
-    alignItems: 'center',
+    alignItems: "center",
   },
   name: {
     fontSize: 16,
-    color: '#000000',
-    fontWeight: '600',
+    color: "#000000",
+    fontWeight: "600",
   },
   userInfo: {
     fontSize: 16,
-    color: '#000000',
-    fontWeight: '600',
+    color: "#000000",
+    fontWeight: "600",
   },
   body: {
     // height: 500,
-    alignItems: 'center',
-    backgroundColor: '#6A7B89',
+    alignItems: "center",
+    backgroundColor: "#6A7B89",
 
     borderRadius: 10,
     padding: 20,
@@ -206,28 +204,28 @@ const styles = StyleSheet.create({
   },
 
   buttonStyle: {
-    backgroundColor: '#F09031',
-    color: 'white',
-    width: 200,
+    backgroundColor: "#F09031",
+    color: "white",
+    width: 100,
     height: 40,
     borderRadius: 200 / 20,
     marginTop: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   item: {
-    flexDirection: 'row',
-    backgroundColor: '#6A7B89',
+    flexDirection: "row",
+    backgroundColor: "#6A7B89",
     padding: 15,
     borderRadius: 20,
     opacity: 0.7,
   },
   infoContent: {
     flex: 1,
-    alignItems: 'flex-start',
+    alignItems: "flex-start",
     paddingRight: 5,
-    textAlign: 'center',
+    textAlign: "center",
     // backgroundColor: "white",
   },
   icon: {
@@ -238,11 +236,11 @@ const styles = StyleSheet.create({
   info: {
     fontSize: 30,
     marginTop: 40,
-    color: 'black',
-    textAlign: 'center',
+    color: "black",
+    textAlign: "center",
   },
   background: {
     flex: 1,
-    resizeMode: 'cover',
+    resizeMode: "cover",
   },
 });

@@ -46,70 +46,75 @@ const Goals = (props) => {
       source={require("../assets/images/game_background_1.png")}
     >
       <View style={styles.container}>
-        <Text style={styles.goalHeading}>YOUR CURRENT GOALS</Text>
-        <Text style={styles.info}>
-          Press the white button once you've completed a goal {"\n"} Press the
-          black button to remove a goal{" "}
-        </Text>
-        <View style={styles.goalList}>
-          {props.goals.map((goal) => {
-            if (!goal.completed) {
-              return (
-                <View key={goal.id} style={styles.goalRow}>
-                  <Text style={styles.orangeBox}>{goal.name}</Text>
-                  <View style={styles.complete}>
-                    <Button
-                      title="      Complete"
-                      textStyle={{ fontSize: 10 }}
-                      onPress={() => props.completeGoal(goal.id)}
-                    ></Button>
-                  </View>
-                  <View style={styles.remove}>
-                    <Button
-                      title="       Remove"
-                      onPress={() => props.removeGoal(goal.id)}
+        <View style={styles.mini1}>
+          <Text style={styles.goalHeading}>YOUR CURRENT GOALS</Text>
+          <Text style={styles.info}>
+            Press the white button once you've completed a goal {"\n"} Press the
+            black button to remove a goal{" "}
+          </Text>
+        </View>
+        <View style={styles.mini2}>
+          <View style={styles.goalList}>
+            {props.goals.map((goal) => {
+              if (!goal.completed) {
+                return (
+                  <View key={goal.id} style={styles.goalRow}>
+                    <Text style={styles.orangeBox}>{goal.name}</Text>
+                    <View style={styles.complete}>
+                      <Button
+                        title="      Complete"
+                        textStyle={{ fontSize: 10 }}
+                        onPress={() => props.completeGoal(goal.id)}
+                      ></Button>
+                    </View>
+                    <View style={styles.remove}>
+                      <Button
+                        title="       Remove"
+                        onPress={() => props.removeGoal(goal.id)}
 
-                      // onSubmitEditing=
-                    ></Button>
-                  </View>
+                        // onSubmitEditing=
+                      ></Button>
+                    </View>
 
-                  {/* <Button
+                    {/* <Button
                     title="Complete"
                     onPress={() => props.completeGoal(goal.id)}
                   ></Button> */}
-                  {/* <Button
+                    {/* <Button
                     title="Remove"
                     onPress={() => props.removeGoal(goal.id)}
                   ></Button> */}
-                </View>
-              );
-            }
-          })}
+                  </View>
+                );
+              }
+            })}
+          </View>
         </View>
-
-        <View style={styles.addGoal}>
-          {/* <Text style={styles.increaseVerticalMargin}>Add A New Goal:</Text> */}
-          <TextInput
-            placeholder={props.input}
-            style={styles.inputBox}
-            onChangeText={(text) => setValue("goalName", text)}
-            // defaultValue={props.default}
-            // onSubmitEditing={props.default}
-            // value={""}
-            // value={props.default}
-            // ref={props.default}
-            // value={value}
-            ref={(input) => {
-              props.default;
-            }}
-          />
-          <View style={styles.topMargin}>
-            <Button
-              title="Add"
-              onPress={handleSubmit(props.postGoal)}
-              // setValue={""}
-              // setValue={props.default}
+        <View style={styles.mini3}>
+          <View style={styles.addGoal}>
+            {/* <Text style={styles.increaseVerticalMargin}>Add A New Goal:</Text> */}
+            <TextInput
+              placeholder={props.input}
+              style={styles.inputBox}
+              onChangeText={(text) => setValue("goalName", text)}
+              // defaultValue={props.default}
+              // onSubmitEditing={props.default}
+              // value={""}
+              // value={props.default}
+              // ref={props.default}
+              // value={value}
+              ref={(input) => {
+                props.default;
+              }}
             />
+            <View style={styles.topMargin}>
+              <Button
+                title="ADD"
+                onPress={handleSubmit(props.postGoal)}
+                // setValue={""}
+                // setValue={props.default}
+              />
+            </View>
           </View>
         </View>
       </View>
@@ -140,7 +145,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
   },
   goalList: {
     flexDirection: "column",
@@ -177,9 +182,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   goalHeading: {
+    marginTop: 15,
     marginBottom: 20,
     fontSize: 30,
     fontFamily: "Menlo-Regular",
+    textAlign: "center",
+  },
+  mini1: {
+    justifyContent: "center",
   },
   info: {
     marginBottom: 10,
@@ -190,7 +200,9 @@ const styles = StyleSheet.create({
   },
   topMargin: {
     marginTop: 10,
+    marginBottom: 10,
     backgroundColor: "#F09031",
+    // backgroundColor: "#B62FAA",
     width: 80,
     height: 40,
     borderRadius: 200 / 20,
@@ -202,7 +214,7 @@ const styles = StyleSheet.create({
   complete: {
     marginTop: 20,
     backgroundColor: "white",
-    opacity: 0.7,
+    opacity: 0.8,
     width: 100,
     height: 40,
     borderRadius: 10,
@@ -214,7 +226,7 @@ const styles = StyleSheet.create({
   remove: {
     marginTop: 20,
     backgroundColor: "black",
-    opacity: 0.7,
+    opacity: 0.8,
     width: 80,
     height: 40,
     borderRadius: 10,
