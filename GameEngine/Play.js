@@ -38,6 +38,7 @@ import { Audio } from "expo-av";
 import Toast, { DURATION } from "react-native-easy-toast";
 import Dialog, { DialogContent } from "react-native-popup-dialog";
 import { allMonsters } from "./entities/Monster";
+import { setGameRunning, gameRunning } from "./Global";
 
 export const engine = Matter.Engine.create({ enableSleeping: false });
 const world = engine.world;
@@ -178,6 +179,7 @@ export class Play extends React.Component {
 
     //else
     if (this.state.rendergame) {
+      setGameRunning(true)
       return (
         <View style={styles.playView}>
           <Image

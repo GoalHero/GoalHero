@@ -12,13 +12,14 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { me } from '../Store/user';
 import { fetchHero } from '../Store/hero';
-import { Audio } from "expo-av"; 
+import { Audio } from "expo-av";
+import { setGameRunning } from '../GameEngine/Global';
 
 class HomeScreen extends React.Component {
   constructor() {
     super();
     this.state = {
-      isPlay: true, 
+      isPlay: true,
     }
     this.backgroundSound = null;
   }
@@ -27,11 +28,11 @@ class HomeScreen extends React.Component {
   async componentDidMount() {
     this.props.getMe();
     try {
-      this.backgroundSound = new Audio.Sound(); 
+      this.backgroundSound = new Audio.Sound();
       await this.backgroundSound.loadAsync(
         require("../Sound/battleMusic/battle.mp3")
       )
-      await this.backgroundSound.setIsLoopingAsync(true); 
+      await this.backgroundSound.setIsLoopingAsync(true);
       await this.backgroundSound.playAsync()
     } catch (error) {
       console.log("there was an issue play the backgroundMusic sounds: ", error)
@@ -56,8 +57,10 @@ class HomeScreen extends React.Component {
       })
     }
   }
+
   render() {
     const im = 'logotest.png';
+    setGameRunning(false)
     return (
       <ImageBackground
         style={styles.background}
@@ -91,9 +94,9 @@ class HomeScreen extends React.Component {
           </View>
         </View>
         <Button title ={ this.state.isPlay ? "pause" : "play" }
-        style={styles.button} 
+        style={styles.button}
         onPress={() => this.pauseMusic()}
-        > pause 
+        > pause
         </Button>
       </ImageBackground>
     );
@@ -141,11 +144,11 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   button: {
-   width: 100, 
-   height: 50, 
-   textAlign: 'center', 
+   width: 100,
+   height: 50,
+   textAlign: 'center',
    backgroundColor: '#F09031',
-  }, 
+  },
   logo: {
     width: 280,
     height: 280,

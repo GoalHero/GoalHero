@@ -11,6 +11,7 @@ import {
 import { useForm, useState } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { fetchGoals, removeGoal, completeGoal, postGoal } from '../Store/goals';
+import { setGameRunning } from '../GameEngine/Global';
 
 const Goals = (props) => {
   const { handleSubmit, register, setValue } = useForm();
@@ -38,6 +39,7 @@ const Goals = (props) => {
   // }
 
   // const [value, onChangeText] = React.useState("Placeholder!");
+  setGameRunning(false)
 
   return (
     <ImageBackground

@@ -6,7 +6,7 @@ import { Dimensions } from 'react-native';
 // GLOBAL VARIABLES
 import {
   charJump,
-  disableCharJump,
+  setCharJump,
   charHealth,
   monsterHealth,
   charHurt,
@@ -23,6 +23,13 @@ import {
   setMonsterHurt,
   setCharHurt,
   setMonsterAttacking,
+  gameRunning,
+  setCharDying,
+  setMonsterDying,
+  monsterDying,
+  charDying,
+  setGameRunning,
+  updateStore
 } from "./Global";
 import {
   idle,
@@ -51,6 +58,9 @@ const verifyTouch = (entities) => {
   }
 };
 
+let charDead = false;
+let monsterDead = false;
+
 export const Physics = (entities, { touches, time }) => {
   let engine = entities["physics"].engine;
   let char = entities.initialChar.body;
@@ -63,9 +73,10 @@ export const Physics = (entities, { touches, time }) => {
       const y = t.event.pageY;
 
       if (x > 290 && y > 595) {
+        setGameRunning(true)
         verifyTouch(entities)
       } else if (t.event.pageY < height / 3 && charJump) {
-        disableCharJump();
+        setCharJump(false);
         Matter.Body.applyForce(char, char.position, { x: 0, y: 3 });
       } else {
         characterWalking(entities, t);
@@ -78,31 +89,54 @@ export const Physics = (entities, { touches, time }) => {
 
   monsterWalking(entities);
 
-  if (!charAttacking && !charHurt) {
+  if (!charAttacking && !charHurt && !charDying) {
     idle(entities.initialChar, "initialChar");
   }
 
-  if (!monsterAttacking && !monsterHurt) {
+  if (!monsterAttacking && !monsterHurt && !monsterDying) {
     idle(entities.initialMonster, "initialMonster");
   }
 
-  if (tick % 100 === 0 && !charAttacking) {
+  if (tick % 100 === 0 && !charAttacking && gameRunning) {
+    setCharJump(true);
     monsterDamage(entities);
   }
-  if (tick % 5 === 0) {
+
+  if (tick % 5 === 0 && !monsterDead && !charDead) {
     incrementCharPose();
     changeCharPose(entities.initialChar);
     incrementMonsterPose();
     changeMonsterPose(entities.initialMonster);
   }
 
+  if (charHealth <= 0) {
+    setCharDying(true)
+    dying(entities.initialChar, "initialChar")
+  } else if (monsterHealth <= 0) {
+    setMonsterDying(true)
+    dying(entities.initialMonster, "initialMonster")
+  }
+
   if (charPose === 9) {
     setCharAttacking(false)
     setCharHurt(false)
+    setCharDying(false)
+    if (charHealth <= 0) {
+      charDead = true;
+    }
   }
   if (monsterPose === 9) {
     setMonsterAttacking(false)
     setMonsterHurt(false)
+    setMonsterDying(false)
+    if (monsterHealth <= 0) {
+      monsterDead = true;
+    }
+  }
+
+  if (monsterHealth > 0 && charHealth > 0) {
+    monsterDead = false;
+    charDead = false;
   }
 
   if (Math.abs(monster.position.x) > 150 || Math.abs(monster.position.y) > 600) {
