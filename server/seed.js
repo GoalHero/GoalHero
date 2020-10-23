@@ -41,67 +41,71 @@ async function seed() {
     Hero.create({
       heroNum: 1,
       name: 'Knight',
-      damage: 2,
+      damage: 1,
+      range: 5, 
       imageUrl: 'knight',
     }),
     Hero.create({
       heroNum: 2,
       name: 'Barbarian',
-      damage: 4,
-
+      damage: 3,
+      range: 8, 
       imageUrl: 'barbarian',
     }),
     Hero.create({
       heroNum: 5,
       name: 'Viking',
-      damage: 10,
-
+      damage: 5,
+      range: 10, 
       imageUrl: 'viking',
     }),
     Hero.create({
       heroNum: 3,
       name: 'Archer',
-      damage: 6,
-
+      damage: 4,
+      range: 40, 
       imageUrl: 'archer',
     }),
     Hero.create({
       heroNum: 4,
       name: 'Druid',
-      damage: 8,
+      damage: 13,
+      range: 13, 
       imageUrl: 'druid',
     }),
     Hero.create({
       heroNum: 6,
       name: 'Elf',
-      damage: 12,
-
+      damage: 5,
+      range: 15, 
       imageUrl: 'elf',
     }),
     Hero.create({
       heroNum: 7,
       name: 'Dark Elf',
-      damage: 14,
+      damage: 19,
+      range: 5, 
       imageUrl: 'darkelf',
     }),
     Hero.create({
       heroNum: 8,
       name: 'Ninja',
-      damage: 16,
+      damage: 20,
+      range: 10, 
       imageUrl: 'ninja',
     }),
     Hero.create({
       heroNum: 9,
       name: 'Wizard',
-      damage: 18,
-
+      damage: 10,
+      range: 30, 
       imageUrl: 'wizard',
     }),
     Hero.create({
       heroNum: 10,
       name: 'Elemental',
-      damage: 20,
-
+      damage: 30,
+      range: 30, 
       imageUrl: 'elemental',
     }),
   ]);
