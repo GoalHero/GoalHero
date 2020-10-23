@@ -132,7 +132,7 @@ export class Play extends React.Component {
               this.props.navigation.navigate("Goals");
 
               // this.props.updateKillTimesAndMonster();
-              // this.setState({ rerender: !this.state.rerender });
+               this.setState({ rerender: !this.state.rerender });
             },
           },
         ],
@@ -161,7 +161,7 @@ export class Play extends React.Component {
               await this.props.healChar();
               await store.dispatch(fetchUnlockedHeroesNames());
               this.props.navigation.navigate("Heroes");
-              // this.setState({ rerender: !this.state.rerender });
+               this.setState({ rerender: !this.state.rerender });
               // this.props.setHP();
             },
           },
