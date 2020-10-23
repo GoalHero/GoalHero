@@ -69,7 +69,7 @@ class Heroes extends Component {
     const unlockedNames = this.props.unlockedHeroesNames;
     const heroes = this.props.heroes;
 
-    setGameRunning(false)
+    setGameRunning(false);
 
     if (!heroes) {
       return <View />;
@@ -98,7 +98,7 @@ class Heroes extends Component {
               return (
                 <View style={styles.card} key={hero.id}>
                   <TouchableHighlight
-                  underlayColor="clear"
+                    underlayColor="clear"
                     onPress={() => {
                       this.handleSelection(hero.id, hero.heroNum, hero.name);
                     }}

@@ -1,7 +1,7 @@
 import store from '../Store';
 
 // REDUX
-import { getMonsterHealth, getCharHealth, gotMonsterHp } from "../Store/game";
+import { getMonsterHealth, getCharHealth, gotMonsterHp } from '../Store/game';
 
 // (async()=>{
 //   await store.dispatch(gotMonsterHp())
@@ -88,31 +88,31 @@ const resetMonsterPose = () => {
 
 const setCharHurt = (bool) => {
   charHurt = bool;
-}
+};
 
 const setCharAttacking = (bool) => {
   charAttacking = bool;
-}
+};
 
 const setCharDying = (bool) => {
   charDying = bool;
-}
+};
 
 const setMonsterHurt = (bool) => {
   monsterHurt = bool;
-}
+};
 
 const setMonsterAttacking = (bool) => {
   monsterAttacking = bool;
-}
+};
 
 const setMonsterDying = (bool) => {
   monsterDying = bool;
-}
+};
 
 const setGameRunning = (bool) => {
   gameRunning = bool;
-}
+};
 
 export {
   charHealth,
@@ -146,5 +146,5 @@ export {
   setMonsterHurt,
   setMonsterAttacking,
   setMonsterDying,
-  setGameRunning
+  setGameRunning,
 };

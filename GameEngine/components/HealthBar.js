@@ -9,7 +9,7 @@ class healthBar extends React.Component {
     this.props.setHP();
   }
   render() {
-    const health = this.props.charHealth >= 0 ? this.props.charHealth : 0
+    const health = this.props.charHealth >= 0 ? this.props.charHealth : 0;
     return (
       <View style={styles.healthContainer}>
         <Text style={{ fontFamily: 'Menlo-Regular' }}>Hero Health</Text>
@@ -25,9 +25,7 @@ class healthBar extends React.Component {
         >
           <Animated.View style={[StyleSheet.absoluteFill, {}]} />
         </View>
-        <Text
-          style={{ fontFamily: 'Menlo-Regular' }}
-        >{`${health} HP`}</Text>
+        <Text style={{ fontFamily: 'Menlo-Regular' }}>{`${health} HP`}</Text>
       </View>
     );
   }

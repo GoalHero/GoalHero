@@ -15,7 +15,7 @@ import { me } from '../Store/user';
 import { fetchHero } from '../Store/hero';
 import user from '../Store/user';
 import hero from '../Store/hero';
-import { Audio } from "expo-av";
+import { Audio } from 'expo-av';
 import { setGameRunning } from '../GameEngine/Global';
 
 import { logout } from '../Store/user';
@@ -46,7 +46,7 @@ class User extends Component {
   render() {
     const user = this.props.user;
     const hero = this.props.hero;
-    setGameRunning(false)
+    setGameRunning(false);
     return (
       <ImageBackground
         style={styles.background}
@@ -72,9 +72,8 @@ class User extends Component {
               <Text style={styles.name}>Name: {user.name}</Text>
               <Text style={styles.userInfo}>Level: {user.level}</Text>
 
-            <Text>User Health: {user.health} </Text>
-            <Text>User Damage: {user.damage}</Text>
-
+              <Text>User Health: {user.health} </Text>
+              <Text>User Damage: {user.damage}</Text>
             </View>
           </View>
 
@@ -83,7 +82,6 @@ class User extends Component {
 
             <Text>Hero Health : {hero.health} </Text>
             <Text>Hero Damage : {hero.damage} </Text>
-
           </View>
           <View style={styles.buttonStyle}>
             <Button title="Log Out" onPress={() => this.signOutUser()} />

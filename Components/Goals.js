@@ -39,7 +39,7 @@ const Goals = (props) => {
   // }
 
   // const [value, onChangeText] = React.useState("Placeholder!");
-  setGameRunning(false)
+  setGameRunning(false);
 
   return (
     <ImageBackground
