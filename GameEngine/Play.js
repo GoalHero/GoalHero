@@ -38,7 +38,7 @@ import { Audio } from 'expo-av';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import Dialog, { DialogContent } from 'react-native-popup-dialog';
 import { allMonsters } from './entities/Monster';
-import { setGameRunning, gameRunning } from './Global';
+import { setGameRunning, gameRunning ,updateStore} from './Global';
 
 export const engine = Matter.Engine.create({ enableSleeping: false });
 const world = engine.world;
@@ -128,6 +128,8 @@ export class Play extends React.Component {
             onPress: async () => {
               await this.props.healChar();
               await this.props.healMonster();
+              updateStore()
+              await this.props.getUpdatedUser()
               this.props.navigation.navigate('Goals');
 
               // this.props.updateKillTimesAndMonster();
@@ -158,6 +160,8 @@ export class Play extends React.Component {
               allMonsters.push(allMonsters.shift());
               await this.props.healChar();
               await store.dispatch(fetchUnlockedHeroesNames());
+              updateStore()
+              await this.props.getUpdatedUser()
               this.props.navigation.navigate('Heroes');
               // this.setState({ rerender: !this.state.rerender });
               this.setState({ rendergame: false });
@@ -392,6 +396,7 @@ const mapDispatch = (dispatch) => {
     updateKillTimesAndMonster: () => dispatch(updateKillTimesAndMonster()),
     healChar: () => dispatch(gotCharHealth()),
     healMonster: () => dispatch(gotMonsterHp()),
+    getUpdatedUser:()=>dispatch(me())
   };
 };
 

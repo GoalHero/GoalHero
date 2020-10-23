@@ -5,10 +5,14 @@ import { gotCharHealth } from "../../Store/game";
 const { width, height } = Dimensions.get("screen");
 
 class healthBar extends React.Component {
-  componentDidMount() {
+  
+   componentDidMount() {
+  
     this.props.setHP();
   }
   render() {
+    let totalHP=this.props.user.health+200
+
     const health = this.props.charHealth >= 0 ? this.props.charHealth : 0;
     return (
       <View style={styles.healthContainer}>
@@ -28,7 +32,7 @@ class healthBar extends React.Component {
             borderColor: "#000",
             borderWidth: 3,
             borderRadius: 10,
-            width: (this.props.charHealth / 300) * width,
+            width: (this.props.charHealth /totalHP) * width,
           }}
         >
           <Animated.View style={[StyleSheet.absoluteFill, {}]} />
@@ -44,6 +48,7 @@ class healthBar extends React.Component {
 const mapState = (state) => {
   return {
     charHealth: state.game.charHealth,
+    user: state.user,
   };
 };
 const mapDispatch = (dispatch) => {
