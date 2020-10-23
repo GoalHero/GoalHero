@@ -25,7 +25,7 @@ let charJump = true;
 
 // MONSTER PROPERTIES
 let monsterHealth = game.monsterHealth;
-let monsterDamage = 5;
+let monsterDamage = 45;
 let monsterRange = 85;
 let monsterPose = 0;
 let monsterAttacking = false;

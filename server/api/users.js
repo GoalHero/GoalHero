@@ -73,7 +73,7 @@ router.put('/me', async (req, res, next) => {
     const [numberOfUpdates, updatedUser] = await User.update(
       {
         level: req.user.level + 1,
-        health: Math.floor(req.user.health * 1.1),
+        health: Math.floor(req.user.health * 1.02),
         damage: Math.floor(req.user.damage * 1.1),
       },
       {
@@ -116,7 +116,7 @@ router.put('/UpdateHpAndKill', async (req, res, next) => {
     });
     console.log(user.monsterHP, user.killTimes, 'gwrhweherher');
     await User.update(
-      { monsterHP: user.monsterHP + 5, killTimes: user.killTimes + 1 },
+      { monsterHP: Math.floor(user.monsterHP *2), killTimes: user.killTimes + 1 },
       {
         where: {
           id: req.user.id,
