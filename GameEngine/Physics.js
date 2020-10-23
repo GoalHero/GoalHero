@@ -43,12 +43,11 @@ import { characterDamage } from "./functions/CharacterDamage";
 
 const { width, height } = Dimensions.get("screen");
 
-const verifyTouch = (t) => {
-  const x = t.event.pageX;
-  const y = t.event.pageY;
-
-  if (x > 290 && y > 595 && !charAttacking && !monsterAttacking) {
-    return true;
+const verifyTouch = (entities) => {
+  if (!charAttacking && !monsterAttacking) {
+    setCharAttacking(true);
+    attacking(entities.initialChar, "initialChar")
+    characterDamage(entities);
   }
 };
 
@@ -60,10 +59,11 @@ export const Physics = (entities, { touches, time }) => {
   touches
     .filter((t) => t.type === "press")
     .forEach((t) => {
-      if (verifyTouch(t)) {
-        setCharAttacking(true);
-        attacking(entities.initialChar, "initialChar")
-        characterDamage(entities);
+      const x = t.event.pageX;
+      const y = t.event.pageY;
+
+      if (x > 290 && y > 595) {
+        verifyTouch(entities)
       } else if (t.event.pageY < height / 3 && charJump) {
         disableCharJump();
         Matter.Body.applyForce(char, char.position, { x: 0, y: 3 });
@@ -86,7 +86,7 @@ export const Physics = (entities, { touches, time }) => {
     idle(entities.initialMonster, "initialMonster");
   }
 
-  if (tick % 50 === 0 && !charAttacking) {
+  if (tick % 100 === 0 && !charAttacking) {
     monsterDamage(entities);
   }
   if (tick % 5 === 0) {
