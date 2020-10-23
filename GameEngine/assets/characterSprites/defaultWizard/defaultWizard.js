@@ -1,4 +1,5 @@
 export default WizardImages = {
+
   idle000: require("./Idle/Idle_000.png"),
   idle001: require("./Idle/Idle_001.png"),
   idle002: require("./Idle/Idle_002.png"),
@@ -39,4 +40,5 @@ export default WizardImages = {
   dying007: require("./Dying/Dying_007.png"),
   dying008: require("./Dying/Dying_008.png"),
   dying009: require("./Dying/Dying_009.png"),
+
 };

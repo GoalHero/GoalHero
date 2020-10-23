@@ -1,10 +1,10 @@
-import Matter from "matter-js";
-import { Dimensions } from "react-native";
-import { idle } from "../animations/Animations";
+import Matter from 'matter-js';
+import { Dimensions } from 'react-native';
+import { idle } from '../animations/Animations';
 
-import { charHealth } from "../Global";
+import { charHealth } from '../Global';
 
-const { width } = Dimensions.get("screen");
+const { width } = Dimensions.get('screen');
 
 export const characterWalking = (entities, t) => {
   if (charHealth <= 0) {

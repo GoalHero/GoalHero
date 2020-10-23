@@ -1,7 +1,7 @@
 import store from '../Store';
 
 // REDUX
-import { getMonsterHealth, getCharHealth, gotMonsterHp } from "../Store/game";
+import { getMonsterHealth, getCharHealth, gotMonsterHp } from '../Store/game';
 
 // (async()=>{
 //   await store.dispatch(gotMonsterHp())
@@ -12,6 +12,7 @@ const state = store.getState();
 const game = state.game;
 
 let tick = 0;
+let gameRunning = false;
 
 // CHARACTER PROPERTIES
 let charHealth = state.hero.health + state.user.health;
@@ -19,6 +20,7 @@ let charDamage = state.hero.damage + state.user.damage;
 let charPose = 0;
 let charAttacking = false;
 let charHurt = false;
+let charDying = false;
 let charJump = true;
 
 // MONSTER PROPERTIES
@@ -28,6 +30,7 @@ let monsterRange = 85;
 let monsterPose = 0;
 let monsterAttacking = false;
 let monsterHurt = false;
+let monsterDying = false;
 
 const updateStore = () => {
   const state = store.getState();
@@ -53,8 +56,8 @@ const dispatchMonsterHealth = () => {
   store.dispatch(getMonsterHealth(monsterHealth));
 };
 
-const disableCharJump = () => {
-  charJump = false;
+const setCharJump = (bool) => {
+  charJump = bool;
 };
 
 const incrementTick = () => {
@@ -85,19 +88,31 @@ const resetMonsterPose = () => {
 
 const setCharHurt = (bool) => {
   charHurt = bool;
-}
+};
 
 const setCharAttacking = (bool) => {
   charAttacking = bool;
-}
+};
+
+const setCharDying = (bool) => {
+  charDying = bool;
+};
 
 const setMonsterHurt = (bool) => {
   monsterHurt = bool;
-}
+};
 
 const setMonsterAttacking = (bool) => {
   monsterAttacking = bool;
-}
+};
+
+const setMonsterDying = (bool) => {
+  monsterDying = bool;
+};
+
+const setGameRunning = (bool) => {
+  gameRunning = bool;
+};
 
 export {
   charHealth,
@@ -109,13 +124,16 @@ export {
   tick,
   charAttacking,
   charHurt,
+  charDying,
   monsterAttacking,
   monsterHurt,
+  monsterDying,
+  gameRunning,
   damageChar,
   damageMonster,
   dispatchCharHealth,
   dispatchMonsterHealth,
-  disableCharJump,
+  setCharJump,
   incrementTick,
   incrementCharPose,
   incrementMonsterPose,
@@ -124,6 +142,9 @@ export {
   updateStore,
   setCharHurt,
   setCharAttacking,
+  setCharDying,
   setMonsterHurt,
-  setMonsterAttacking
+  setMonsterAttacking,
+  setMonsterDying,
+  setGameRunning,
 };

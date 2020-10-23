@@ -4,10 +4,10 @@ import {
   monsterHealth,
   charHealth,
   updateStore,
-  setMonsterHurt
+  setMonsterHurt,
 } from '../Global';
 
-import { hurt } from '../animations/Animations'
+import { hurt } from '../animations/Animations';
 
 import store from '../../Store';
 
@@ -24,8 +24,8 @@ export const characterDamage = (entities) => {
     monsterHealth > 0 &&
     charHealth > 0
   ) {
-    setMonsterHurt(true)
-    hurt(entities.initialMonster, "initialMonster")
+    setMonsterHurt(true);
+    hurt(entities.initialMonster, 'initialMonster');
     damageMonster();
     dispatchMonsterHealth();
   }

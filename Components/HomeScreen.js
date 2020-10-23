@@ -7,12 +7,15 @@ import {
   StatusBar,
   Image,
   ImageBackground,
-} from "react-native";
-import axios from "axios";
-import { connect } from "react-redux";
-import { me } from "../Store/user";
-import { fetchHero } from "../Store/hero";
-import { Audio } from "expo-av";
+
+} from 'react-native';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { me } from '../Store/user';
+import { fetchHero } from '../Store/hero';
+import { Audio } from 'expo-av';
+import { setGameRunning } from '../GameEngine/Global';
+
 
 class HomeScreen extends React.Component {
   constructor() {
@@ -28,13 +31,17 @@ class HomeScreen extends React.Component {
     try {
       this.backgroundSound = new Audio.Sound();
       await this.backgroundSound.loadAsync(
-        require("../Sound/battleMusic/battle.mp3")
+
+        require('../Sound/battleMusic/battle.mp3')
+
       );
       await this.backgroundSound.setIsLoopingAsync(true);
       await this.backgroundSound.playAsync();
     } catch (error) {
       console.log(
-        "there was an issue play the backgroundMusic sounds: ",
+
+        'there was an issue play the backgroundMusic sounds: ',
+
         error
       );
     }
@@ -56,8 +63,12 @@ class HomeScreen extends React.Component {
       });
     }
   }
+
   render() {
-    const im = "logotest.png";
+
+    const im = 'logotest.png';
+    setGameRunning(false);
+
     return (
       <ImageBackground
         style={styles.background}
@@ -90,6 +101,7 @@ class HomeScreen extends React.Component {
             <Text>{"\n\n\n"}</Text>
           </View>
         </View>
+
         <View
           style={{
             flexDirection: "row",
@@ -109,6 +121,7 @@ class HomeScreen extends React.Component {
             source={require("../assets/images/musicnote.png")}
           />
         </View>
+
       </ImageBackground>
     );
   }
@@ -157,8 +170,10 @@ const styles = StyleSheet.create({
   button: {
     width: 100,
     height: 50,
-    textAlign: "center",
-    backgroundColor: "#F09031",
+
+    textAlign: 'center',
+    backgroundColor: '#F09031',
+
   },
   logo: {
     width: 280,
