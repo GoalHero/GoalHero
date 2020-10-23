@@ -335,7 +335,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     fontSize: 12,
     textAlign: "center",
-    backgroundColor: "#057BF7", //blue
+    backgroundColor: "#037F5A", //blue
     padding: 10,
     borderRadius: 20,
     opacity: 0.7,
