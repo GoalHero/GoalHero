@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     padding: 15,
     borderRadius: 20,
     opacity: 0.7,
-    width: 215,
+    width: 250,
   },
   headerContent: {
     padding: 10,
@@ -132,10 +132,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#00447A",
 
     borderRadius: 10,
-    padding: 20,
+    padding: 10,
     opacity: 0.7,
     marginVertical: 20,
-    width: 215,
+    width: 250,
   },
 
   buttonStyle: {
