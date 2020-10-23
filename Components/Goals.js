@@ -1,4 +1,4 @@
-import React, { Component, useEffect } from 'react';
+import React, { Component, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,16 +7,17 @@ import {
   StatusBar,
   TextInput,
   ImageBackground,
-} from 'react-native';
-import { useForm, useState } from 'react-hook-form';
-import { connect } from 'react-redux';
-import { fetchGoals, removeGoal, completeGoal, postGoal } from '../Store/goals';
+  Image,
+} from "react-native";
+import { useForm, useState } from "react-hook-form";
+import { connect } from "react-redux";
+import { fetchGoals, removeGoal, completeGoal, postGoal } from "../Store/goals";
 
 const Goals = (props) => {
   const { handleSubmit, register, setValue } = useForm();
 
   useEffect(() => {
-    register('goalName');
+    register("goalName");
 
     props.fetchGoals();
   }, [register]);
@@ -42,10 +43,14 @@ const Goals = (props) => {
   return (
     <ImageBackground
       style={styles.background}
-      source={require('../assets/images/game_background_1.png')}
+      source={require("../assets/images/game_background_1.png")}
     >
       <View style={styles.container}>
-        <Text style={styles.goalHeading}>YOUR GOALS</Text>
+        <Text style={styles.goalHeading}>YOUR CURRENT GOALS</Text>
+        <Text style={styles.info}>
+          Press the white button once you've completed a goal {"\n"} Press the
+          black button to remove a goal{" "}
+        </Text>
         <View style={styles.goalList}>
           {props.goals.map((goal) => {
             if (!goal.completed) {
@@ -54,14 +59,16 @@ const Goals = (props) => {
                   <Text style={styles.orangeBox}>{goal.name}</Text>
                   <View style={styles.complete}>
                     <Button
-                      title="Complete"
+                      title="      Complete"
+                      textStyle={{ fontSize: 10 }}
                       onPress={() => props.completeGoal(goal.id)}
                     ></Button>
                   </View>
                   <View style={styles.remove}>
                     <Button
-                      title="Remove"
+                      title="       Remove"
                       onPress={() => props.removeGoal(goal.id)}
+
                       // onSubmitEditing=
                     ></Button>
                   </View>
@@ -85,7 +92,7 @@ const Goals = (props) => {
           <TextInput
             placeholder={props.input}
             style={styles.inputBox}
-            onChangeText={(text) => setValue('goalName', text)}
+            onChangeText={(text) => setValue("goalName", text)}
             // defaultValue={props.default}
             // onSubmitEditing={props.default}
             // value={""}
@@ -113,8 +120,8 @@ const Goals = (props) => {
 const mapState = (state) => {
   return {
     goals: state.goals,
-    input: 'Add New Goal Here ',
-    default: '',
+    input: "Add New Goal Here ",
+    default: "",
   };
 };
 
@@ -132,69 +139,88 @@ export default connect(mapState, mapDispatch)(Goals);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "space-around",
   },
   goalList: {
-    flexDirection: 'column',
-    justifyContent: 'space-evenly',
+    flexDirection: "column",
+    justifyContent: "space-evenly",
   },
   goalRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    alignContent: "space-between",
   },
   addGoal: {
-    alignItems: 'center',
-    marginTop: 100,
+    alignItems: "center",
+    marginTop: 10,
   },
   increaseVerticalMargin: {
     marginBottom: 50,
   },
   orangeBox: {
-    backgroundColor: '#B7BBBE',
+    // goals
+    backgroundColor: "#37BC93",
     width: 150,
     height: 50,
-    textAlign: 'center',
+    textAlign: "center",
     opacity: 0.8,
-    // borderRadius: 10,
+    borderRadius: 10,
+    margin: 10,
   },
   inputBox: {
-    backgroundColor: '#057BF7',
+    backgroundColor: "#7E5ABC",
     opacity: 0.8,
     width: 160,
     height: 60,
-    textAlign: 'center',
+    textAlign: "center",
     borderRadius: 10,
   },
   goalHeading: {
-    marginBottom: 50,
+    marginBottom: 20,
     fontSize: 30,
+    fontFamily: "Menlo-Regular",
+  },
+  info: {
+    marginBottom: 10,
+    fontSize: 12,
+    fontFamily: "Menlo-Regular",
+    color: "gray",
+    textAlign: "center",
   },
   topMargin: {
-    marginTop: 20,
-    backgroundColor: '#F09031',
-    width: 100,
+    marginTop: 10,
+    backgroundColor: "#F09031",
+    width: 80,
     height: 40,
     borderRadius: 200 / 20,
   },
   background: {
     flex: 1,
-    resizeMode: 'cover',
+    resizeMode: "cover",
   },
   complete: {
     marginTop: 20,
-    backgroundColor: '#4DC175',
+    backgroundColor: "white",
+    opacity: 0.7,
     width: 100,
     height: 40,
     borderRadius: 10,
+    marginRight: 10,
+    marginBottom: 15,
+    width: 40,
+    height: 40,
   },
   remove: {
     marginTop: 20,
-    backgroundColor: '#633193',
+    backgroundColor: "black",
+    opacity: 0.7,
     width: 80,
     height: 40,
     borderRadius: 10,
+    marginBottom: 15,
     // margin: 5,
+    width: 40,
+    height: 40,
   },
 });
