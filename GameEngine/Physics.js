@@ -139,14 +139,14 @@ export const Physics = (entities, { touches, time }) => {
   }
 
   if (
-    Math.abs(monster.position.x) > 150 ||
-    Math.abs(monster.position.y) > 600
+    Math.abs(monster.position.x) > 2000 ||
+    Math.abs(monster.position.y) > 2000
   ) {
     monster.position.x = 60;
     monster.position.y = 520.183;
   }
 
-  if (Math.abs(char.position.x) > 150 || Math.abs(char.position.y) > 600) {
+  if (Math.abs(char.position.x) > 2000 || Math.abs(char.position.y) > 2000) {
     char.position.x = 60;
     char.position.y = 530.183;
   }
