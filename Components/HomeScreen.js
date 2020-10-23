@@ -39,7 +39,6 @@ class HomeScreen extends React.Component {
       );
     }
 
-    //this.props.getMe();
     this.props.fetchHero();
     this.props.fetchUser();
   }

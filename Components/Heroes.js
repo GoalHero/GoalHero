@@ -55,9 +55,6 @@ class Heroes extends Component {
     }
     await this.props.setSelectedHero(id);
     chooseHeroPicture[0] = heroNum - 1;
-
-    // console.log("***********",arr[0])
-
     let selected = store.getState().hero;
 
     this.setState({
@@ -150,11 +147,6 @@ const styles = StyleSheet.create({
   },
   card: {
     flexDirection: "column",
-    // backgroundColor: "#6A7B89",
-
-    // borderRadius: 100,
-    // opacity: 0.7,
-    // padding: 5,
   },
   background: {
     flex: 1,

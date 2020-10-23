@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import {
   StyleSheet,
   Text,
@@ -9,22 +9,22 @@ import {
   TouchableHighlight,
   Alert,
   ImageBackground,
-} from 'react-native';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import User from './User';
-import { useForm } from 'react-hook-form';
-import axios from 'axios';
-import { connect } from 'react-redux';
-import { auth, me, auth2 } from '../Store/user';
-import store from '../Store';
+} from "react-native";
+import { StatusBar } from "expo-status-bar";
+import "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import User from "./User";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import { connect } from "react-redux";
+import { auth, me, auth2 } from "../Store/user";
+import store from "../Store";
 const Log = (props) => {
   const { handleSubmit, register, setValue } = useForm();
   const onSubmit = async (values) => {
     try {
-      const formName = 'login';
+      const formName = "login";
       const email = values.email;
       const password = values.password;
       await props.login(email, password, formName);
@@ -35,39 +35,38 @@ const Log = (props) => {
       // //  console.log("res.data",res.data)
       // //console.log("&&&&&",props.user,"^^^^^^^^^^^")
       if (!user.id) throw new Error();
-      Alert.alert('Congratulations');
-      props.navigation.navigate('HomeScreen');
+      Alert.alert("Congratulations");
+      props.navigation.navigate("HomeScreen");
     } catch (error) {
-      Alert.alert('Invalid Input');
+      Alert.alert("Invalid Input");
     }
   };
 
   useEffect(() => {
     props.getMe();
-    register('email');
-    register('password');
+    register("email");
+    register("password");
   }, [register]);
   return (
     <ImageBackground
       style={styles.background}
-      source={require('../assets/images/game_background_1.png')}
+      source={require("../assets/images/game_background_1.png")}
     >
       <View style={styles.container}>
-        {/* <Text style={styles.welcome}>Start Your GoalHero Journey ??!</Text> */}
         <Image
           style={{ width: 360, height: 140 }}
-          source={require('../assets/images/logotest.png')}
+          source={require("../assets/images/logotest.png")}
         />
         <TextInput
           placeholder="Email:"
           style={styles.textInputStyle}
-          onChangeText={(text) => setValue('email', text)}
+          onChangeText={(text) => setValue("email", text)}
         />
         <TextInput
           placeholder="Password:"
           password={true}
           style={styles.textInputStyle}
-          onChangeText={(text) => setValue('password', text)}
+          onChangeText={(text) => setValue("password", text)}
         />
 
         <View style={styles.buttonStyle}>
@@ -76,7 +75,7 @@ const Log = (props) => {
         <View style={styles.buttonStyle}>
           <Button
             title="Signup"
-            onPress={() => props.navigation.navigate('SignPage')}
+            onPress={() => props.navigation.navigate("SignPage")}
           />
         </View>
         <StatusBar style="auto" />
@@ -88,7 +87,7 @@ const Log = (props) => {
 const styles = StyleSheet.create({
   container: {
     height: 666,
-    alignItems: 'center',
+    alignItems: "center",
     // justifyContent: 'center',
   },
   img: {
@@ -99,24 +98,24 @@ const styles = StyleSheet.create({
 
   textInputStyle: {
     marginVertical: 20,
-    width: '75%',
+    width: "75%",
     height: 38,
-    backgroundColor: 'white',
+    backgroundColor: "white",
     borderRadius: 10,
   },
   buttonStyle: {
-    backgroundColor: '#F09031',
-    color: 'white',
+    backgroundColor: "#F09031",
+    color: "white",
     width: 200,
     height: 40,
     borderRadius: 200 / 20,
     marginTop: 30,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   background: {
     flex: 1,
-    resizeMode: 'cover',
+    resizeMode: "cover",
   },
 });
 
