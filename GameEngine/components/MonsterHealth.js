@@ -39,7 +39,7 @@ class monsterHealth extends React.Component {
           }}
         >
           {'\n'} HOW TO PLAY:{'\n'}
-          Tap on the monster to attack it! {'\n'}
+          Tap on the attack button to attack the monster! {'\n'}
           Tap on the left/right sides of the screen to move {'\n'}
           Tap on the top of the screen to jump{' '}
         </Text>

@@ -9,13 +9,20 @@ import {
   disableCharJump,
   charHealth,
   monsterHealth,
+  charHurt,
+  charAttacking,
+  monsterHurt,
+  monsterAttacking,
   tick,
   incrementTick,
-
   incrementCharPose,
   incrementMonsterPose,
   monsterPose,
   charPose,
+  setCharAttacking,
+  setMonsterHurt,
+  setCharHurt,
+  setMonsterAttacking,
 } from "./Global";
 import {
   idle,
@@ -40,7 +47,7 @@ const verifyTouch = (t) => {
   const x = t.event.pageX;
   const y = t.event.pageY;
 
-  if (x > 290 && y > 595) {
+  if (x > 290 && y > 595 && !charAttacking && !monsterAttacking) {
     return true;
   }
 };
@@ -54,7 +61,8 @@ export const Physics = (entities, { touches, time }) => {
     .filter((t) => t.type === "press")
     .forEach((t) => {
       if (verifyTouch(t)) {
-        console.log('attack');
+        setCharAttacking(true);
+        attacking(entities.initialChar, "initialChar")
         characterDamage(entities);
       } else if (t.event.pageY < height / 3 && charJump) {
         disableCharJump();
@@ -65,14 +73,20 @@ export const Physics = (entities, { touches, time }) => {
     });
 
   Matter.Engine.update(engine, time.delta);
-  incrementTick();
 
-  idle(entities.initialChar, "initialChar");
-  idle(entities.initialMonster, "initialMonster");
+  incrementTick();
 
   monsterWalking(entities);
 
-  if (tick % 50 === 0) {
+  if (!charAttacking && !charHurt) {
+    idle(entities.initialChar, "initialChar");
+  }
+
+  if (!monsterAttacking && !monsterHurt) {
+    idle(entities.initialMonster, "initialMonster");
+  }
+
+  if (tick % 50 === 0 && !charAttacking) {
     monsterDamage(entities);
   }
   if (tick % 5 === 0) {
@@ -80,6 +94,25 @@ export const Physics = (entities, { touches, time }) => {
     changeCharPose(entities.initialChar);
     incrementMonsterPose();
     changeMonsterPose(entities.initialMonster);
+  }
+
+  if (charPose === 9) {
+    setCharAttacking(false)
+    setCharHurt(false)
+  }
+  if (monsterPose === 9) {
+    setMonsterAttacking(false)
+    setMonsterHurt(false)
+  }
+
+  if (Math.abs(monster.position.x) > 150 || Math.abs(monster.position.y) > 600) {
+    monster.position.x = 60
+    monster.position.y = 520.183
+  }
+
+  if (Math.abs(char.position.x) > 150 || Math.abs(char.position.y) > 600) {
+    char.position.x = 60
+    char.position.y = 530.183
   }
 
   // console.log("\n\n\nmonsterpose\n\n\n", monsterPose);
