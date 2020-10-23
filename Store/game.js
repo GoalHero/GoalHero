@@ -17,8 +17,8 @@ export const updateKillTimes = (killTimes) => ({
 export const updateKillTimesAndMonster = () => async (dispatch) => {
   try {
     // console.log('HEREeeeeeee')
-    await axios.put('http://localhost:8080/api/users/UpdateHpAndKill');
-    await axios.post('http://localhost:8080/api/hero/unlockNewHeroes');
+    await axios.put('https://goal-hero-capstone.herokuapp.com/api/users/UpdateHpAndKill');
+    await axios.post('https://goal-hero-capstone.herokuapp.com/api/hero/unlockNewHeroes');
 
     dispatch(gotMonsterHp());
   } catch (error) {
@@ -33,7 +33,7 @@ export const getMonsterHealth = (monsterHealth) => ({
 
 export const gotMonsterHp = () => async (dispatch) => {
   try {
-    const res = await axios.get('http://localhost:8080/auth/me');
+    const res = await axios.get('https://goal-hero-capstone.herokuapp.com/auth/me');
     const monsterHP = res.data.monsterHP;
     const killTimes = res.data.killTimes;
     
@@ -51,9 +51,9 @@ export const getCharHealth = (charHealth) => ({
 
 export const gotCharHealth = () => async (dispatch) => {
   try {
-    const res = await axios.get('http://localhost:8080/auth/me');
+    const res = await axios.get('https://goal-hero-capstone.herokuapp.com/auth/me');
     const charHP = res.data.health;
-    const ress = await axios.get('http://localhost:8080/api/hero/userHero');
+    const ress = await axios.get('https://goal-hero-capstone.herokuapp.com/api/hero/userHero');
     const userHero = ress.data.health;
     // const killTimes = res.data.killTimes;
     //   console.log(killTimes,"===========>")

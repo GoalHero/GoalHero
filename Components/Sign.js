@@ -37,9 +37,7 @@ const Sign = (props) => {
       const password = values.password;
       await props.signup(email, password, name, formName);
       const user = store.getState().user;
-      // const res = await axios.get('http://localhost:8080/auth/me');
-      //  console.log("res.data",res.data)
-      //console.log("&&&&&",props.user,"^^^^^^^^^^^")
+    
       if (!user.id) throw new Error();
 
       Alert.alert('You have successfully signed up for GoalHero!');
