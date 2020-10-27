@@ -1,7 +1,7 @@
 # GoalHero
 _GoalHero is a gaming and lifestyle mobile application._
 
-GoalHero inspires users to set goals for themselves to achieve. When a user signs up for an account, they are given a hero character. They can use their hero to fight against a monster. They start off weak against a monster, so they need to level up to increase their damage. A user can level up their hero by completeing goals they set for themselves such as finishing a project, or running every day for a week. After a user uses their hero to defeat a monster, they will unlock a stronger hero. 
+GoalHero inspires users to set goals for themselves to achieve. When a user signs up for an account, they are given a hero character. They can use their hero to fight against a monster. They start off weak against a monster, so they need to level up to increase their damage. A user can level up their hero by completing goals they set for themselves such as finishing a project, or running every day for a week. After a user uses their hero to defeat a monster, they will unlock a stronger hero. 
 
 ## How to Use GoalHero
 After opening the application, either log in or sign up for a GoalHero account. Next, go to the GOALS page to start setting goals for yourself. You can set up to five goals for yourself at a time. You can then either choose to complete the goal, or remove it. Completing a goal will then level up your hero. Your hero starts at level 1. Each increase in level makes the hero stronger as they fight against a monster. 
