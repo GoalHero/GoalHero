@@ -18,7 +18,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Set-Up
 
-Galacticode runs in a Node environment and requires a postgreSQL database named “goalHero”. You’ll also need to create a database for testing called “goalHero-testing.”
+GoalHero runs in a Node environment and requires a postgreSQL database named “goalHero”. You’ll also need to create a database for testing called “goalHero-testing.”
 
 Fork and/or clone this repository to create your own local copy and follow the instructions below.
 
